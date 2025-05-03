@@ -1,0 +1,187 @@
+---
+import Container from "../Container.astro";
+import Logo from "../Header/Logo.astro";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, ArrowRight, Heart } from "lucide-astro";
+
+// Datos estructurados para los enlaces del footer
+const footerLinks = [
+  {
+    title: "RECURSOS",
+    links: [
+      { label: "Covid-19", href: "#" },
+      { label: "Sobre Nosotros", href: "#" },
+      { label: "Carreras", href: "#" },
+      { label: "Prensa", href: "#" },
+    ]
+  },
+  {
+    title: "ESPECIALIDADES",
+    links: [
+      { label: "Todas las Especialidades", href: "#" },
+      { label: "Cardiología", href: "#" },
+      { label: "Cirugía", href: "#" },
+      { label: "Ginecología", href: "#" },
+    ]
+  },
+  {
+    title: "ASISTENCIA",
+    links: [
+      { label: "Línea Directa", href: "#" },
+      { label: "Centro de Ayuda", href: "#" },
+      { label: "Preguntas Frecuentes", href: "#" },
+      { label: "Términos de Servicio", href: "#" },
+    ]
+  },
+  {
+    title: "PLATAFORMA",
+    links: [
+      { label: "Dokto Pro", href: "#" },
+      { label: "Comunidad Dokto", href: "#" },
+      { label: "Documentación", href: "#" },
+      { label: "API", href: "#" },
+    ]
+  }
+];
+
+// Redes sociales
+const socialLinks = [
+  { icon: Facebook, label: "Facebook", href: "#" },
+  { icon: Twitter, label: "Twitter", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: Linkedin, label: "LinkedIn", href: "#" },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="font-sans bg-white dark:bg-gray-900 pt-16">
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 px-5">
+      <!-- Logo y descripción -->
+      <div class="lg:col-span-2">
+        <a
+          href="/"
+          class="flex items-center gap-3 mb-4 group"
+          aria-label="Dokto - Inicio"
+        >
+          <div class="text-blue-600 transition-all duration-300 group-hover:scale-110">
+            <Logo class="w-9 h-9" />
+          </div>
+          <span
+            class="font-sans text-lg tracking-widest uppercase text-gray-800 dark:text-gray-100"
+            >Dokto</span
+          >
+        </a>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-xs leading-relaxed">
+          Cuidando de tu salud con profesionalismo y calidez humana. Nuestro compromiso es brindarte la mejor atención médica.
+        </p>
+        
+        <!-- Newsletter (movido arriba en móvil) -->
+        <div class="mb-8 lg:mb-0">
+          <h3 class="font-medium text-sm mb-3 text-gray-800 dark:text-gray-100">
+            SUSCRÍBETE A NUESTRO NEWSLETTER
+          </h3>
+          <form class="flex flex-col sm:flex-row gap-2 max-w-md" aria-label="Suscripción al newsletter">
+            <div class="relative flex-grow">
+              <Mail class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <input
+                type="email"
+                required
+                class="w-full h-11 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-200 py-1 pl-10 pr-3 leading-8 transition-colors duration-300 ease-in-out focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Tu correo electrónico"
+                aria-label="Dirección de correo electrónico"
+              />
+            </div>
+            <button
+              type="submit"
+              class="h-11 inline-flex items-center justify-center text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded-lg transition-colors duration-300 group"
+            >
+              <span>Suscribirse</span>
+              <ArrowRight class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Enlaces del footer -->
+      {footerLinks.map((column) => (
+        <div>
+          <h2
+            class="font-medium tracking-widest text-sm mb-5 text-gray-800 dark:text-gray-100"
+          >
+            {column.title}
+          </h2>
+          <ul class="list-none space-y-3 mb-10">
+            {column.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 inline-flex items-center group"
+                >
+                  <span class="relative">
+                    {link.label}
+                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </Container>
+
+  <!-- Separador -->
+  <div class="border-t border-gray-200 dark:border-gray-800 mt-8">
+    <Container>
+      <div class="px-5 py-8 flex flex-col md:flex-row justify-between items-center">
+        <!-- Redes sociales -->
+        <div class="flex space-x-4 mb-6 md:mb-0">
+          {socialLinks.map((social) => (
+            <a 
+              href={social.href} 
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-all duration-300"
+              aria-label={social.label}
+            >
+              <social.icon class="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+        
+        <!-- Certificaciones -->
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-gray-500 dark:text-gray-400">Certificados por:</span>
+          <div class="flex gap-3">
+            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">ISO 9001</span>
+            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">HIPAA</span>
+            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">GDPR</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </div>
+
+  <!-- Copyright -->
+  <div class="bg-gray-100 dark:bg-gray-800">
+    <Container>
+      <div class="py-4 px-5 flex flex-wrap flex-col sm:flex-row justify-between items-center">
+        <p
+          class="text-gray-500 dark:text-gray-400 text-sm"
+        >
+          © 2018-{currentYear} Dokto. Todos los derechos reservados.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-3 sm:mt-0 text-sm text-gray-500 dark:text-gray-400">
+          <a href="#" class="hover:text-blue-500 transition-colors">Privacidad</a>
+          <a href="#" class="hover:text-blue-500 transition-colors">Términos</a>
+          <a href="#" class="hover:text-blue-500 transition-colors">Cookies</a>
+          <span class="flex items-center gap-1">
+            Hecho con <Heart class="w-3.5 h-3.5 text-red-500 animate-pulse" /> por 
+            <a href="https://cssninja.io" class="hover:text-blue-500 transition-colors" target="_blank" rel="noopener noreferrer">
+              Css Ninja
+            </a>
+          </span>
+        </div>
+      </div>
+    </Container>
+  </div>
+</footer>

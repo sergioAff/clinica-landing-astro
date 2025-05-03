@@ -1,0 +1,98 @@
+---
+import { Moon } from 'lucide-astro'
+---
+
+<button 
+  id="theme-toggle" 
+  aria-label="Toggle dark mode" 
+  class="relative p-2 rounded-full bg-white dark:bg-gray-800 
+         shadow-sm hover:shadow-md 
+         ring-1 ring-gray-200 dark:ring-gray-700 
+         transition-all duration-200 ease-out 
+         focus:outline-none focus:ring-2 focus:ring-blue-500/40 active:scale-95 hover:scale-105 cursor-pointer"
+>
+  <div id="theme-icon-container" class="w-6 h-6 flex items-center justify-center">
+    <Moon id="moon-icon" class="w-6 h-6 text-blue-500" />
+  </div>
+</button>
+
+<script is:inline>
+  function updateIcon(isDark) {
+    const container = document.getElementById('theme-icon-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const iconSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    iconSvg.setAttribute('width', '24');
+    iconSvg.setAttribute('height', '24');
+    iconSvg.setAttribute('viewBox', '0 0 24 24');
+    iconSvg.setAttribute('fill', 'none');
+    iconSvg.setAttribute('stroke', 'currentColor');
+    iconSvg.setAttribute('stroke-width', '2');
+    iconSvg.setAttribute('stroke-linecap', 'round');
+    iconSvg.setAttribute('stroke-linejoin', 'round');
+    iconSvg.classList.add('w-6', 'h-6');
+    
+    if (isDark) {
+      iconSvg.classList.add('text-amber-500');
+      iconSvg.innerHTML = `
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      `;
+    } else {
+      iconSvg.classList.add('text-blue-500');
+      iconSvg.innerHTML = `
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      `;
+    }
+    
+    container.appendChild(iconSvg);
+
+  }
+
+  function setTheme(isDark) {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    updateIcon(isDark);
+
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+  }
+
+  function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    let isDark;
+    if (savedTheme) {
+      isDark = savedTheme === 'dark';
+    } else {
+      isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    
+    setTheme(isDark);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        setTheme(!isDark);
+      });
+    }
+  });
+</script>

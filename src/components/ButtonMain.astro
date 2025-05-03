@@ -1,0 +1,11 @@
+---
+const { to, class: className } = Astro.props;
+---
+
+<a
+  href={to}
+  class="inline-flex items-center justify-center h-12 px-8 text-base font-bold rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-md hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200 ease-out active:scale-95 select-none hover:scale-105"
+  :class={className}
+>
+  <slot />
+</a>
