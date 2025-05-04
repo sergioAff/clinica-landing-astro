@@ -1,0 +1,47 @@
+---
+// Componente para observar secciones al hacer scroll
+---
+
+<script>
+// Función para observar cuando un elemento está en el viewport
+document.addEventListener('DOMContentLoaded', function() {
+  // Creamos un observador de intersección
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Si el elemento es visible
+      if (entry.isIntersecting) {
+        // Añadimos la clase in-viewport
+        entry.target.classList.add('in-viewport');
+        
+        // Ya no necesitamos observar este elemento
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null, // viewport
+    threshold: 0.1, // Cuando al menos 10% es visible
+    rootMargin: '0px'
+  });
+  
+  // Observamos todas las secciones con id
+  document.querySelectorAll('section[id]').forEach(section => {
+    observer.observe(section);
+  });
+  
+  // Manejamos los enlaces de navegación
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (!targetElement) return;
+      
+      // Añadimos y luego quitamos el atributo data-highlighted
+      targetElement.setAttribute('data-highlighted', 'true');
+      setTimeout(() => {
+        targetElement.removeAttribute('data-highlighted');
+      }, 2000);
+    });
+  });
+});
+</script> 

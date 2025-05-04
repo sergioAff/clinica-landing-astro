@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>En mantenimiento - MenteSana</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  
+  <style>
+    :root {
+      --blue-500: #3b82f6;
+      --blue-400: #60a5fa;
+      --cyan-400: #22d3ee;
+      --gray-900: #111827;
+      --gray-800: #1f2937;
+      --gray-700: #374151;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--gray-900);
+      color: var(--gray-100);
+      height: 100%;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .maintenance-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      padding: 0 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo {
+      margin-bottom: 2rem;
+      width: 200px;
+      height: auto;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--blue-500), var(--cyan-400));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      color: #e5e7eb;
+    }
+    
+    .status {
+      background: var(--gray-800);
+      border: 1px solid var(--gray-700);
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      width: 100%;
+    }
+    
+    .status-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--blue-400);
+    }
+    
+    .contact {
+      margin-top: 2rem;
+    }
+    
+    .email {
+      color: var(--blue-400);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .email:hover {
+      color: var(--cyan-400);
+    }
+    
+    .background-gradient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(16, 24, 39, 0) 70%);
+      z-index: -1;
+      opacity: 0.6;
+      animation: pulse 10s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.6;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance-container">
+    <div class="background-gradient"></div>
+    
+    <img src="/img/logo.svg" alt="MenteSana Logo" class="logo">
+    
+    <h1>Sitio en mantenimiento</h1>
+    
+    <p>Estamos realizando mejoras en nuestro sitio web para brindarte una mejor experiencia. Volveremos pronto.</p>
+    
+    <div class="status">
+      <div class="status-title">Estado actual:</div>
+      <div class="status-text">Actualizando nuestros sistemas para mejorar el servicio.</div>
+    </div>
+    
+    <p>Gracias por tu paciencia. Si necesitas asistencia inmediata, puedes contactarnos por los siguientes medios:</p>
+    
+    <div class="contact">
+      <p>
+        Teléfono: +34 123 456 789<br>
+        Email: <a href="mailto:info@mentesana.com" class="email">info@mentesana.com</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html> 

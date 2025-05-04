@@ -1,0 +1,54 @@
+{
+  "name": "MenteSana - Centro de Psicología Especializada",
+  "short_name": "MenteSana",
+  "description": "Somos un equipo de psicólogos especializados comprometidos con tu salud mental. Ofrecemos terapias personalizadas en un entorno seguro y confidencial.",
+  "icons": [
+    {
+      "src": "/img/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "lang": "es-ES",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "categories": ["health", "medical", "psychology", "healthcare"],
+  "shortcuts": [
+    {
+      "name": "Solicitar cita",
+      "url": "/contacto",
+      "description": "Solicita una cita con nuestros psicólogos",
+      "icons": [
+        {
+          "src": "/img/favicon.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Nuestros servicios",
+      "url": "/servicios",
+      "description": "Conoce nuestros servicios de terapia",
+      "icons": [
+        {
+          "src": "/img/favicon.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+} 

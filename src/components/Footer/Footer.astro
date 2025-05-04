@@ -54,134 +54,155 @@ const socialLinks = [
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="font-sans bg-white dark:bg-gray-900 pt-16">
-  <Container>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 px-5">
-      <!-- Logo y descripción -->
-      <div class="lg:col-span-2">
-        <a
-          href="/"
-          class="flex items-center gap-3 mb-4 group"
-          aria-label="Dokto - Inicio"
-        >
-          <div class="text-blue-600 transition-all duration-300 group-hover:scale-110">
-            <Logo class="w-9 h-9" />
-          </div>
-          <span
-            class="font-sans text-lg tracking-widest uppercase text-gray-800 dark:text-gray-100"
-            >Dokto</span
-          >
-        </a>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-6 max-w-xs leading-relaxed">
-          Cuidando de tu salud con profesionalismo y calidez humana. Nuestro compromiso es brindarte la mejor atención médica.
+<footer class="bg-dark-400/90 border-t border-dark-300/30 mt-16 sm:mt-20" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+    <!-- Footer Top -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 mb-10">
+      <!-- Columna 1: Logo e info -->
+      <div class="md:col-span-1">
+        <div class="text-xl font-bold flex items-center gap-2 mb-4">
+          <span class="text-primary-400 text-2xl">🧠</span>
+          <span class="bg-gradient-to-r from-primary-500 to-secondary-400 bg-clip-text text-transparent">MenteSana</span>
+        </div>
+        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+          Centro de psicología especializado en salud mental y bienestar emocional. Ofrecemos un enfoque personalizado y basado en evidencia.
         </p>
-        
-        <!-- Newsletter (movido arriba en móvil) -->
-        <div class="mb-8 lg:mb-0">
-          <h3 class="font-medium text-sm mb-3 text-gray-800 dark:text-gray-100">
-            SUSCRÍBETE A NUESTRO NEWSLETTER
-          </h3>
-          <form class="flex flex-col sm:flex-row gap-2 max-w-md" aria-label="Suscripción al newsletter">
-            <div class="relative flex-grow">
-              <Mail class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type="email"
-                required
-                class="w-full h-11 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-200 py-1 pl-10 pr-3 leading-8 transition-colors duration-300 ease-in-out focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Tu correo electrónico"
-                aria-label="Dirección de correo electrónico"
-              />
-            </div>
-            <button
-              type="submit"
-              class="h-11 inline-flex items-center justify-center text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded-lg transition-colors duration-300 group"
-            >
-              <span>Suscribirse</span>
-              <ArrowRight class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          </form>
+        <div class="flex space-x-4" aria-label="Redes sociales">
+          <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors" aria-label="Facebook">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors" aria-label="Instagram">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors" aria-label="Twitter">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-primary-400 transition-colors" aria-label="LinkedIn">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
         </div>
       </div>
-
-      <!-- Enlaces del footer -->
-      {footerLinks.map((column) => (
-        <div>
-          <h2
-            class="font-medium tracking-widest text-sm mb-5 text-gray-800 dark:text-gray-100"
-          >
-            {column.title}
-          </h2>
-          <ul class="list-none space-y-3 mb-10">
-            {column.links.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 inline-flex items-center group"
-                >
-                  <span class="relative">
-                    {link.label}
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      
+      <!-- Columna 2: Servicios -->
+      <div class="md:col-span-1">
+        <h3 class="text-gray-200 font-semibold text-base mb-4 tracking-wide" id="footer-servicios">Servicios</h3>
+        <ul class="space-y-2.5" aria-labelledby="footer-servicios">
+          <li>
+            <a href="#services" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Terapia Individual</span>
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Terapia de Pareja</span>
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Terapia Infantil</span>
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Evaluación Psicológica</span>
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Mindfulness y Meditación</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Columna 3: Enlaces -->
+      <div class="md:col-span-1">
+        <h3 class="text-gray-200 font-semibold text-base mb-4 tracking-wide" id="footer-enlaces">Enlaces rápidos</h3>
+        <ul class="space-y-2.5" aria-labelledby="footer-enlaces">
+          <li>
+            <a href="#team" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Nuestro Equipo</span>
+            </a>
+          </li>
+          <li>
+            <a href="#testimonials" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Testimonios</span>
+            </a>
+          </li>
+          <li>
+            <a href="#blog" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="#faq" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Preguntas Frecuentes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors text-sm group flex items-center">
+              <span class="mr-1.5 text-xs opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">›</span>
+              <span>Política de Privacidad</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Columna 4: Contacto -->
+      <div class="md:col-span-1">
+        <h3 class="text-gray-200 font-semibold text-base mb-4 tracking-wide" id="footer-contacto">Contacto</h3>
+        <ul class="space-y-4" aria-labelledby="footer-contacto">
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="text-gray-400 text-sm">Calle Principal, 123<br>28001 Madrid, España</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span class="text-gray-400 text-sm">+34 123 456 789</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span class="text-gray-400 text-sm">info@mentesana.com</span>
+          </li>
+        </ul>
+      </div>
     </div>
-  </Container>
-
-  <!-- Separador -->
-  <div class="border-t border-gray-200 dark:border-gray-800 mt-8">
-    <Container>
-      <div class="px-5 py-8 flex flex-col md:flex-row justify-between items-center">
-        <!-- Redes sociales -->
-        <div class="flex space-x-4 mb-6 md:mb-0">
-          {socialLinks.map((social) => (
-            <a 
-              href={social.href} 
-              class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-all duration-300"
-              aria-label={social.label}
-            >
-              <social.icon class="w-5 h-5" />
-            </a>
-          ))}
-        </div>
-        
-        <!-- Certificaciones -->
-        <div class="flex items-center gap-4">
-          <span class="text-sm text-gray-500 dark:text-gray-400">Certificados por:</span>
-          <div class="flex gap-3">
-            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">ISO 9001</span>
-            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">HIPAA</span>
-            <span class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">GDPR</span>
-          </div>
-        </div>
-      </div>
-    </Container>
-  </div>
-
-  <!-- Copyright -->
-  <div class="bg-gray-100 dark:bg-gray-800">
-    <Container>
-      <div class="py-4 px-5 flex flex-wrap flex-col sm:flex-row justify-between items-center">
-        <p
-          class="text-gray-500 dark:text-gray-400 text-sm"
-        >
-          © 2018-{currentYear} Dokto. Todos los derechos reservados.
-        </p>
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-3 sm:mt-0 text-sm text-gray-500 dark:text-gray-400">
-          <a href="#" class="hover:text-blue-500 transition-colors">Privacidad</a>
-          <a href="#" class="hover:text-blue-500 transition-colors">Términos</a>
-          <a href="#" class="hover:text-blue-500 transition-colors">Cookies</a>
-          <span class="flex items-center gap-1">
-            Hecho con <Heart class="w-3.5 h-3.5 text-red-500 animate-pulse" /> por 
-            <a href="https://cssninja.io" class="hover:text-blue-500 transition-colors" target="_blank" rel="noopener noreferrer">
-              Css Ninja
-            </a>
-          </span>
-        </div>
-      </div>
-    </Container>
+    
+    <!-- Footer Bottom -->
+    <div class="pt-6 border-t border-dark-300/30 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-500 text-xs mb-4 md:mb-0">
+        &copy; {currentYear} MenteSana. Todos los derechos reservados.
+      </p>
+      <a href="#home" class="inline-flex items-center px-4 py-2 bg-primary-500/10 text-primary-400 rounded-full text-xs font-medium hover:bg-primary-500/20 transition-colors">
+        Volver arriba
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </a>
+    </div>
   </div>
 </footer>

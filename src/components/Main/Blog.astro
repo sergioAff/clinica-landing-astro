@@ -1,0 +1,153 @@
+---
+// Componente de blog con artículos de psicología
+import ButtonSub from "../ButtonSub.astro";
+---
+
+<section id="blog" class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-24">
+  <div class="text-center mb-8 sm:mb-12">
+    <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Nuestro blog</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-100 mb-3 sm:mb-4">Artículos sobre salud mental</h2>
+    <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-2">Recursos, consejos y novedades sobre psicología y bienestar emocional.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Artículo 1 -->
+    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
+      <div class="relative overflow-hidden">
+        <img 
+          src="/img/blog/article1.jpg" 
+          alt="Manejo de la ansiedad" 
+          class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+        <div class="absolute bottom-0 left-0 p-4">
+          <span class="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Ansiedad</span>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <div class="flex items-center text-gray-400 text-sm mb-2">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            15 Mayo, 2023
+          </span>
+          <span class="mx-2">·</span>
+          <span>5 min lectura</span>
+        </div>
+        
+        <h3 class="text-xl font-semibold text-gray-100 mb-3 group-hover:text-blue-400 transition-colors">5 técnicas efectivas para manejar la ansiedad en situaciones cotidianas</h3>
+        
+        <p class="text-gray-400 mb-4">Descubre estrategias prácticas y basadas en evidencia para gestionar los síntomas de ansiedad y recuperar el control en tu día a día.</p>
+        
+        <div class="flex items-center">
+          <img 
+            src="/img/team/psychologist1.jpg" 
+            alt="Dra. María Rodríguez" 
+            class="w-8 h-8 rounded-full object-cover mr-3"
+          />
+          <span class="text-sm text-gray-300">Dra. María Rodríguez</span>
+        </div>
+      </div>
+      
+      <div class="px-6 pb-6">
+        <ButtonSub to="/blog/ansiedad-tecnicas">Leer más</ButtonSub>
+      </div>
+    </article>
+    
+    <!-- Artículo 2 -->
+    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
+      <div class="relative overflow-hidden">
+        <img 
+          src="/img/blog/article2.jpg" 
+          alt="Desarrollo infantil" 
+          class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+        <div class="absolute bottom-0 left-0 p-4">
+          <span class="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Infancia</span>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <div class="flex items-center text-gray-400 text-sm mb-2">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            2 Junio, 2023
+          </span>
+          <span class="mx-2">·</span>
+          <span>7 min lectura</span>
+        </div>
+        
+        <h3 class="text-xl font-semibold text-gray-100 mb-3 group-hover:text-blue-400 transition-colors">Etapas del desarrollo emocional en niños: guía para padres</h3>
+        
+        <p class="text-gray-400 mb-4">Comprende las diferentes fases del desarrollo emocional infantil y aprende cómo acompañar a tu hijo en cada etapa para promover su bienestar.</p>
+        
+        <div class="flex items-center">
+          <img 
+            src="/img/team/psychologist2.jpg" 
+            alt="Dr. Carlos Mendoza" 
+            class="w-8 h-8 rounded-full object-cover mr-3"
+          />
+          <span class="text-sm text-gray-300">Dr. Carlos Mendoza</span>
+        </div>
+      </div>
+      
+      <div class="px-6 pb-6">
+        <ButtonSub to="#">Leer más</ButtonSub>
+      </div>
+    </article>
+    
+    <!-- Artículo 3 -->
+    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
+      <div class="relative overflow-hidden">
+        <img 
+          src="/img/blog/article3.jpg" 
+          alt="Comunicación en pareja" 
+          class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+        <div class="absolute bottom-0 left-0 p-4">
+          <span class="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Relaciones</span>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <div class="flex items-center text-gray-400 text-sm mb-2">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            20 Mayo, 2023
+          </span>
+          <span class="mx-2">·</span>
+          <span>6 min lectura</span>
+        </div>
+        
+        <h3 class="text-xl font-semibold text-gray-100 mb-3 group-hover:text-blue-400 transition-colors">Comunicación efectiva en pareja: claves para evitar conflictos</h3>
+        
+        <p class="text-gray-400 mb-4">Aprende a mejorar la comunicación con tu pareja mediante técnicas que fomentan la empatía, la escucha activa y la resolución constructiva de conflictos.</p>
+        
+        <div class="flex items-center">
+          <img 
+            src="/img/team/psychologist3.jpg" 
+            alt="Dra. Laura Sánchez" 
+            class="w-8 h-8 rounded-full object-cover mr-3"
+          />
+          <span class="text-sm text-gray-300">Dra. Laura Sánchez</span>
+        </div>
+      </div>
+      
+      <div class="px-6 pb-6">
+        <ButtonSub to="#">Leer más</ButtonSub>
+      </div>
+    </article>
+  </div>
+  
+  <div class="text-center mt-10">
+    <ButtonSub to="/blog">Ver más artículos</ButtonSub>
+  </div>
+</section> 

@@ -1,0 +1,101 @@
+---
+// Componente de servicios principales de la clínica psicológica
+import AnimatedServiceCard from "../react/AnimatedServiceCard";
+
+const services = [
+  {
+    icon: "UserCircle", // Nombre del icono de Lucide
+    title: "Terapia Individual",
+    description: "Sesiones personalizadas diseñadas para abordar problemas específicos como ansiedad, depresión, estrés y otros desafíos emocionales.",
+    features: [
+      "Enfoque personalizado",
+      "Técnicas basadas en evidencia",
+      "Sesiones de 45-60 minutos"
+    ],
+    buttonText: "Solicitar Cita",
+    buttonLink: "#appointment"
+  },
+  {
+    icon: "Users", // Nombre del icono de Lucide
+    title: "Terapia de Pareja",
+    description: "Ayudamos a mejorar la comunicación, resolver conflictos y fortalecer el vínculo en la relación para lograr una conexión más saludable.",
+    features: [
+      "Mejora de la comunicación",
+      "Resolución de conflictos",
+      "Reconstrucción de confianza"
+    ],
+    buttonText: "Solicitar Cita",
+    buttonLink: "#appointment"
+  },
+  {
+    icon: "Baby", // Nombre del icono de Lucide
+    title: "Terapia Infantil y Adolescentes",
+    description: "Apoyo especializado para niños y adolescentes que enfrentan desafíos emocionales, de comportamiento o de aprendizaje.",
+    features: [
+      "Terapia adaptada por edades",
+      "Técnicas lúdicas y expresivas",
+      "Orientación a padres"
+    ],
+    buttonText: "Solicitar Cita",
+    buttonLink: "#appointment"
+  },
+  {
+    icon: "ClipboardCheck", // Nombre del icono de Lucide
+    title: "Evaluación Psicológica",
+    description: "Realizamos evaluaciones completas para identificar patrones cognitivos, emocionales o conductuales que afectan tu bienestar.",
+    features: [
+      "Tests estandarizados",
+      "Informe detallado",
+      "Recomendaciones personalizadas"
+    ],
+    buttonText: "Solicitar Cita",
+    buttonLink: "#appointment"
+  },
+  {
+    icon: "Yoga", // Nombre del icono de Lucide
+    title: "Mindfulness y Meditación",
+    description: "Aprende técnicas de atención plena y meditación para reducir el estrés, la ansiedad y mejorar tu bienestar general.",
+    features: [
+      "Sesiones individuales y grupales",
+      "Prácticas guiadas",
+      "Recursos para práctica en casa"
+    ],
+    buttonText: "Solicitar Cita",
+    buttonLink: "#appointment"
+  },
+  {
+    icon: "Users2", // Nombre del icono de Lucide
+    title: "Talleres y Grupos",
+    description: "Talleres temáticos y grupos de apoyo para compartir experiencias, aprender habilidades y encontrar apoyo entre pares.",
+    features: [
+      "Diferentes temáticas",
+      "Ambiente seguro y acogedor",
+      "Facilitadores especializados"
+    ],
+    buttonText: "Solicitar Cita",
+    buttonLink: "#appointment"
+  }
+];
+---
+
+<section id="services" class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-24">
+  <div class="text-center mb-8 sm:mb-12">
+    <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Nuestros servicios</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-100 mb-3 sm:mb-4">Servicios especializados</h2>
+    <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-2">Ofrecemos una amplia gama de servicios de salud mental para ayudarte a superar desafíos y mejorar tu bienestar emocional.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    {services.map(service => (
+      <AnimatedServiceCard 
+        icon={service.icon}
+        title={service.title}
+        description={service.description}
+        features={service.features}
+        buttonText={service.buttonText}
+        buttonLink={service.buttonLink}
+        client:visible
+      />
+    ))}
+  </div>
+</section> 

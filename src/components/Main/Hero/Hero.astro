@@ -4,53 +4,341 @@ import ButtonSub from "../../ButtonSub.astro";
 import HeroMainModuleOne from "./HeroMainModuleOne.astro";
 ---
 
-<section class="min-h-[70dvh] w-full overflow-hidden px-2 flex flex-col justify-start pb-36" aria-label="Hero">
-  <div class="w-full max-w-7xl grid grid-cols-1 ltablet:grid-cols-12 gap-6 sm:gap-8 items-center flex-1 mx-auto">
-    <div class="ltablet:col-span-5 flex flex-col items-center ltablet:items-start space-y-8 sm:space-y-10 justify-start pt-6 sm:pt-8 pb-4 text-center ltablet:text-left">
-      <h1 class="font-extrabold text-3xl xs:text-4xl sm:text-5xl lg:text-8xl tracking-tight bg-gradient-to-br from-blue-500 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-fadein-slideup drop-shadow-lg max-w-3xl sm:max-w-6xl mx-auto">
-        We help you find the Doctor you need
+<section class="w-full px-3 sm:px-4 py-20 sm:py-32 flex flex-col items-center justify-center overflow-hidden relative" aria-label="Sección principal">
+  <!-- Fondos y decoración -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute inset-0 bg-gradient-radial from-blue-500/5 to-transparent opacity-70"></div>
+    <div class="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 blur-[100px] rounded-full animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-1/3 -right-1/4 w-1/2 h-1/2 bg-gradient-to-l from-purple-500/10 to-blue-500/10 blur-[100px] rounded-full animate-blob animation-delay-4000"></div>
+    <div class="absolute w-full h-full bg-[url('/img/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
+  </div>
+
+  <div class="w-full max-w-6xl mx-auto flex flex-col items-center z-10">
+    <!-- Título y texto -->
+    <div data-aos="fade-up" data-aos-duration="1000" class="text-center mb-12 sm:mb-16 w-full max-w-4xl">
+      <h1 class="font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6 sm:mb-8 text-transparent">
+        <span class="inline-block relative">
+          <span class="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-400 to-cyan-400 blur-[40px] opacity-30"></span>
+          <span class="relative bg-gradient-to-r from-blue-600 via-blue-400 to-cyan-400 bg-clip-text">Tu bienestar mental</span>
+        </span>
+        <br />
+        <span class="inline-block text-gray-100 mt-2">es nuestra prioridad</span>
       </h1>
-      <div class="space-y-6 sm:space-y-8 max-w-xl sm:max-w-2xl w-full mx-auto">
-        <p class="text-base xs:text-lg sm:text-xl text-slate-400 dark:text-slate-200 leading-relaxed animate-fadein-slideup">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tibi hoc incredibile, quod beatissimum. Quamquam te quidem video minime esse deterritum.
-        </p>
-        <nav class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full animate-fadein-slideup items-center justify-center" aria-label="Hero actions">
-          <ButtonMain to="/">Get Started</ButtonMain>
-          <ButtonSub to="/">Explore</ButtonSub>
-        </nav>
+      <p class="text-base sm:text-lg text-slate-400 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10 font-light">
+        Somos un equipo de psicólogos especializados comprometidos con tu salud mental.
+        <span class="block mt-2">Ofrecemos terapias personalizadas en un entorno seguro y confidencial.</span>
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+        <ButtonMain to="#appointment" size="lg" hasArrow={true}>Solicitar Cita</ButtonMain>
+        <ButtonSub to="#services" size="lg" hasIcon={true} iconName="Info">Nuestros Servicios</ButtonSub>
       </div>
     </div>
-    <div class="relative ltablet:col-span-7 flex justify-center items-center w-full mt-8 sm:mt-0">
-      <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
+    
+    <!-- Imagen principal y decoraciones -->
+    <div data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="300" class="relative w-full flex justify-center mt-8 group">
+      <div class="absolute inset-0 flex justify-center items-center pointer-events-none" aria-hidden="true">
         <div class="hero-radial-bg"></div>
         <div class="hero-halo-pulse"></div>
       </div>
-      <div class="relative w-full flex justify-center items-end">
-        <img
-          src="/img/illustrations/hero.svg"
-          class="block dark:hidden w-[90vw] max-w-xs xs:max-w-sm sm:max-w-[540px] rounded-3xl shadow-2xl border border-white/30 animate-fadein-slideup relative z-10"
-          alt="Illustration of a group of doctors"
-        />
-        <img
-          src="/img/illustrations/hero-dark.svg"
-          class="hidden dark:block w-[90vw] max-w-xs xs:max-w-sm sm:max-w-[540px] rounded-3xl shadow-2xl border border-slate-800/40 animate-fadein-slideup relative z-10"
-          alt="Illustration of a group of doctors in dark mode"
-        />
-        <HeroMainModuleOne class="animate-fadein-slideup max-w-[90vw] sm:max-w-xs -mb-6 sm:mb-0" />
+      
+      <div class="relative flex justify-center items-center max-w-[700px] w-full">
+        <!-- Tarjetas flotantes animadas -->
+        <div class="absolute top-0 left-0 sm:-left-16 md:-left-24 -translate-y-1/4 z-20 hidden sm:block">
+          <div class="glassmorphism p-3 md:p-4 rounded-xl shadow-xl animate-float-slow transform rotate-[-5deg]">
+            <div class="flex items-center space-x-3">
+              <div class="w-9 h-9 md:w-10 md:h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="text-left">
+                <div class="text-xs md:text-sm font-medium text-gray-200">Más de 95%</div>
+                <div class="text-xs text-gray-400">tasa de satisfacción</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="absolute -bottom-12 sm:-bottom-8 right-0 sm:-right-12 md:-right-20 z-20 hidden sm:block">
+          <div class="glassmorphism p-3 md:p-4 rounded-xl shadow-xl animate-float-medium transform rotate-[3deg]">
+            <div class="flex items-center space-x-3">
+              <div class="w-9 h-9 md:w-10 md:h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="text-left">
+                <div class="text-xs md:text-sm font-medium text-gray-200">Primera sesión</div>
+                <div class="text-xs text-gray-400">evaluación gratuita</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Imagen principal con efecto glassmorphism -->
+        <div class="glassmorphism-lg rounded-2xl overflow-hidden shadow-2xl border border-white/10 transform transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-blue-500/20">
+          <img
+            src="/img/illustrations/hero.svg"
+            class="block dark:hidden w-full max-w-[450px] sm:max-w-[550px] md:max-w-[600px] relative z-10"
+            alt="Psicólogos profesionales ayudando a pacientes"
+            loading="eager"
+            width="600"
+            height="450"
+            fetchpriority="high"
+          />
+          <img
+            src="/img/illustrations/hero-dark.svg"
+            class="hidden dark:block w-full max-w-[450px] sm:max-w-[550px] md:max-w-[600px] relative z-10"
+            alt="Psicólogos profesionales ayudando a pacientes"
+            loading="eager"
+            width="600"
+            height="450"
+            fetchpriority="high"
+          />
+        </div>
+        
+        <HeroMainModuleOne class="max-w-[85vw] sm:max-w-xs mb-0" />
+        
+        <!-- Decoración de emojis con mejoras de accesibilidad -->
+        <div class="absolute top-3 left-3 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-full text-lg sm:text-xl glass-emoji shadow-lg animate-float-slow z-20 emoji-glow" aria-hidden="true">
+          🧠
+        </div>
+        <div class="absolute top-12 left-10 h-6 w-6 sm:h-8 sm:w-8 flex items-center justify-center rounded-full text-sm sm:text-lg glass-emoji shadow-lg animate-emoji-spin-scale z-20 emoji-glow text-white" aria-hidden="true">
+          🌱
+        </div>
+        <div class="absolute bottom-5 right-5 h-8 w-8 sm:h-12 sm:w-12 flex items-center justify-center rounded-full text-xl sm:text-2xl glass-emoji shadow-lg animate-float-fast z-20 emoji-glow" aria-hidden="true">
+          💭
+        </div>
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 h-8 w-8 sm:h-12 sm:w-12 flex items-center justify-center rounded-full text-xl sm:text-2xl glass-emoji shadow-lg animate-pulse z-20 emoji-glow" aria-hidden="true">
+          ❤️‍🩹
+        </div>
       </div>
-      <!-- Decoration -->
-      <div class="absolute top-3 left-2 h-8 w-8 sm:h-14 sm:w-14 flex items-center justify-center rounded-full text-lg sm:text-2xl glass-emoji shadow-xl animate-float-slow z-20 emoji-glow opacity-70 sm:opacity-100">
-        💊
+    </div>
+    
+    <!-- Estadísticas rápidas -->
+    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" class="grid grid-cols-2 mb-10 md:grid-cols-4 gap-4 sm:gap-6 mt-20 w-full max-w-4xl">
+      <div class="glassmorphism p-4 sm:p-6 rounded-xl text-center transform transition-all duration-300 hover:scale-105 hover:shadow-blue-500/10">
+        <div class="text-blue-400 text-2xl sm:text-3xl font-bold mb-1">+500</div>
+        <div class="text-gray-400 text-xs sm:text-sm">Pacientes atendidos</div>
       </div>
-      <div class="absolute top-16 left-12 h-6 w-6 sm:top-24 sm:left-24 sm:h-10 sm:w-10 flex items-center justify-center rounded-full text-lg sm:text-2xl glass-emoji shadow-xl animate-emoji-spin-scale z-20 emoji-glow text-white opacity-70 sm:opacity-100">
-        ⚕️
+      <div class="glassmorphism p-4 sm:p-6 rounded-xl text-center transform transition-all duration-300 hover:scale-105 hover:shadow-blue-500/10">
+        <div class="text-blue-400 text-2xl sm:text-3xl font-bold mb-1">98%</div>
+        <div class="text-gray-400 text-xs sm:text-sm">Satisfacción</div>
       </div>
-      <div class="absolute -bottom-4 right-2 h-10 w-10 sm:-bottom-10 sm:right-0 sm:h-16 sm:w-16 flex items-center justify-center rounded-full text-2xl sm:text-4xl glass-emoji shadow-xl animate-float-fast animate-emoji-spin-scale z-20 emoji-glow opacity-70 sm:opacity-100">
-        💉
+      <div class="glassmorphism p-4 sm:p-6 rounded-xl text-center transform transition-all duration-300 hover:scale-105 hover:shadow-blue-500/10">
+        <div class="text-blue-400 text-2xl sm:text-3xl font-bold mb-1">+10</div>
+        <div class="text-gray-400 text-xs sm:text-sm">Especialistas</div>
       </div>
-      <div class="absolute -top-6 left-1/2 -translate-x-1/2 h-10 w-10 sm:-top-12 sm:left-1/3 sm:h-16 sm:w-16 flex items-center justify-center rounded-full text-2xl sm:text-4xl glass-emoji shadow-xl animate-pulse z-20 emoji-glow opacity-70 sm:opacity-100">
-        🦠
+      <div class="glassmorphism p-4 sm:p-6 rounded-xl text-center transform transition-all duration-300 hover:scale-105 hover:shadow-blue-500/10">
+        <div class="text-blue-400 text-2xl sm:text-3xl font-bold mb-1">7</div>
+        <div class="text-gray-400 text-xs sm:text-sm">Años de experiencia</div>
       </div>
     </div>
   </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 ">
+    <span class="text-xs mb-2 ">Descubre más</span>
+    <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+      <div class="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce-slow mt-2"></div>
+    </div>
+  </div>
 </section>
+
+<style>
+  .hero-radial-bg {
+    position: absolute;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(16, 24, 39, 0) 70%);
+    opacity: 0.8;
+  }
+  
+  .hero-halo-pulse {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(16, 24, 39, 0) 70%);
+    opacity: 0.5;
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite alternate;
+  }
+  
+  .glassmorphism {
+    background: rgba(30, 41, 59, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  
+  .glassmorphism-lg {
+    background: rgba(30, 41, 59, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .glass-emoji {
+    backdrop-filter: blur(4px);
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .emoji-glow {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes float-slow {
+    0% {
+      transform: translateY(0px) rotate(-5deg);
+    }
+    100% {
+      transform: translateY(-15px) rotate(-3deg);
+    }
+  }
+  
+  @keyframes float-medium {
+    0% {
+      transform: translateY(0px) rotate(3deg);
+    }
+    100% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+  }
+  
+  @keyframes float-fast {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-8px);
+    }
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite alternate;
+  }
+  
+  .animate-float-medium {
+    animation: float-medium 4s ease-in-out infinite alternate;
+  }
+  
+  .animate-float-fast {
+    animation: float-fast 3s ease-in-out infinite alternate;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  .animate-emoji-spin-scale {
+    animation: emoji-spin-scale 5s ease-in-out infinite alternate;
+  }
+  
+  @keyframes emoji-spin-scale {
+    0% {
+      transform: rotate(-5deg) scale(0.9);
+    }
+    100% {
+      transform: rotate(5deg) scale(1.1);
+    }
+  }
+
+  /* Mejora para lectores de pantalla - ocultar animaciones */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-slow,
+    .animate-float-medium,
+    .animate-float-fast,
+    .animate-emoji-spin-scale,
+    .animate-blob,
+    .animate-bounce-slow,
+    .hero-halo-pulse {
+      animation: none;
+    }
+    
+    .glassmorphism:hover,
+    .group:hover .glassmorphism-lg {
+      transform: none;
+    }
+  }
+  
+  /* Ajustes para diferentes dispositivos */
+  @media (max-width: 640px) {
+    .glassmorphism-lg {
+      max-width: 90vw;
+    }
+  }
+</style>
+
+<script>
+  // Carga diferida de la biblioteca AOS para animaciones al scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    // Verificar si AOS ya existe
+    if (typeof (window as any).AOS === 'undefined') {
+      // Cargar estilos CSS
+      const aosCSS = document.createElement('link');
+      aosCSS.rel = 'stylesheet';
+      aosCSS.href = 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css';
+      document.head.appendChild(aosCSS);
+      
+      // Cargar script
+      const aosScript = document.createElement('script');
+      aosScript.src = 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js';
+      aosScript.async = true;
+      aosScript.onload = () => {
+        // Inicializar AOS
+        (window as any).AOS.init({
+          duration: 800,
+          once: true,
+          offset: 50,
+          disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        });
+      };
+      document.body.appendChild(aosScript);
+    } else {
+      // Si AOS ya existe, solo inicializarlo
+      (window as any).AOS.init();
+    }
+  });
+</script>

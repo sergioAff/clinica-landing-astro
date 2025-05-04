@@ -1,0 +1,24 @@
+---
+import AnimatedActionButton from './react/AnimatedActionButton';
+import { ArrowRight } from 'lucide-react';
+
+interface Props {
+    to: string;
+    isPrimary?: boolean;
+    showArrow?: boolean;
+}
+
+const { 
+    to, 
+    isPrimary = true,
+    showArrow = false
+} = Astro.props;
+---
+<AnimatedActionButton 
+    href={to} 
+    isPrimary={isPrimary}
+    icon={showArrow ? <ArrowRight size={16} /> : null}
+    client:visible
+>
+    <slot />
+</AnimatedActionButton> 

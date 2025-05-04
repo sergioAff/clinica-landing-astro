@@ -1,11 +1,123 @@
 ---
-const { to, class: className } = Astro.props;
+// ButtonMain.astro - Botón primario con diseño moderno
+import { ArrowRight } from 'lucide-astro';
+
+interface Props {
+  to: string;
+  id?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  hasArrow?: boolean;
+  hasIcon?: boolean;
+  iconName?: string;
+  iconPosition?: 'left' | 'right';
+  targetBlank?: boolean;
+  onClick?: string;
+  class?: string;
+}
+
+const {
+  to,
+  id,
+  type = 'button',
+  disabled = false,
+  size = 'md',
+  hasArrow = false,
+  hasIcon = false,
+  iconName = '',
+  iconPosition = 'right',
+  targetBlank = false,
+  onClick,
+  class: className = '',
+} = Astro.props;
+
+// Determinar clases según el tamaño
+const sizeClasses = {
+  sm: 'text-xs px-3 py-1.5 gap-1.5',
+  md: 'text-sm px-4 py-2 gap-2',
+  lg: 'text-base px-5 py-2.5 gap-2',
+  xl: 'text-lg px-6 py-3 gap-3'
+};
+
+// Configuración de atributos adicionales para el componente
+const attrs = {
+  ...(id && { id }),
+  ...(targetBlank && { target: '_blank', rel: 'noopener noreferrer' }),
+  ...(onClick && { onclick: onClick }),
+  ...(disabled && { disabled: true, 'aria-disabled': true }),
+  class: `relative inline-flex items-center justify-center font-medium rounded-full 
+    ${sizeClasses[size]} transition-all duration-300 ease-out
+    bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400
+    text-white shadow-md hover:shadow-lg hover:shadow-blue-500/20
+    transform hover:-translate-y-0.5 active:translate-y-0
+    focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 
+    dark:focus:ring-offset-gray-900 ${disabled ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}
+    group overflow-hidden ${className}`.replace(/\s+/g, ' ').trim()
+};
+
+// Determinar si es un enlace o un botón
+const isLink = to && to.length > 0 && !disabled;
+const Tag = isLink ? 'a' : 'button';
+
+// Si es un botón, agregar atributos específicos
+const buttonAttrs = !isLink ? { type } : { href: to };
+
+// Importar el icono dinámicamente si se proporciona un nombre
+let DynamicIcon;
+if (hasIcon && iconName) {
+  try {
+    const icons = await import('lucide-astro');
+    DynamicIcon = icons[iconName];
+  } catch (error) {
+    console.warn(`Icon "${iconName}" not found. Please check the icon name.`);
+  }
+}
 ---
 
-<a
-  href={to}
-  class="inline-flex items-center justify-center h-12 px-8 text-base font-bold rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 text-white shadow-md hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all duration-200 ease-out active:scale-95 select-none hover:scale-105"
-  :class={className}
->
-  <slot />
-</a>
+<Tag {...attrs} {...buttonAttrs}>
+  <!-- Fondo animado para hover -->
+  <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+  
+  <!-- Efecto de brillo en hover -->
+  <span class="absolute inset-0 w-0 h-full bg-white opacity-10 group-hover:animate-shine"></span>
+  
+  <!-- Icono a la izquierda si se solicita -->
+  {hasIcon && iconPosition === 'left' && DynamicIcon && (
+    <DynamicIcon class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+  )}
+  
+  <!-- Contenido del botón -->
+  <span class="relative z-10">
+    <slot />
+  </span>
+  
+  <!-- Flecha a la derecha si se solicita -->
+  {hasArrow && (
+    <ArrowRight class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+  )}
+  
+  <!-- Icono a la derecha si se solicita -->
+  {hasIcon && iconPosition === 'right' && DynamicIcon && (
+    <DynamicIcon class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+  )}
+</Tag>
+
+<style>
+  @keyframes shine {
+    from {
+      transform: translateX(-100%) skewX(-15deg);
+      left: -30%;
+      width: 30%;
+    }
+    to {
+      transform: translateX(200%) skewX(-15deg);
+      left: 100%;
+      width: 30%;
+    }
+  }
+  
+  :global(.group-hover\:animate-shine) {
+    animation: shine 1.5s ease-in-out infinite;
+  }
+</style>

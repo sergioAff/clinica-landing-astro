@@ -1,0 +1,21 @@
+/* EQUIPO */
+  Fundador & CEO: Ana García
+  Contacto: ana@mentesana.com
+  Twitter: @anagarciapsy
+  Ubicación: Madrid, España
+
+  Psicólogos Especialistas:
+  - Carmen Rodríguez - Ansiedad y Depresión
+  - Mario López - Terapia de Pareja
+  - Eva Martín - Psicología Infantil
+  - Alberto Sánchez - Mindfulness y Estrés
+
+/* SITIO */
+  Última actualización: 2023/11/01
+  Estándares: HTML5, CSS3, JavaScript
+  Componentes: Astro, Tailwind CSS, Alpine.js
+  Software: VS Code, Figma, Git
+
+/* AGRADECIMIENTOS */
+  A todos nuestros pacientes por su confianza.
+  A los equipos de Astro y Tailwind por estas increíbles herramientas. 

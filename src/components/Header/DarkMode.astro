@@ -4,22 +4,26 @@ import { Moon } from 'lucide-astro'
 
 <button 
   id="theme-toggle" 
-  aria-label="Toggle dark mode" 
+  aria-label="Cambiar modo oscuro/claro" 
+  aria-pressed="false"
   class="relative p-2 rounded-full bg-white dark:bg-gray-800 
          shadow-sm hover:shadow-md 
          ring-1 ring-gray-200 dark:ring-gray-700 
          transition-all duration-200 ease-out 
-         focus:outline-none focus:ring-2 focus:ring-blue-500/40 active:scale-95 hover:scale-105 cursor-pointer"
+         focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900
+         active:scale-95 hover:scale-105 cursor-pointer"
 >
   <div id="theme-icon-container" class="w-6 h-6 flex items-center justify-center">
     <Moon id="moon-icon" class="w-6 h-6 text-blue-500" />
   </div>
+  <span class="sr-only">Cambiar a modo oscuro</span>
 </button>
 
 <script is:inline>
   function updateIcon(isDark) {
     const container = document.getElementById('theme-icon-container');
-    if (!container) return;
+    const button = document.getElementById('theme-toggle');
+    if (!container || !button) return;
     
     container.innerHTML = '';
     
@@ -34,6 +38,8 @@ import { Moon } from 'lucide-astro'
     iconSvg.setAttribute('stroke-linejoin', 'round');
     iconSvg.classList.add('w-6', 'h-6');
     
+    const srOnlySpan = document.querySelector('#theme-toggle .sr-only');
+    
     if (isDark) {
       iconSvg.classList.add('text-amber-500');
       iconSvg.innerHTML = `
@@ -47,15 +53,18 @@ import { Moon } from 'lucide-astro'
         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
       `;
+      button.setAttribute('aria-pressed', 'true');
+      if (srOnlySpan) srOnlySpan.textContent = "Cambiar a modo claro";
     } else {
       iconSvg.classList.add('text-blue-500');
       iconSvg.innerHTML = `
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       `;
+      button.setAttribute('aria-pressed', 'false');
+      if (srOnlySpan) srOnlySpan.textContent = "Cambiar a modo oscuro";
     }
     
     container.appendChild(iconSvg);
-
   }
 
   function setTheme(isDark) {
@@ -66,9 +75,7 @@ import { Moon } from 'lucide-astro'
     }
 
     updateIcon(isDark);
-
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
   }
 
   function initTheme() {
@@ -82,6 +89,13 @@ import { Moon } from 'lucide-astro'
     }
     
     setTheme(isDark);
+    
+    // Detectar cambios en la preferencia del sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches);
+      }
+    });
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -92,6 +106,14 @@ import { Moon } from 'lucide-astro'
       themeToggle.addEventListener('click', () => {
         const isDark = document.documentElement.classList.contains('dark');
         setTheme(!isDark);
+      });
+      
+      // Accesibilidad con teclado
+      themeToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          themeToggle.click();
+        }
       });
     }
   });

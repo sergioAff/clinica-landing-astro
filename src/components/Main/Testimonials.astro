@@ -1,0 +1,49 @@
+---
+// Componente de testimonios de pacientes
+import AnimatedTestimonialCard from "../react/AnimatedTestimonialCard";
+
+const testimonials = [
+  {
+    content: "Después de meses de ansiedad, encontré en esta clínica el apoyo que necesitaba. Mi terapeuta me ayudó a desarrollar herramientas para manejar el estrés. Ahora me siento mucho mejor y con más control sobre mi vida.",
+    authorName: "Ana García",
+    authorTitle: "Paciente de terapia individual",
+    authorImage: "/img/testimonials/person1.jpg",
+    rating: 5
+  },
+  {
+    content: "Como padres, estábamos preocupados por los cambios de comportamiento de nuestro hijo. El psicólogo infantil nos brindó estrategias efectivas y ahora vemos una gran mejoría. El enfoque familiar ha sido clave para nosotros.",
+    authorName: "José Martínez",
+    authorTitle: "Padre de paciente infantil",
+    authorImage: "/img/testimonials/person2.jpg",
+    rating: 5
+  },
+  {
+    content: "La terapia de pareja salvó nuestro matrimonio. Aprendimos a comunicarnos de manera efectiva y a entender mejor las necesidades del otro. El ambiente profesional y acogedor hizo que nos sintiéramos cómodos desde el principio.",
+    authorName: "Elena y David",
+    authorTitle: "Pacientes de terapia de pareja",
+    authorImage: "/img/testimonials/person3.jpg",
+    rating: 5
+  }
+];
+---
+
+<section id="testimonials" class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-24">
+  <div class="text-center mb-8 sm:mb-12">
+    <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Testimonios</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-100 mb-3 sm:mb-4">Lo que dicen nuestros pacientes</h2>
+    <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-2">Descubre cómo hemos ayudado a mejorar la vida de quienes confiaron en nosotros.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    {testimonials.map(testimonial => (
+      <AnimatedTestimonialCard 
+        content={testimonial.content}
+        authorName={testimonial.authorName}
+        authorTitle={testimonial.authorTitle}
+        authorImage={testimonial.authorImage}
+        rating={testimonial.rating}
+        client:visible
+      />
+    ))}
+  </div>
+</section> 

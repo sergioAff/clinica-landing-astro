@@ -1,0 +1,87 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'subtle';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+  id?: string;
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  icon?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  class: className = '',
+  id,
+  target,
+  rel,
+  type = 'button',
+  disabled = false,
+  icon = false,
+  ...rest
+} = Astro.props;
+
+// Tamaños
+const sizeClasses = {
+  sm: 'text-xs py-1.5 px-3',
+  md: 'text-sm py-2 px-4',
+  lg: 'text-base py-2.5 px-5'
+};
+
+// Variantes
+const variantClasses = {
+  primary: 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 shadow-sm',
+  secondary: 'bg-gradient-to-r from-secondary-500 to-secondary-600 text-white hover:from-secondary-600 hover:to-secondary-700 shadow-sm',
+  outline: 'bg-transparent border border-primary-500 text-primary-500 hover:bg-primary-500/10',
+  subtle: 'bg-primary-500/10 text-primary-500 hover:bg-primary-500/20'
+};
+
+// Iconos
+const iconClass = icon ? 'inline-flex items-center justify-center gap-2' : '';
+
+// Deshabilitar
+const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : '';
+
+// Clases combinadas
+const classes = [
+  'font-medium rounded-full transition-all duration-300',
+  sizeClasses[size],
+  variantClasses[variant],
+  iconClass,
+  disabledClass,
+  className
+].join(' ');
+
+// Determinar si es enlace o botón
+const isLink = typeof href !== 'undefined';
+---
+
+{
+  isLink ? (
+    <a
+      href={href}
+      class={classes}
+      id={id}
+      target={target}
+      rel={target === '_blank' ? 'noopener noreferrer' : rel}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={classes}
+      id={id}
+      disabled={disabled}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+} 

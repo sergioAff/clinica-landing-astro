@@ -1,0 +1,32 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "ABCDE12345.com.mentesana.app",
+        "paths": ["*"],
+        "components": [
+          {
+            "/": "/blog/*",
+            "comment": "Incluye todos los artículos del blog"
+          },
+          {
+            "/": "/cita/*",
+            "comment": "Incluye páginas de citas"
+          },
+          {
+            "/": "/contacto",
+            "comment": "Incluye la página de contacto"
+          },
+          {
+            "/": "/servicios/*",
+            "comment": "Incluye las páginas de servicios"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [ "ABCDE12345.com.mentesana.app" ]
+  }
+} 

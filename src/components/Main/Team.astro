@@ -1,0 +1,72 @@
+---
+// Componente para mostrar el equipo de profesionales
+import AnimatedTeamCard from "../react/AnimatedTeamCard";
+
+const teamMembers = [
+  {
+    name: "Dra. María Rodríguez",
+    title: "Psicóloga Clínica - Directora",
+    description: "Especialista en terapia cognitivo-conductual con más de 15 años de experiencia en el tratamiento de trastornos de ansiedad y depresión.",
+    image: "/img/team/psychologist1.jpg",
+    socialLinks: {
+      linkedin: "#",
+      twitter: "#",
+      email: "maria@mentesana.com"
+    }
+  },
+  {
+    name: "Dr. Carlos Mendoza",
+    title: "Psicólogo Infanto-Juvenil",
+    description: "Especializado en el tratamiento de problemas de conducta, TDAH y dificultades de aprendizaje en niños y adolescentes.",
+    image: "/img/team/psychologist2.jpg",
+    socialLinks: {
+      linkedin: "#",
+      twitter: "#",
+      email: "carlos@mentesana.com"
+    }
+  },
+  {
+    name: "Dra. Laura Sánchez",
+    title: "Psicóloga de Parejas",
+    description: "Especialista en terapia de parejas y relacional, con formación en mediación y resolución de conflictos familiares.",
+    image: "/img/team/psychologist3.jpg",
+    socialLinks: {
+      linkedin: "#",
+      twitter: "#",
+      email: "laura@mentesana.com"
+    }
+  },
+  {
+    name: "Dr. Javier Torres",
+    title: "Neuropsicólogo",
+    description: "Especializado en evaluación y rehabilitación neuropsicológica, con experiencia en el tratamiento de pacientes con daño cerebral.",
+    image: "/img/team/psychologist4.jpg",
+    socialLinks: {
+      linkedin: "#",
+      twitter: "#",
+      email: "javier@mentesana.com"
+    }
+  }
+];
+---
+
+<section id="team" class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-24">
+  <div class="text-center mb-8 sm:mb-12">
+    <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Nuestro equipo</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-100 mb-3 sm:mb-4">Profesionales con experiencia</h2>
+    <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-2">Contamos con un equipo de psicólogos altamente cualificados, especializados en diferentes áreas de la salud mental.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    {teamMembers.map(member => (
+      <AnimatedTeamCard
+        name={member.name}
+        title={member.title}
+        description={member.description}
+        image={member.image}
+        socialLinks={member.socialLinks}
+        client:visible
+      />
+    ))}
+  </div>
+</section> 

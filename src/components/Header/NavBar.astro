@@ -1,5 +1,5 @@
 ---
-import Link from "./Link.astro"
+import SmoothLink from "./SmoothLink.astro"
 
  const navItems = [
     {
@@ -7,21 +7,44 @@ import Link from "./Link.astro"
         id: "home"
     },
     {
-        label: "Acerca de",
-        id: "about"
-    },
-    {
         label: "Servicios",
         id: "services"
     },
+    {
+        label: "Equipo",
+        id: "team"
+    },
+    {
+        label: "Testimonios",
+        id: "testimonials"
+    },
+    {
+        label: "Blog",
+        id: "blog"
+    },
+    {
+        label: "FAQ",
+        id: "faq"
+    },
+    {
+        label: "Contacto",
+        id: "contact"
+    },
  ]
+
+ // Get current URL path to highlight current page
+ const currentPath = Astro.url.pathname;
 ---
 
-<nav>
-    <ul class="flex items-center gap-6">
+<nav aria-label="Navegación principal" role="navigation">
+    <ul class="flex items-center gap-3 md:gap-6" role="menubar">
         {navItems.map((item) => (
-            <li class="transition-all duration-200 ease-in-out active:scale-95 hover:scale-105">
-                <Link href={`#${item.id}`} text={item.label} />
+            <li class="transition-all duration-200 ease-in-out active:scale-95 hover:scale-105" role="none">
+                <SmoothLink 
+                    href={`#${item.id}`} 
+                    text={item.label}
+                    aria-current={currentPath === `/#${item.id}` ? 'page' : undefined}
+                />
             </li>
         ))}
     </ul>

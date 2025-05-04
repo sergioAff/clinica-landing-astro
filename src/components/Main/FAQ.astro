@@ -1,0 +1,69 @@
+---
+// Componente de preguntas frecuentes
+import AnimatedFaqItem from "../react/AnimatedFaqItem";
+
+const faqItems = [
+  {
+    question: "¿Cuánto dura una sesión de terapia?",
+    answer: "Las sesiones regulares tienen una duración de 45-60 minutos. Las primeras sesiones o evaluaciones pueden durar hasta 90 minutos para poder realizar una valoración completa."
+  },
+  {
+    question: "¿Con qué frecuencia debo asistir a terapia?",
+    answer: "La frecuencia depende de cada caso. Generalmente se recomienda una sesión semanal al inicio del tratamiento. A medida que se observan mejoras, la frecuencia puede reducirse a sesiones quincenales o mensuales."
+  },
+  {
+    question: "¿Cuánto tiempo dura un proceso terapéutico completo?",
+    answer: "La duración del tratamiento varía considerablemente según el caso. Algunas personas pueden experimentar mejoras significativas en unas pocas semanas, mientras que otras pueden beneficiarse de un tratamiento más prolongado. Tu psicólogo/a te proporcionará una estimación tras la evaluación inicial."
+  },
+  {
+    question: "¿La terapia online es tan efectiva como la presencial?",
+    answer: "Sí, numerosos estudios han demostrado que la terapia online es igual de efectiva que la presencial para la mayoría de las condiciones. Ofrecemos sesiones por videollamada con la misma calidad y profesionalidad que nuestras sesiones presenciales."
+  },
+  {
+    question: "¿Cómo sé si necesito terapia psicológica?",
+    answer: "Si experimentas malestar emocional persistente, cambios significativos en tu comportamiento o pensamientos, dificultades en tus relaciones, o si sientes que no puedes afrontar ciertas situaciones por ti mismo/a, podría ser beneficioso consultar con un profesional."
+  },
+  {
+    question: "¿Qué sucede en la primera sesión?",
+    answer: "La primera sesión se dedica principalmente a conocerte, entender tu situación actual y lo que te ha llevado a buscar ayuda. El terapeuta recogerá información sobre tu historia personal y establecerá contigo los objetivos iniciales del tratamiento."
+  },
+  {
+    question: "¿Es confidencial todo lo que hablo en terapia?",
+    answer: "Sí, la confidencialidad es uno de los pilares fundamentales de nuestra práctica. Toda la información compartida durante las sesiones es estrictamente confidencial, con excepciones legales muy específicas (como riesgo inminente de daño a ti mismo o a otros) que tu terapeuta te explicará en la primera sesión."
+  },
+  {
+    question: "¿Puedo cambiar de terapeuta si no me siento cómodo/a?",
+    answer: "Absolutamente. La relación terapéutica es fundamental para el éxito del tratamiento. Si por alguna razón no te sientes cómodo/a con tu terapeuta asignado, puedes solicitar un cambio sin ningún problema y te ayudaremos a encontrar otro profesional que se adapte mejor a tus necesidades."
+  }
+];
+---
+
+<section id="faq" class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-24">
+  <div class="text-center mb-8 sm:mb-12">
+    <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Preguntas frecuentes</p>
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-100 mb-3 sm:mb-4">Resolvemos tus dudas</h2>
+    <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-2">Respuestas a las preguntas más comunes sobre nuestros servicios y la terapia psicológica.</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+    <div class="space-y-4 sm:space-y-6">
+      {faqItems.slice(0, 4).map(item => (
+        <AnimatedFaqItem
+          question={item.question}
+          answer={item.answer}
+          client:visible
+        />
+      ))}
+    </div>
+    
+    <div class="space-y-4 sm:space-y-6">
+      {faqItems.slice(4).map(item => (
+        <AnimatedFaqItem
+          question={item.question}
+          answer={item.answer}
+          client:visible
+        />
+      ))}
+    </div>
+  </div>
+</section> 

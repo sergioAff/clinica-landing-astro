@@ -1,17 +1,112 @@
 ---
-import ContactButton from "./ContactButton.astro";
 import DarkMode from "./DarkMode.astro";
 import Logo from "./Logo.astro";
-import NavBar from "./NavBar.astro";
+import MobileMenu from "./MobileMenu.astro";
+import NavDesktop from "./NavDesktop.astro";
 ---
 
-<header class="flex items-center justify-around pt-4">
-    <div class="flex items-center gap-8">
-        <Logo />
-        <NavBar />
+<header id="main-header" class="fixed top-0 left-0 w-full py-3 sm:py-4 z-50 transition-all duration-300 bg-transparent">
+  <div class="header-backdrop absolute inset-0 bg-slate-950/0 backdrop-blur-none transition-all duration-300"></div>
+  <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center relative z-10">
+    <!-- Logo -->
+    <div class="flex-shrink-0">
+      <Logo />
     </div>
-    <div class="flex items-center gap-8">
+    
+    <!-- Navegación Desktop -->
+    <div class="hidden md:flex items-center space-x-1">
+      <NavDesktop />
+    </div>
+    
+    <!-- Botones de acción -->
+    <div class="flex items-center">
+      <div class="mr-3 sm:mr-5 transition-opacity duration-300">
         <DarkMode />
-        <ContactButton />
+      </div>
+      
+      <a href="#appointment" class="hidden sm:flex items-center px-4 sm:px-5 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+        <span class="mr-1">Pedir Cita</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 7h10v10" />
+          <path d="M7 17L17 7" />
+        </svg>
+      </a>
+      
+      <!-- Menú Mobile -->
+      <div class="md:hidden">
+        <MobileMenu />
+      </div>
     </div>
+  </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('main-header');
+    const backdrop = header?.querySelector('.header-backdrop');
+    let lastScrollY = 0;
+    
+    function updateHeader() {
+      if (!header || !backdrop) return;
+      
+      const scrollY = window.scrollY;
+      
+      // Añadir clase cuando se hace scroll hacia abajo
+      if (scrollY > 20) {
+        backdrop.classList.remove('bg-slate-950/0', 'backdrop-blur-none');
+        backdrop.classList.add('bg-slate-950/70', 'backdrop-blur-md');
+        header.classList.add('py-2');
+        header.classList.remove('py-3', 'sm:py-4');
+        header.classList.add('shadow-lg', 'shadow-black/5');
+      } else {
+        backdrop.classList.add('bg-slate-950/0', 'backdrop-blur-none');
+        backdrop.classList.remove('bg-slate-950/70', 'backdrop-blur-md');
+        header.classList.remove('py-2');
+        header.classList.add('py-3', 'sm:py-4');
+        header.classList.remove('shadow-lg', 'shadow-black/5');
+      }
+      
+      // Ocultar/mostrar header cuando se hace scroll hacia arriba/abajo
+      if (scrollY > lastScrollY && scrollY > 300) {
+        // Scroll hacia abajo - ocultar header
+        header.classList.add('-translate-y-full');
+      } else {
+        // Scroll hacia arriba - mostrar header
+        header.classList.remove('-translate-y-full');
+      }
+      
+      lastScrollY = scrollY;
+    }
+    
+    // Ejecutar al cargar la página
+    updateHeader();
+    
+    // Ejecutar al hacer scroll
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    
+    // Animación de entrada
+    if (header) {
+      setTimeout(() => {
+        header.classList.add('header-loaded');
+      }, 100);
+    }
+  });
+</script>
+
+<style>
+  #main-header {
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, background-color 0.3s, box-shadow 0.3s, padding 0.3s;
+  }
+  
+  .header-loaded {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+  
+  /* Transición suave para ocultar/mostrar */
+  .-translate-y-full {
+    transform: translateY(-100%);
+  }
+</style>

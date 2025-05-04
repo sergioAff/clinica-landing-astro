@@ -1,5 +1,14 @@
 ---
-import Image from "astro/components/Image.astro";
+interface Props {
+  class?: string;
+}
+
+const { class: className = "w-10 h-10" } = Astro.props;
 ---
 
-<Image src="/img/logo/logo-square.svg" alt="Logo" width={80} height={80} />
+<div class={className}>
+  <span class="flex items-center justify-center">
+    <span class="text-2xl" role="img" aria-label="Logo MenteSana">🧠</span>
+  </span>
+  <span class="sr-only">MenteSana - Centro de Psicología</span>
+</div>

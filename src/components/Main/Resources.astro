@@ -1,0 +1,81 @@
+---
+// Componente para recursos descargables y herramientas de autoayuda
+import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
+---
+
+<section id="resources" class="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-24">
+  <div class="text-center mb-12">
+    <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Recursos gratuitos</p>
+    <h2 class="text-4xl font-bold text-gray-100 mb-4">Material de autoayuda</h2>
+    <p class="text-lg text-gray-400 max-w-2xl mx-auto">Descarga recursos gratuitos que te ayudarán en tu proceso terapéutico.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Guía PDF -->
+    <a href="/resources/guia-manejo-ansiedad.pdf" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900" download>
+      <div class="flex flex-col items-center text-center space-y-4">
+        <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+          <FileText class="w-7 h-7 text-white" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-100 group-hover:text-blue-400 transition-colors">Guía para manejar la ansiedad</h3>
+        <p class="text-sm text-gray-400">Aprende técnicas efectivas para gestionar la ansiedad en tu día a día.</p>
+        <div class="flex items-center justify-center text-blue-400 font-semibold">
+          <Download class="w-4 h-4 mr-1" />
+          <span>Descargar PDF</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Audios -->
+    <a href="/resources/meditacion-guiada.mp3" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900" download>
+      <div class="flex flex-col items-center text-center space-y-4">
+        <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+          <Headphones class="w-7 h-7 text-white" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-100 group-hover:text-blue-400 transition-colors">Meditación guiada</h3>
+        <p class="text-sm text-gray-400">Audio de 15 minutos para practicar mindfulness y reducir el estrés.</p>
+        <div class="flex items-center justify-center text-blue-400 font-semibold">
+          <Download class="w-4 h-4 mr-1" />
+          <span>Descargar MP3</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Ejercicios -->
+    <a href="/resources/ejercicios-respiracion.pdf" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900" download>
+      <div class="flex flex-col items-center text-center space-y-4">
+        <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+          <BookOpen class="w-7 h-7 text-white" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-100 group-hover:text-blue-400 transition-colors">Ejercicios de respiración</h3>
+        <p class="text-sm text-gray-400">Técnicas de respiración para calmar la mente y controlar la ansiedad.</p>
+        <div class="flex items-center justify-center text-blue-400 font-semibold">
+          <Download class="w-4 h-4 mr-1" />
+          <span>Descargar PDF</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Autoregistro -->
+    <a href="/resources/autoregistro-pensamientos.pdf" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900" download>
+      <div class="flex flex-col items-center text-center space-y-4">
+        <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+          <FileText class="w-7 h-7 text-white" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-100 group-hover:text-blue-400 transition-colors">Autoregistro de pensamientos</h3>
+        <p class="text-sm text-gray-400">Plantilla para identificar y modificar pensamientos negativos.</p>
+        <div class="flex items-center justify-center text-blue-400 font-semibold">
+          <Download class="w-4 h-4 mr-1" />
+          <span>Descargar PDF</span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="mt-12 text-center">
+    <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+      Estos recursos son complementarios y no sustituyen a la terapia profesional. 
+      Si necesitas ayuda especializada, te recomendamos <a href="#appointment" class="text-blue-400 hover:text-blue-300 underline">solicitar una cita</a>.
+    </p>
+  </div>
+</section> 
