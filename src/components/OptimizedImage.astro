@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  format?: 'webp' | 'avif' | 'png' | 'jpeg';
+  quality?: number;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  format = 'webp',
+  quality = 80,
+} = Astro.props;
+
+// Determinar si la imagen es remota o local
+const isRemoteImage = src.startsWith('http');
+
+// Determinar si es una imagen SVG
+const isSvg = src.endsWith('.svg');
+
+// Para imágenes SVG o remotas, preparar el fetchpriority
+const fetchpriorityAttr = fetchpriority !== 'auto' ? fetchpriority : undefined;
+---
+
+{isSvg || isRemoteImage ? (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    fetchpriority={fetchpriorityAttr}
+  />
+) : (
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    format={format}
+    quality={quality}
+  />
+)} 

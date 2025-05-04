@@ -160,9 +160,9 @@ const categories = [...new Set(articles.map(article => article.category))];
       
       <!-- Filtros -->
       <div class="flex flex-wrap justify-center gap-3 mb-12" aria-label="Filtros de categorías">
-        <button class="bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium">Todos</button>
+        <button class="bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium cursor-pointer">Todos</button>
         {categories.map(category => (
-          <button class="bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 px-4 py-2 rounded-full text-sm font-medium transition-colors">{category}</button>
+          <button class="bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer">{category}</button>
         ))}
       </div>
       

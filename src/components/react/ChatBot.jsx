@@ -119,7 +119,7 @@ const ChatBot = () => {
       {/* Botón para abrir/cerrar el chat */}
       <button
         onClick={toggleChat}
-        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer"
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat de ayuda"}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
@@ -143,7 +143,7 @@ const ChatBot = () => {
               </div>
               <button 
                 onClick={toggleChat} 
-                className="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full"
+                className="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full cursor-pointer"
                 aria-label="Cerrar chat"
               >
                 <X size={20} />
@@ -184,7 +184,7 @@ const ChatBot = () => {
               />
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-r-lg flex items-center justify-center transition-colors focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-r-lg flex items-center justify-center transition-colors focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer"
                 aria-label="Enviar mensaje"
               >
                 <Send size={18} />

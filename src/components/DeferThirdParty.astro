@@ -1,0 +1,317 @@
+---
+// Component for lazy loading third-party resources
+// Use this for non-critical third-party scripts and external resources
+
+interface Props {
+  type: 'analytics' | 'chat' | 'map' | 'social' | 'custom';
+  src?: string;
+  provider?: string;
+  id?: string;
+  delay?: number;
+  onVisible?: boolean;
+  placeholderHeight?: string;
+  placeholderBg?: string;
+  callback?: string;
+}
+
+const {
+  type,
+  src,
+  provider = '',
+  id,
+  delay = 3000,
+  onVisible = true,
+  placeholderHeight = 'auto',
+  placeholderBg = 'transparent',
+  callback
+} = Astro.props;
+
+// Default placeholder content based on type
+let placeholderContent = '';
+let resourceClass = '';
+let resourceId = id || `${type}-resource-${Math.random().toString(36).substring(2, 9)}`;
+
+// Set default and placeholder content based on resource type
+switch (type) {
+  case 'map':
+    placeholderContent = `
+      <div class="flex items-center justify-center p-6 text-center bg-slate-100 dark:bg-slate-800 rounded-lg">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10 text-slate-400 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <p class="text-sm text-slate-500 dark:text-slate-300">Haz clic para cargar el mapa</p>
+        </div>
+      </div>
+    `;
+    resourceClass = 'map-container';
+    break;
+  case 'chat':
+    placeholderContent = `
+      <button class="chat-placeholder flex items-center justify-center p-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+        </svg>
+      </button>
+    `;
+    resourceClass = 'chat-container fixed bottom-6 right-6 z-50';
+    break;
+  case 'social':
+    placeholderContent = `
+      <div class="social-placeholder flex flex-col items-center justify-center p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-slate-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <p class="text-xs text-slate-500 dark:text-slate-300">Haz clic para cargar el contenido social</p>
+      </div>
+    `;
+    resourceClass = 'social-container';
+    break;
+  default:
+    placeholderContent = `
+      <div class="flex items-center justify-center p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+        <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded cursor-pointer">
+          Cargar recurso externo
+        </button>
+      </div>
+    `;
+    resourceClass = 'resource-container';
+}
+---
+
+<div 
+  id={resourceId} 
+  class={`third-party-resource ${resourceClass}`} 
+  data-resource-type={type}
+  data-src={src}
+  data-provider={provider}
+  data-delay={delay}
+  data-on-visible={onVisible.toString()}
+  data-callback={callback}
+  style={`min-height: ${placeholderHeight}; background-color: ${placeholderBg};`}
+>
+  <div class="resource-placeholder" set:html={placeholderContent}></div>
+</div>
+
+<script>
+  // Type declarations for third-party libraries
+  declare global {
+    interface Window {
+      initMap: () => void;
+      google: {
+        maps: {
+          Map: any;
+          Marker: any;
+        }
+      };
+      $crisp: any[];
+      CRISP_WEBSITE_ID: string;
+      dataLayer: any[];
+    }
+    
+    // Adding google namespace for direct access
+    const google: Window['google'];
+  }
+
+  // Load third-party resources when needed
+  document.addEventListener('DOMContentLoaded', () => {
+    const thirdPartyResources = document.querySelectorAll('.third-party-resource');
+    
+    thirdPartyResources.forEach(resource => {
+      const resourceElement = resource as HTMLElement;
+      const resourceType = resourceElement.dataset.resourceType;
+      const resourceSrc = resourceElement.dataset.src;
+      const resourceProvider = resourceElement.dataset.provider;
+      const resourceDelay = parseInt(resourceElement.dataset.delay || '3000', 10);
+      const loadOnVisible = resourceElement.dataset.onVisible === 'true';
+      const callback = resourceElement.dataset.callback;
+      
+      // Load based on visibility or after delay
+      if (loadOnVisible) {
+        // Load when visible in viewport
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            // Element is visible, load after short delay
+            setTimeout(() => {
+              loadResource(resourceElement, resourceType, resourceSrc, resourceProvider);
+              observer.disconnect();
+            }, 500); // Short delay for better UX
+          }
+        }, {
+          rootMargin: '0px',
+          threshold: 0.1
+        });
+        
+        observer.observe(resourceElement);
+      } else {
+        // Load after delay regardless of visibility
+        setTimeout(() => {
+          loadResource(resourceElement, resourceType, resourceSrc, resourceProvider);
+        }, resourceDelay);
+      }
+      
+      // Add click event on placeholder to load immediately
+      const placeholder = resourceElement.querySelector('.resource-placeholder');
+      if (placeholder) {
+        placeholder.addEventListener('click', () => {
+          loadResource(resourceElement, resourceType, resourceSrc, resourceProvider);
+        });
+      }
+    });
+    
+    // Function to load the appropriate resource
+    function loadResource(element: HTMLElement, type: string | undefined, src: string | undefined, provider: string | undefined) {
+      if (!type || !element) return;
+      
+      // Remove placeholder
+      const placeholder = element.querySelector('.resource-placeholder');
+      if (placeholder) {
+        placeholder.remove();
+      }
+      
+      // Load the appropriate resource based on type
+      switch (type) {
+        case 'analytics':
+          loadAnalytics(provider, src);
+          break;
+        case 'map':
+          loadMap(element, provider, src);
+          break;
+        case 'chat':
+          loadChat(element, provider, src);
+          break;
+        case 'social':
+          loadSocial(element, provider, src);
+          break;
+        case 'custom':
+          if (src) {
+            loadScript(src, element.id);
+          }
+          break;
+      }
+      
+      // Execute callback if provided
+      if (element.dataset.callback) {
+        try {
+          new Function(element.dataset.callback)();
+        } catch (error) {
+          console.error('Error executing callback:', error);
+        }
+      }
+    }
+    
+    // Load different resource types
+    function loadAnalytics(provider: string | undefined, src: string | undefined) {
+      if (!provider && !src) return;
+      
+      if (provider === 'google') {
+        // Google Analytics
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + src;
+        document.head.appendChild(script);
+        
+        const inlineScript = document.createElement('script');
+        inlineScript.innerHTML = `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${src}');
+        `;
+        document.head.appendChild(inlineScript);
+      } else if (src) {
+        loadScript(src);
+      }
+    }
+    
+    function loadMap(element: HTMLElement, provider: string | undefined, src: string | undefined) {
+      if (provider === 'google' && src) {
+        // Create map container
+        element.innerHTML = `<div class="map-container w-full h-full" style="min-height: 300px;"></div>`;
+        
+        // Load Google Maps API
+        const mapScript = document.createElement('script');
+        mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${src}&callback=initMap`;
+        mapScript.async = true;
+        mapScript.defer = true;
+        
+        // Initialize map
+        window.initMap = function() {
+          const mapContainer = element.querySelector('.map-container');
+          if (mapContainer) {
+            const map = new google.maps.Map(mapContainer, {
+              center: { lat: 40.416775, lng: -3.703790 }, // Madrid
+              zoom: 15,
+            });
+            
+            new google.maps.Marker({
+              position: { lat: 40.416775, lng: -3.703790 },
+              map: map,
+              title: 'Nuestra Ubicación'
+            });
+          }
+        };
+        
+        document.head.appendChild(mapScript);
+      } else if (src) {
+        // Load custom map script
+        loadScript(src);
+      }
+    }
+    
+    function loadChat(element: HTMLElement, provider: string | undefined, src: string | undefined) {
+      if (provider === 'crisp' && src) {
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = src;
+        
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://client.crisp.chat/l.js';
+        document.head.appendChild(script);
+      } else if (provider === 'tawk' && src) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://embed.tawk.to/' + src;
+        document.head.appendChild(script);
+      } else if (src) {
+        loadScript(src);
+      }
+      
+      // Remove placeholder container as most chat widgets create their own elements
+      element.remove();
+    }
+    
+    function loadSocial(element: HTMLElement, provider: string | undefined, src: string | undefined) {
+      if (provider === 'facebook') {
+        // Facebook embed
+        const script = document.createElement('script');
+        script.src = 'https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v12.0';
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+        
+        element.innerHTML = `<div class="fb-page" data-href="${src}" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="${src}" class="fb-xfbml-parse-ignore"><a href="${src}">Nuestra página</a></blockquote></div>`;
+      } else if (provider === 'twitter') {
+        // Twitter embed
+        const script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.head.appendChild(script);
+        
+        element.innerHTML = `<a class="twitter-timeline" href="https://twitter.com/${src}">Tweets by ${src}</a>`;
+      } else if (src) {
+        loadScript(src);
+      }
+    }
+    
+    // General script loader
+    function loadScript(src: string, id?: string) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      if (id) script.id = id;
+      document.head.appendChild(script);
+    }
+  });
+</script> 

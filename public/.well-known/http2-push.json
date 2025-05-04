@@ -1,0 +1,28 @@
+{
+  "push": [
+    {
+      "source": "/",
+      "target": "/img/illustrations/hero.svg",
+      "priority": "high",
+      "as": "image"
+    },
+    {
+      "source": "/",
+      "target": "/img/favicon.svg",
+      "priority": "high", 
+      "as": "image"
+    },
+    {
+      "source": "/",
+      "target": "/fonts/inter-var.woff2",
+      "priority": "high",
+      "as": "font"
+    },
+    {
+      "source": "/*",
+      "target": "/css/main.css",
+      "priority": "high",
+      "as": "style"
+    }
+  ]
+} 

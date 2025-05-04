@@ -1,10 +1,21 @@
 import React, { memo } from 'react';
-import { motion, LazyMotion, domAnimation, useInView } from 'framer-motion';
+import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
 
-const AnimatedServiceCard = memo(({ icon, title, description, features, buttonText, buttonLink }) => {
+// Define prop types
+interface AnimatedServiceCardProps {
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  buttonText: string;
+  buttonLink: string;
+}
+
+const AnimatedServiceCard = memo(({ icon, title, description, features, buttonText, buttonLink }: AnimatedServiceCardProps) => {
   // Obtener el componente de Lucide basado en el nombre del icono
-  const IconComponent = LucideIcons[icon] || (() => <span className="text-xl sm:text-2xl">{icon}</span>);
+  const IconComponent = (LucideIcons[icon as keyof typeof LucideIcons] as React.ComponentType<any>) || 
+    (() => <span className="text-xl sm:text-2xl">{icon}</span>);
   
   return (
     <LazyMotion features={domAnimation}>

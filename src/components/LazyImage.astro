@@ -1,0 +1,67 @@
+---
+// LazyImage.astro - Componente optimizado para carga de imágenes
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  sizes?: string;
+  srcset?: string;
+  aspectRatio?: string | number;
+  decoding?: 'async' | 'sync' | 'auto';
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  sizes,
+  srcset,
+  aspectRatio,
+  decoding = 'async'
+} = Astro.props;
+
+// Generar atributos opcionales
+const widthAttr = width ? `width="${width}"` : '';
+const heightAttr = height ? `height="${height}"` : '';
+const sizesAttr = sizes ? `sizes="${sizes}"` : '';
+const srcsetAttr = srcset ? `srcset="${srcset}"` : '';
+const aspectRatioStyle = aspectRatio ? `aspect-ratio: ${aspectRatio};` : '';
+
+// Función para determinar si una imagen es crítica
+const isCriticalImage = loading === 'eager' && fetchpriority === 'high';
+
+// Detectar tipo de imagen para precargar si es crítica
+const fileExtension = src.split('.').pop()?.toLowerCase();
+const imageType = 
+  fileExtension === 'svg' ? 'image/svg+xml' :
+  fileExtension === 'png' ? 'image/png' :
+  fileExtension === 'webp' ? 'image/webp' :
+  fileExtension === 'avif' ? 'image/avif' :
+  'image/jpeg';
+---
+
+{isCriticalImage && (
+  <link rel="preload" href={src} as="image" type={imageType} fetchpriority="high" />
+)}
+
+<img
+  src={src}
+  alt={alt}
+  loading={loading}
+  decoding={decoding}
+  fetchpriority={fetchpriority}
+  class={className}
+  style={aspectRatioStyle ? `${aspectRatioStyle}` : undefined}
+  {...sizesAttr ? {sizes} : {}}
+  {...srcsetAttr ? {srcset} : {}}
+  {...widthAttr ? {width} : {}}
+  {...heightAttr ? {height} : {}}
+/> 

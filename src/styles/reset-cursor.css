@@ -1,0 +1,56 @@
+/* 
+ * reset-cursor.css
+ * Este archivo restablece el cursor al valor predeterminado del sistema
+ * y anula cualquier cursor personalizado definido en la aplicación
+ */
+
+html, 
+body,
+* {
+  cursor: auto !important;
+}
+
+a, button, [role="button"], 
+input[type="submit"], 
+input[type="button"], 
+input[type="reset"],
+select,
+summary {
+  cursor: auto !important;
+}
+
+a:hover, button:hover, [role="button"]:hover, 
+input[type="submit"]:hover, 
+input[type="button"]:hover, 
+input[type="reset"]:hover,
+summary:hover {
+  cursor: auto !important;
+}
+
+/* Restablecer cursores específicos para elementos interactivos */
+a, button, [role="button"], 
+input[type="submit"], 
+input[type="button"], 
+input[type="reset"] {
+  cursor: pointer !important;
+}
+
+input[type="text"], 
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea {
+  cursor: text !important;
+}
+
+select {
+  cursor: default !important;
+}
+
+/* Para elementos como resize handles */
+.resize {
+  cursor: default !important;
+} 

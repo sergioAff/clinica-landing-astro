@@ -7,73 +7,90 @@ import ButtonMain from "../ButtonMain.astro";
   <div class="text-center mb-12">
     <p class="text-blue-400 font-semibold tracking-widest text-sm mb-2 uppercase">Agenda tu cita</p>
     <h2 class="text-4xl font-bold text-gray-100 mb-4">Solicita una consulta</h2>
-    <p class="text-lg text-gray-400 max-w-2xl mx-auto">Reserva tu primera sesión y da el primer paso hacia tu bienestar emocional.</p>
+    <p class="text-lg text-gray-400 max-w-2xl mx-auto">Reserva tu primera sesión gratuita y da el primer paso hacia tu bienestar emocional.</p>
   </div>
 
-  <div class="bg-gray-800/30 rounded-xl p-8 shadow-lg border border-gray-700/50">
+  <div class="bg-gray-800/30 rounded-xl p-8 shadow-lg border border-gray-700/50 backdrop-blur-sm">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div>
         <h3 class="text-2xl font-semibold text-gray-100 mb-6">Solicita tu cita ahora</h3>
         
-        <form id="appointment-form" class="space-y-6">
+        <form id="appointment-form" class="space-y-6" aria-labelledby="form-heading" novalidate>
+          <p id="form-heading" class="sr-only">Formulario de solicitud de cita</p>
+          
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nombre</label>
+              <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nombre <span class="text-blue-400">*</span></label>
               <input 
                 type="text" 
                 id="name" 
                 name="name" 
                 required 
+                aria-required="true"
                 class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="Tu nombre"
+                autocomplete="given-name"
               />
+              <div id="name-error" class="text-red-400 text-xs mt-1 hidden"></div>
             </div>
             
             <div>
-              <label for="lastname" class="block text-sm font-medium text-gray-400 mb-2">Apellidos</label>
+              <label for="lastname" class="block text-sm font-medium text-gray-400 mb-2">Apellidos <span class="text-blue-400">*</span></label>
               <input 
                 type="text" 
                 id="lastname" 
                 name="lastname" 
                 required 
+                aria-required="true"
                 class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="Tus apellidos"
+                autocomplete="family-name"
               />
+              <div id="lastname-error" class="text-red-400 text-xs mt-1 hidden"></div>
             </div>
           </div>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+              <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email <span class="text-blue-400">*</span></label>
               <input 
                 type="email" 
                 id="email" 
                 name="email" 
                 required 
+                aria-required="true"
                 class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="Tu email"
+                autocomplete="email"
               />
+              <div id="email-error" class="text-red-400 text-xs mt-1 hidden"></div>
             </div>
             
             <div>
-              <label for="phone" class="block text-sm font-medium text-gray-400 mb-2">Teléfono</label>
+              <label for="phone" class="block text-sm font-medium text-gray-400 mb-2">Teléfono <span class="text-blue-400">*</span></label>
               <input 
                 type="tel" 
                 id="phone" 
                 name="phone" 
                 required
+                aria-required="true"
                 class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 placeholder="Tu teléfono"
+                autocomplete="tel"
+                pattern="[0-9]{9}"
               />
+              <div id="phone-error" class="text-red-400 text-xs mt-1 hidden"></div>
+              <p class="text-gray-500 text-xs mt-1">Formato: 123456789</p>
             </div>
           </div>
           
           <div>
-            <label for="service" class="block text-sm font-medium text-gray-400 mb-2">Servicio que necesitas</label>
+            <label for="service" class="block text-sm font-medium text-gray-400 mb-2">Servicio que necesitas <span class="text-blue-400">*</span></label>
             <select 
               id="service" 
               name="service" 
               required 
+              aria-required="true"
               class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
             >
               <option value="" disabled selected>Selecciona un servicio</option>
@@ -84,47 +101,78 @@ import ButtonMain from "../ButtonMain.astro";
               <option value="mindfulness">Mindfulness y meditación</option>
               <option value="group">Talleres grupales</option>
             </select>
+            <div id="service-error" class="text-red-400 text-xs mt-1 hidden"></div>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="preferred_date" class="block text-sm font-medium text-gray-400 mb-2">Fecha preferida <span class="text-blue-400">*</span></label>
+              <input 
+                type="date" 
+                id="preferred_date" 
+                name="preferred_date" 
+                required 
+                aria-required="true"
+                min={new Date().toISOString().split('T')[0]}
+                class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              />
+              <div id="preferred_date-error" class="text-red-400 text-xs mt-1 hidden"></div>
+            </div>
+            
+            <div>
+              <label for="preferred_time" class="block text-sm font-medium text-gray-400 mb-2">Horario preferido <span class="text-blue-400">*</span></label>
+              <select 
+                id="preferred_time" 
+                name="preferred_time" 
+                required 
+                aria-required="true"
+                class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              >
+                <option value="" disabled selected>Selecciona un horario</option>
+                <option value="morning">Mañana (9:00 - 13:00)</option>
+                <option value="afternoon">Tarde (15:00 - 20:00)</option>
+                <option value="any">Cualquier horario</option>
+              </select>
+              <div id="preferred_time-error" class="text-red-400 text-xs mt-1 hidden"></div>
+            </div>
           </div>
           
           <div>
-            <label for="preferred_date" class="block text-sm font-medium text-gray-400 mb-2">Fecha preferida</label>
-            <input 
-              type="date" 
-              id="preferred_date" 
-              name="preferred_date" 
-              required 
-              class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            />
-          </div>
-          
-          <div>
-            <label for="preferred_time" class="block text-sm font-medium text-gray-400 mb-2">Horario preferido</label>
-            <select 
-              id="preferred_time" 
-              name="preferred_time" 
-              required 
-              class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-            >
-              <option value="" disabled selected>Selecciona un horario</option>
-              <option value="morning">Mañana (9:00 - 13:00)</option>
-              <option value="afternoon">Tarde (15:00 - 20:00)</option>
-              <option value="any">Cualquier horario</option>
-            </select>
-          </div>
-          
-          <div>
-            <label for="comments" class="block text-sm font-medium text-gray-400 mb-2">Comentarios adicionales</label>
+            <label for="comments" class="block text-sm font-medium text-gray-400 mb-2">¿En qué podemos ayudarte?</label>
             <textarea 
               id="comments" 
               name="comments" 
               rows="3" 
               class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-              placeholder="Información adicional que consideres relevante"
+              placeholder="Cuéntanos brevemente tu situación (opcional)"
             ></textarea>
           </div>
           
+          <div class="flex items-start mb-4">
+            <input 
+              id="privacy_policy" 
+              name="privacy_policy" 
+              type="checkbox" 
+              required
+              aria-required="true"
+              class="w-4 h-4 bg-gray-900 border-gray-700 rounded mt-1 mr-2 focus:ring-blue-500"
+            />
+            <label for="privacy_policy" class="text-sm text-gray-400 select-none">
+              Acepto la <a href="/politica-privacidad" class="text-blue-400 hover:underline">política de privacidad</a> y el tratamiento de mis datos personales <span class="text-blue-400">*</span>
+            </label>
+          </div>
+          <div id="privacy_policy-error" class="text-red-400 text-xs mt-1 hidden"></div>
+          
+          <div id="form-feedback" class="p-3 rounded-md hidden"></div>
+          
           <div>
-            <ButtonMain to="/cita" id="appointment-submit">Solicitar cita</ButtonMain>
+            <button 
+              type="submit" 
+              id="appointment-submit"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            >
+              Solicitar cita gratuita
+            </button>
           </div>
         </form>
       </div>
@@ -137,13 +185,13 @@ import ButtonMain from "../ButtonMain.astro";
             <div class="bg-gray-900/20 rounded-lg p-4 border border-gray-700/50">
               <div class="flex items-start">
                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-lg font-medium text-gray-100">Primera consulta</h4>
-                  <p class="text-gray-400 mt-1">La primera sesión tiene una duración aproximada de 60-90 minutos para realizar una evaluación inicial completa.</p>
+                  <h4 class="text-lg font-medium text-gray-100">Primera consulta gratuita</h4>
+                  <p class="text-gray-400 mt-1">La primera sesión es una evaluación inicial gratuita de 45-60 minutos para conocer tu situación y definir un plan personalizado.</p>
                 </div>
               </div>
             </div>
@@ -151,13 +199,13 @@ import ButtonMain from "../ButtonMain.astro";
             <div class="bg-gray-900/20 rounded-lg p-4 border border-gray-700/50">
               <div class="flex items-start">
                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
                   <h4 class="text-lg font-medium text-gray-100">Tarifas</h4>
-                  <p class="text-gray-400 mt-1">Primera sesión: 80€<br>Sesiones regulares: 70€<br>Terapia de pareja: 90€<br>Terapia infantil: 75€</p>
+                  <p class="text-gray-400 mt-1">Sesiones individuales: 70€<br>Terapia de pareja: 90€<br>Terapia infantil: 75€<br>Descuentos disponibles en bonos de sesiones</p>
                 </div>
               </div>
             </div>
@@ -165,13 +213,13 @@ import ButtonMain from "../ButtonMain.astro";
             <div class="bg-gray-900/20 rounded-lg p-4 border border-gray-700/50">
               <div class="flex items-start">
                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-lg font-medium text-gray-100">Confirmación</h4>
-                  <p class="text-gray-400 mt-1">Recibirás un email y/o SMS de confirmación una vez que hayamos recibido tu solicitud. Te contactaremos para confirmar la fecha y hora definitivas.</p>
+                  <h4 class="text-lg font-medium text-gray-100">Modalidades</h4>
+                  <p class="text-gray-400 mt-1">Ofrecemos sesiones presenciales en nuestra consulta de Madrid y online por videollamada con la misma calidad y eficacia.</p>
                 </div>
               </div>
             </div>
@@ -179,13 +227,13 @@ import ButtonMain from "../ButtonMain.astro";
             <div class="bg-gray-900/20 rounded-lg p-4 border border-gray-700/50">
               <div class="flex items-start">
                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
                 <div>
-                  <h4 class="text-lg font-medium text-gray-100">Privacidad</h4>
-                  <p class="text-gray-400 mt-1">Toda la información proporcionada es confidencial y será tratada de acuerdo con nuestra política de privacidad y la legislación vigente.</p>
+                  <h4 class="text-lg font-medium text-gray-100">Confidencialidad garantizada</h4>
+                  <p class="text-gray-400 mt-1">Toda la información compartida durante las sesiones está protegida por el secreto profesional y la normativa de protección de datos.</p>
                 </div>
               </div>
             </div>
@@ -204,16 +252,89 @@ import ButtonMain from "../ButtonMain.astro";
     const submitButton = document.getElementById('appointment-submit') as HTMLButtonElement;
     
     if (form && feedback && submitButton) {
+      // Validación en tiempo real
+      const requiredFields = form.querySelectorAll('[required]');
+      requiredFields.forEach(field => {
+        field.addEventListener('blur', () => {
+          validateField(field as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement);
+        });
+        
+        if (field instanceof HTMLInputElement && field.type === 'checkbox') {
+          field.addEventListener('change', () => {
+            validateField(field as HTMLInputElement);
+          });
+        }
+      });
+      
+      // Función de validación de campo individual
+      function validateField(field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) {
+        const errorElement = document.getElementById(`${field.id}-error`);
+        if (!errorElement) return;
+        
+        let isValid = true;
+        let errorMessage = '';
+        
+        if (field.required && !field.value) {
+          isValid = false;
+          errorMessage = 'Este campo es obligatorio';
+        } else if (field instanceof HTMLInputElement) {
+          if (field.type === 'email' && field.value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(field.value)) {
+              isValid = false;
+              errorMessage = 'Por favor, introduce un email válido';
+            }
+          } else if (field.type === 'tel' && field.value) {
+            const phoneRegex = /^[0-9]{9}$/;
+            if (!phoneRegex.test(field.value)) {
+              isValid = false;
+              errorMessage = 'Por favor, introduce un teléfono válido (9 dígitos)';
+            }
+          } else if (field.type === 'checkbox' && !field.checked && field.required) {
+            isValid = false;
+            errorMessage = 'Debes aceptar la política de privacidad';
+          }
+        }
+        
+        if (!isValid) {
+          errorElement.textContent = errorMessage;
+          errorElement.classList.remove('hidden');
+          field.setAttribute('aria-invalid', 'true');
+          field.classList.add('border-red-400');
+        } else {
+          errorElement.classList.add('hidden');
+          field.setAttribute('aria-invalid', 'false');
+          field.classList.remove('border-red-400');
+        }
+        
+        return isValid;
+      }
+      
+      // Validación del formulario al enviar
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Validar todos los campos
+        let isFormValid = true;
+        requiredFields.forEach(field => {
+          const fieldValid = validateField(field as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement);
+          if (!fieldValid) isFormValid = false;
+        });
+        
+        if (!isFormValid) {
+          feedback.textContent = 'Por favor, completa correctamente todos los campos requeridos.';
+          feedback.classList.remove('hidden', 'bg-green-500/20', 'text-green-400', 'bg-blue-500/20', 'text-blue-400');
+          feedback.classList.add('bg-red-500/20', 'text-red-400');
+          return;
+        }
+        
         // Cambiar estado del botón
         submitButton.disabled = true;
-        submitButton.innerHTML = 'Enviando...';
+        submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Enviando...';
         
         // Mostrar mensaje de carga
-        feedback.classList.remove('hidden', 'text-red-500', 'text-green-500');
-        feedback.classList.add('text-blue-400');
+        feedback.classList.remove('hidden', 'bg-red-500/20', 'text-red-400', 'bg-green-500/20', 'text-green-400');
+        feedback.classList.add('bg-blue-500/20', 'text-blue-400');
         feedback.textContent = 'Enviando tu solicitud...';
         
         try {
@@ -233,26 +354,44 @@ import ButtonMain from "../ButtonMain.astro";
           // if (!response.ok) throw new Error('Error al enviar el formulario');
           
           // Simulación de respuesta exitosa
-          feedback.classList.remove('text-blue-400', 'text-red-500');
-          feedback.classList.add('text-green-500');
-          feedback.textContent = '¡Solicitud enviada correctamente! Nos pondremos en contacto contigo pronto.';
+          feedback.classList.remove('bg-blue-500/20', 'text-blue-400', 'bg-red-500/20', 'text-red-400');
+          feedback.classList.add('bg-green-500/20', 'text-green-400');
+          feedback.textContent = '¡Solicitud enviada correctamente! Nos pondremos en contacto contigo en las próximas 24 horas.';
           
           // Resetear formulario
           form.reset();
           
+          // Restaurar botón después de 3 segundos
+          setTimeout(() => {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Solicitar cita gratuita';
+          }, 3000);
+          
           // Guardar en localStorage que el usuario ha enviado el formulario
           localStorage.setItem('appointmentSubmitted', 'true');
           
+          // Enviar evento de conversión (para análisis)
+          if (typeof window !== 'undefined' && 'gtag' in window) {
+            // @ts-ignore
+            window.gtag('event', 'conversion', {
+              'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+              'event_callback': function() {
+                console.log('Conversion tracking success');
+              }
+            });
+          }
+          
         } catch (error) {
           // Mostrar mensaje de error
-          feedback.classList.remove('text-blue-400', 'text-green-500');
-          feedback.classList.add('text-red-500');
+          feedback.classList.remove('bg-blue-500/20', 'text-blue-400', 'bg-green-500/20', 'text-green-400');
+          feedback.classList.add('bg-red-500/20', 'text-red-400');
           feedback.textContent = 'Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo o contáctanos directamente.';
-          console.error('Error:', error);
-        } finally {
-          // Restaurar estado del botón
+          
+          // Restaurar botón
           submitButton.disabled = false;
-          submitButton.innerHTML = 'Solicitar cita';
+          submitButton.innerHTML = 'Solicitar cita gratuita';
+          
+          console.error('Error al enviar el formulario:', error);
         }
       });
     }

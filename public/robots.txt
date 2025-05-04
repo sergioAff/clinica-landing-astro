@@ -24,6 +24,9 @@ Disallow: /assets/js/
 Disallow: /assets/css/
 Disallow: /dist/
 
+# Cache directives - reduce crawl load
+Crawl-delay: 2
+
 # Crawl delay para bots específicos
 User-agent: AhrefsBot
 Crawl-delay: 10

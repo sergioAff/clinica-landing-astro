@@ -1,0 +1,205 @@
+---
+interface Props {
+  name?: string;
+  description?: string;
+  siteUrl?: string;
+  imageUrl?: string;
+  logoUrl?: string;
+  address?: {
+    street: string;
+    city: string;
+    postalCode: string;
+    region?: string;
+    country: string;
+  };
+  geo?: {
+    latitude: number;
+    longitude: number;
+  };
+  telephone?: string;
+  email?: string;
+  openingHours?: string[];
+  priceRange?: string;
+  foundingDate?: string;
+  services?: {
+    name: string;
+    description: string;
+    url?: string;
+  }[];
+  specialists?: {
+    name: string;
+    jobTitle: string;
+    image?: string;
+    description?: string;
+    url?: string;
+  }[];
+}
+
+const {
+  name = "MenteSana - Psicólogos especializados",
+  description = "Centro de psicología profesional especializado en ansiedad, depresión, trauma y terapia de pareja con enfoque centrado en la persona",
+  siteUrl = Astro.url.origin,
+  imageUrl = `${Astro.url.origin}/img/social-image.jpg`,
+  logoUrl = `${Astro.url.origin}/img/logo.svg`,
+  address = {
+    street: "Calle Principal, 123",
+    city: "Madrid",
+    postalCode: "28001",
+    country: "ES"
+  },
+  geo = {
+    latitude: 40.416775,
+    longitude: -3.703790
+  },
+  telephone = "+34 123 456 789",
+  email = "info@mentesana.com",
+  openingHours = ["Mo-Fr 09:00-20:00", "Sa 10:00-14:00"],
+  priceRange = "€€",
+  foundingDate = "2018",
+  services = [
+    {
+      name: "Terapia Individual",
+      description: "Sesiones personalizadas para tratar problemas específicos como ansiedad, depresión y estrés."
+    },
+    {
+      name: "Terapia de Pareja",
+      description: "Mejora de la comunicación y resolución de conflictos en la relación de pareja."
+    },
+    {
+      name: "Psicología Infantil",
+      description: "Apoyo especializado para niños y adolescentes con desafíos emocionales."
+    }
+  ],
+  specialists = [
+    {
+      name: "Dra. Ana Martínez",
+      jobTitle: "Psicóloga Clínica",
+      image: `${Astro.url.origin}/img/team/ana.jpg`,
+      description: "Especialista en terapia cognitivo-conductual con más de 10 años de experiencia"
+    }
+  ]
+} = Astro.props;
+
+// Datos JSON-LD para MedicalClinic (centro de psicología)
+const medicalClinicSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "@id": siteUrl,
+  "name": name,
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": logoUrl,
+    "width": "180",
+    "height": "60"
+  },
+  "image": imageUrl,
+  "telephone": telephone,
+  "email": email,
+  "priceRange": priceRange,
+  "foundingDate": foundingDate,
+  "description": description,
+  "medicalSpecialty": [
+    "Psicología",
+    "Psicoterapia",
+    "Salud mental"
+  ],
+  "availableService": services.map(service => ({
+    "@type": "MedicalTherapy",
+    "name": service.name,
+    "description": service.description,
+    "url": service.url || null
+  })).filter(item => item.url !== null),
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": address.street,
+    "addressLocality": address.city,
+    "postalCode": address.postalCode,
+    "addressRegion": address.region || null,
+    "addressCountry": address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": geo.latitude,
+    "longitude": geo.longitude
+  },
+  "openingHoursSpecification": openingHours.map(hours => {
+    const [days, times] = hours.split(' ');
+    const [open, close] = times.split('-');
+    
+    return {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": days.split('-').map(day => {
+        const daysMap = {
+          "Mo": "Monday",
+          "Tu": "Tuesday",
+          "We": "Wednesday",
+          "Th": "Thursday",
+          "Fr": "Friday",
+          "Sa": "Saturday",
+          "Su": "Sunday"
+        };
+        return daysMap[day as keyof typeof daysMap] || day;
+      }),
+      "opens": open,
+      "closes": close
+    };
+  })
+};
+
+// Datos JSON-LD para los especialistas (psicólogos)
+const specialistsSchema = specialists.map(specialist => ({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/equipo/${specialist.name.toLowerCase().replace(/\s+/g, '-')}`,
+  "name": specialist.name,
+  "jobTitle": specialist.jobTitle,
+  "description": specialist.description || null,
+  "image": specialist.image || null,
+  "url": specialist.url || `${siteUrl}/equipo/${specialist.name.toLowerCase().replace(/\s+/g, '-')}`,
+  "worksFor": {
+    "@type": "MedicalClinic",
+    "@id": siteUrl,
+    "name": name
+  }
+})).filter(item => item.description !== null && item.image !== null);
+
+// Datos JSON-LD para preguntas frecuentes
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo dura una terapia psicológica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La duración de la terapia depende de cada caso particular. Algunas personas pueden notar mejorías en pocas sesiones, mientras que otras pueden requerir un tratamiento más prolongado. En la primera consulta evaluaremos tu caso y te proporcionaremos una estimación del tiempo de tratamiento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las sesiones son presenciales u online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ofrecemos ambas modalidades. Puedes elegir entre sesiones presenciales en nuestra clínica o sesiones online a través de videollamada, según tu preferencia y disponibilidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Están cubiertos los servicios por mi seguro médico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trabajamos con varias compañías de seguros médicos. Por favor, consúltanos sobre tu compañía específica para verificar la cobertura."
+      }
+    }
+  ]
+};
+---
+
+<!-- Integración con schema.org para SEO -->
+<script type="application/ld+json" set:html={JSON.stringify(medicalClinicSchema)}></script>
+{specialists.length > 0 && specialistsSchema.map(spec => (
+  <script type="application/ld+json" set:html={JSON.stringify(spec)}></script>
+))}
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script> 

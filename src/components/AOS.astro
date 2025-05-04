@@ -1,0 +1,66 @@
+---
+// AOS.astro - Optimized loading of AOS (Animate On Scroll) library
+---
+
+<script>
+  // Add AOS type declaration for TypeScript
+  interface Window {
+    AOS: {
+      init: (config: {
+        duration?: number;
+        once?: boolean;
+        offset?: number;
+        disable?: boolean;
+      }) => void;
+    };
+  }
+
+  // Lazy load AOS only when needed
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if we have elements that need animation
+    const animatedElements = document.querySelectorAll('[data-aos]');
+    
+    if (animatedElements.length === 0) {
+      // No animations needed, skip loading
+      return;
+    }
+    
+    // Use Intersection Observer to detect when scrolling starts
+    const observer = new IntersectionObserver((entries) => {
+      // Only load AOS when user scrolls near animated elements
+      if (entries.some(entry => entry.isIntersecting)) {
+        loadAOS();
+        observer.disconnect();
+      }
+    }, { rootMargin: '200px' }); // Load before elements are visible
+    
+    // Observe animated elements
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+    
+    function loadAOS() {
+      // Load AOS CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css';
+      document.head.appendChild(link);
+      
+      // Load AOS JS
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js';
+      script.onload = initAOS;
+      document.body.appendChild(script);
+    }
+    
+    function initAOS() {
+      // Initialize AOS with optimized settings
+      (window as any).AOS.init({
+        duration: 800,
+        once: true, // Only animate once
+        offset: 50,
+        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      });
+    }
+  });
+</script> 

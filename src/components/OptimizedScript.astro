@@ -1,0 +1,56 @@
+---
+interface Props {
+  src: string;
+  type?: string;
+  defer?: boolean;
+  async?: boolean;
+  module?: boolean;
+  inline?: boolean;
+  content?: string;
+  id?: string;
+  onload?: string;
+  crossorigin?: boolean;
+  position?: 'head' | 'body';
+}
+
+const {
+  src,
+  type = "text/javascript",
+  defer = false,
+  async = false,
+  module = false,
+  inline = false,
+  content = "",
+  id,
+  onload,
+  crossorigin = false,
+  position = "body"
+} = Astro.props;
+
+// Critical scripts should be loaded early, others can be deferred
+const isCritical = position === "head";
+const deferAttr = !isCritical || defer;
+const asyncAttr = async;
+
+// Use module for modern browsers when needed
+const scriptType = module ? "module" : type;
+
+// Generate optional attributes
+const idAttr = id ? `id="${id}"` : "";
+const onloadAttr = onload ? `onload="${onload}"` : "";
+const crossAttr = crossorigin ? "crossorigin" : "";
+---
+
+{inline ? (
+  <script type={scriptType} id={id} onload={onload} set:html={content}></script>
+) : (
+  <script 
+    src={src} 
+    type={scriptType} 
+    defer={deferAttr} 
+    async={asyncAttr} 
+    id={id}
+    onload={onload}
+    crossorigin={crossorigin ? "anonymous" : undefined}
+  ></script>
+)} 

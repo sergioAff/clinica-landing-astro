@@ -12,12 +12,64 @@ import Contact from '../components/Main/Contact.astro';
 import Appointment from '../components/Main/Appointment.astro';
 import Blog from '../components/Main/Blog.astro';
 import Resources from '../components/Main/Resources.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
 
-// Metadatos para SEO
-const title = "MenteSana | Centro de Psicología Especializada en Madrid";
-const description = "Somos especialistas en salud mental, ofreciendo terapias psicológicas personalizadas para ansiedad, depresión, estrés y más. Primera consulta gratuita.";
-const keywords = "psicología, salud mental, psicólogos Madrid, terapia online, ansiedad, depresión, terapia de pareja, psicología infantil, estrés, bienestar emocional";
+// Metadatos para SEO mejorados
+const title = "MenteSana | Psicólogos Especializados en Terapia Emocional en Madrid";
+const description = "Centro de psicología profesional en Madrid especializado en ansiedad, depresión, trauma y terapia de pareja. Enfoque centrado en la persona con evidencia científica. Primera sesión evaluativa gratuita.";
+const keywords = "psicólogos Madrid, terapia psicológica, ansiedad, depresión, terapia de pareja, trauma, psicología online, terapia cognitivo-conductual, mindfulness, bienestar emocional, psicólogo cerca de mí, salud mental profesional";
 const image = "/img/social-image.jpg";
+
+// Datos estructurados para schema.org
+const clinicInfo = {
+  name: "MenteSana - Centro de Psicología",
+  description: "Centro de psicología profesional especializado en el tratamiento de problemas emocionales y trastornos psicológicos utilizando terapias basadas en la evidencia científica.",
+  address: {
+    street: "Calle Goya, 123",
+    city: "Madrid",
+    postalCode: "28001",
+    country: "ES",
+    region: "Madrid"
+  },
+  telephone: "+34 910 123 456",
+  email: "info@mentesana.com",
+  openingHours: ["Mo-Fr 09:00-20:00", "Sa 10:00-14:00"],
+  services: [
+    {
+      name: "Terapia Individual",
+      description: "Sesiones personalizadas para tratar problemas específicos como ansiedad, depresión y estrés."
+    },
+    {
+      name: "Terapia de Pareja",
+      description: "Mejora de la comunicación y resolución de conflictos en la relación de pareja."
+    },
+    {
+      name: "Psicología Infantil",
+      description: "Apoyo especializado para niños y adolescentes con desafíos emocionales."
+    },
+    {
+      name: "Mindfulness y Meditación",
+      description: "Técnicas de atención plena para reducir el estrés y mejorar la gestión emocional."
+    }
+  ],
+  specialists: [
+    {
+      name: "Dra. Ana Martínez",
+      jobTitle: "Psicóloga Clínica",
+      description: "Especialista en terapia cognitivo-conductual con más de 10 años de experiencia."
+    },
+    {
+      name: "Dr. Carlos López",
+      jobTitle: "Psicólogo Sanitario",
+      description: "Experto en terapia de pareja y sexología con enfoque sistémico."
+    },
+    {
+      name: "Dra. Elena Rodríguez",
+      jobTitle: "Neuropsicóloga",
+      description: "Especialista en evaluación y rehabilitación neuropsicológica."
+    }
+  ]
+};
 ---
 
 <Layout 
@@ -26,7 +78,21 @@ const image = "/img/social-image.jpg";
 	keywords={keywords}
 	image={image}
 	canonicalURL={Astro.url.href}
+	author="MenteSana - Equipo de Psicólogos"
+	publishedTime={new Date().toISOString()}
+	modifiedTime={new Date().toISOString()}
 >
+	<SchemaOrg
+		name={clinicInfo.name}
+		description={clinicInfo.description}
+		address={clinicInfo.address}
+		telephone={clinicInfo.telephone}
+		email={clinicInfo.email}
+		openingHours={clinicInfo.openingHours}
+		services={clinicInfo.services}
+		specialists={clinicInfo.specialists}
+	/>
+	
 	<Header />
 	<main id="main-content">
 		<Hero />

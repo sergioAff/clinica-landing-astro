@@ -14,7 +14,7 @@ interface Props {
 
 const { 
 	title = "MenteSana | Centro de Psicología Especializada",
-	description = "Somos un equipo de psicólogos especializados comprometidos con tu salud mental. Ofrecemos terapias personalizadas en un entorno seguro y confidencial.",
+	description = "Somos un equipo especializados y comprometidos con tu salud mental. Ofrecemos terapias personalizadas en un entorno seguro y confidencial.",
 	image = "/img/social-image.svg",
 	canonicalURL = Astro.url.href,
 	keywords = "psicología, salud mental, terapia, psicólogos, bienestar emocional, terapia individual, terapia de pareja, ansiedad, depresión, estrés, psicoterapia, psicólogo online, terapia familiar, terapia cognitivo-conductual, mindfulness",
@@ -34,6 +34,7 @@ import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/800.css';
 import '../styles/global.css';
+import '../styles/reset-cursor.css';
 import ScrollObserver from '../components/ScrollObserver.astro';
 import ChatBot from '../components/react/ChatBot';
 
@@ -53,9 +54,15 @@ const isHomePage = currentPage === "/";
 		<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		
+		<!-- Compression directive for text compression support -->
+		<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
 		<!-- Preconexiones para recursos críticos -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+		<link rel="preconnect" href="https://media.cssninja.io" crossorigin />
 		
 		<!-- Precargar recursos críticos -->
 		{isHomePage && (
@@ -63,6 +70,7 @@ const isHomePage = currentPage === "/";
 				<link rel="preload" as="image" href="/img/favicon.svg" fetchpriority="high" />
 				<link rel="preload" as="image" href="/img/illustrations/hero.svg" fetchpriority="high" />
 				<link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+				<link rel="dns-prefetch" href="https://media.cssninja.io" />
 			</>
 		)}
 		
@@ -298,57 +306,5 @@ const isHomePage = currentPage === "/";
 		<slot />
 		<ScrollObserver />
 		<ChatBot client:idle />
-		
-		<!-- Cursor personalizado (deshabilitado para mobile) -->
-		<div id="custom-cursor" class="hidden lg:block fixed w-8 h-8 pointer-events-none z-[999] border-2 border-blue-400/50 rounded-full transform -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-transform duration-100 ease-out"></div>
-		
-		<!-- Script para cursor personalizado -->
-		<script is:inline>
-			document.addEventListener('DOMContentLoaded', function() {
-				const cursor = document.getElementById('custom-cursor');
-				
-				if (cursor && window.innerWidth > 1024) {
-					document.addEventListener('mousemove', function(e) {
-						cursor.style.opacity = '1';
-						cursor.style.left = e.clientX + 'px';
-						cursor.style.top = e.clientY + 'px';
-					});
-					
-					document.addEventListener('mousedown', function() {
-						cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-					});
-					
-					document.addEventListener('mouseup', function() {
-						cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-					});
-					
-					document.querySelectorAll('a, button, [role="button"], input, select, textarea').forEach(el => {
-						el.addEventListener('mouseenter', function() {
-							cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-							cursor.style.borderColor = 'rgba(96, 165, 250, 0.8)';
-							cursor.style.backgroundColor = 'rgba(96, 165, 250, 0.1)';
-						});
-						
-						el.addEventListener('mouseleave', function() {
-							cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-							cursor.style.borderColor = 'rgba(96, 165, 250, 0.5)';
-							cursor.style.backgroundColor = 'transparent';
-						});
-					});
-					
-					// Ocultar cursor nativo
-					document.body.style.cursor = 'none';
-					
-					// Detectar cuando el cursor sale de la ventana
-					document.addEventListener('mouseleave', function() {
-						cursor.style.opacity = '0';
-					});
-					
-					document.addEventListener('mouseenter', function() {
-						cursor.style.opacity = '1';
-					});
-				}
-			});
-		</script>
 	</body>
 </html>
