@@ -201,11 +201,11 @@
 
   <!-- Política de Privacidad -->
   <url>
-    <loc>https://mentesana.com/privacidad</loc>
+    <loc>https://mentesana.com/politica-privacidad</loc>
     <lastmod>2024-03-01T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/privacidad" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/politica-privacidad" />
   </url>
 
   <!-- Términos y Condiciones -->

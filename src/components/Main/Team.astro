@@ -24,28 +24,6 @@ const teamMembers = [
       twitter: "#",
       email: "carlos@mentesana.com"
     }
-  },
-  {
-    name: "Dra. Laura Sánchez",
-    title: "Psicóloga de Parejas",
-    description: "Especialista en terapia de parejas y relacional, con formación en mediación y resolución de conflictos familiares.",
-    image: "/img/team/psychologist3.jpg",
-    socialLinks: {
-      linkedin: "#",
-      twitter: "#",
-      email: "laura@mentesana.com"
-    }
-  },
-  {
-    name: "Dr. Javier Torres",
-    title: "Neuropsicólogo",
-    description: "Especializado en evaluación y rehabilitación neuropsicológica, con experiencia en el tratamiento de pacientes con daño cerebral.",
-    image: "/img/team/psychologist4.jpg",
-    socialLinks: {
-      linkedin: "#",
-      twitter: "#",
-      email: "javier@mentesana.com"
-    }
   }
 ];
 ---
@@ -57,7 +35,7 @@ const teamMembers = [
     <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto px-2">Contamos con un equipo de psicólogos altamente cualificados, especializados en diferentes áreas de la salud mental.</p>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-center justify-center">
     {teamMembers.map(member => (
       <AnimatedTeamCard
         name={member.name}

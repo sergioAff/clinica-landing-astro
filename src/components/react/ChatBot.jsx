@@ -119,7 +119,7 @@ const ChatBot = () => {
       {/* Botón para abrir/cerrar el chat */}
       <button
         onClick={toggleChat}
-        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer"
+        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full z-30 w-14 h-14 flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 cursor-pointer"
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat de ayuda"}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}

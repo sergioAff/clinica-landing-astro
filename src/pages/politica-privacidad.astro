@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header/Header.astro';
+import Footer from '../components/Footer/Footer.astro';
+import ButtonMain from '../components/ButtonMain.astro';
+
+const title = "Política de Privacidad | MenteSana - Centro de Psicología";
+const description = "Información sobre cómo MenteSana trata y protege tus datos personales conforme al RGPD.";
+---
+
+<Layout 
+    title={title}
+    description={description}
+    canonicalURL={Astro.url.href}
+>
+    <Header />
+    <main class="pt-24 sm:pt-32 pb-16">
+        <section class="w-full max-w-4xl mx-auto px-4 sm:px-6 py-12">
+            <div class="mb-12">
+                <h1 class="text-4xl font-bold text-gray-100 mb-4">Política de Privacidad</h1>
+                <p class="text-lg text-gray-400">Última actualización: {new Date().toLocaleDateString('es-ES', {year: 'numeric', month: 'long', day: 'numeric'})}</p>
+            </div>
+            
+            <div class="prose prose-lg prose-invert max-w-none">
+                <p class="mb-4 text-gray-300">En MenteSana, accesible desde mentesana.com, una de nuestras principales prioridades es la privacidad de nuestros visitantes. Este documento de Política de Privacidad contiene los tipos de información que se recopilan y registran en MenteSana y cómo la utilizamos.</p>
+                
+                <p class="mb-4 text-gray-300">Si tienes preguntas adicionales o requieres más información sobre nuestra Política de Privacidad, no dudes en contactarnos a través de info@mentesana.com.</p>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">1. Datos personales que recopilamos</h2>
+                <p class="mb-4 text-gray-300">Cuando solicitas información o pides una cita a través de nuestro sitio web, recopilamos la siguiente información personal:</p>
+                <ul class="mb-6 pl-6 text-gray-300">
+                    <li class="mb-2 list-disc list-outside">Nombre y apellidos</li>
+                    <li class="mb-2 list-disc list-outside">Correo electrónico</li>
+                    <li class="mb-2 list-disc list-outside">Número de teléfono</li>
+                    <li class="mb-2 list-disc list-outside">Fecha de nacimiento (solo si es relevante para el servicio solicitado)</li>
+                    <li class="mb-2 list-disc list-outside">Información sobre el servicio que necesitas</li>
+                    <li class="mb-2 list-disc list-outside">Cualquier información adicional que decidas compartir con nosotros en los campos de comentarios</li>
+                </ul>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">2. Cómo utilizamos tus datos</h2>
+                <p class="mb-4 text-gray-300">La información que recopilamos se utiliza para:</p>
+                <ul class="mb-6 pl-6 text-gray-300">
+                    <li class="mb-2 list-disc list-outside">Proporcionar, operar y mantener nuestros servicios</li>
+                    <li class="mb-2 list-disc list-outside">Mejorar, personalizar y ampliar nuestros servicios</li>
+                    <li class="mb-2 list-disc list-outside">Entender y analizar cómo utilizas nuestros servicios</li>
+                    <li class="mb-2 list-disc list-outside">Contactar contigo para concertar citas</li>
+                    <li class="mb-2 list-disc list-outside">Proporcionar atención al cliente</li>
+                    <li class="mb-2 list-disc list-outside">Enviarte información relacionada con nuestros servicios (siempre que hayas dado tu consentimiento)</li>
+                </ul>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">3. Base legal para el tratamiento</h2>
+                <p class="mb-4 text-gray-300">Tratamos tus datos personales bajo las siguientes bases legales:</p>
+                <ul class="mb-6 pl-6 text-gray-300">
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Consentimiento:</strong> Has dado tu consentimiento para el tratamiento de tus datos personales.</li>
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Interés legítimo:</strong> El tratamiento es necesario para nuestros intereses legítimos, siempre que sobre estos no prevalezcan tus intereses o derechos.</li>
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Ejecución de un contrato:</strong> El tratamiento es necesario para la ejecución de un contrato contigo o para la aplicación de medidas precontractuales.</li>
+                </ul>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">4. Retención de datos</h2>
+                <p class="mb-4 text-gray-300">Conservaremos tus datos personales solo durante el tiempo necesario para los fines establecidos en esta política de privacidad. Mantendremos y utilizaremos tus datos en la medida necesaria para cumplir con nuestras obligaciones legales, resolver disputas y hacer cumplir nuestros acuerdos.</p>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">5. Cookies</h2>
+                <p class="mb-4 text-gray-300">MenteSana utiliza cookies para mejorar la experiencia del usuario. Las cookies son archivos que un sitio o su proveedor de servicios transfiere al disco duro de tu ordenador a través de tu navegador web (si lo permites) que permite a los sistemas del sitio o proveedor de servicios reconocer tu navegador y capturar y recordar cierta información.</p>
+                
+                <p class="mb-4 text-gray-300">Utilizamos cookies para:</p>
+                <ul class="mb-6 pl-6 text-gray-300">
+                    <li class="mb-2 list-disc list-outside">Entender y guardar las preferencias del usuario para futuras visitas.</li>
+                    <li class="mb-2 list-disc list-outside">Recopilar datos agregados sobre el tráfico del sitio y las interacciones del sitio para ofrecer mejores experiencias y herramientas en el futuro.</li>
+                </ul>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">6. Transferencia de datos</h2>
+                <p class="mb-4 text-gray-300">Tu información, incluidos los datos personales, puede ser transferida y mantenida en ordenadores ubicados fuera de tu estado, provincia, país u otra jurisdicción gubernamental donde las leyes de protección de datos pueden diferir de las de tu jurisdicción.</p>
+                
+                <p class="mb-4 text-gray-300">Si te encuentras fuera de España y eliges proporcionarnos información, ten en cuenta que transferimos los datos, incluidos los datos personales, a España y los procesamos allí.</p>
+
+                <h2 class="text-primary-400 mt-8 mb-4">7. Derechos de protección de datos</h2>
+                <p class="mb-4 text-gray-300">De acuerdo con el Reglamento General de Protección de Datos (RGPD), tienes los siguientes derechos:</p>
+                <ul class="mb-6 pl-6 text-gray-300">
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Derecho de acceso:</strong> Tienes derecho a solicitar copias de tus datos personales.</li>
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Derecho de rectificación:</strong> Tienes derecho a solicitar que corrijamos cualquier información que creas que es inexacta o incompleta.</li>
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Derecho al olvido:</strong> Tienes derecho a solicitar que eliminemos tus datos personales, bajo ciertas condiciones.</li>
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Derecho a restringir el procesamiento:</strong> Tienes derecho a solicitar que restrinjamos el procesamiento de tus datos personales, bajo ciertas condiciones.</li>
+                    <li class="mb-2 list-disc list-outside"><strong class="text-gray-100">Derecho a la portabilidad de datos:</strong> Tienes derecho a solicitar que transfiramos los datos que hemos recopilado a otra organización, o directamente a ti, bajo ciertas condiciones.</li>
+                </ul>
+                
+                <p class="mb-4 text-gray-300">Si deseas ejercer alguno de estos derechos, contáctanos a través de info@mentesana.com.</p>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">8. Seguridad</h2>
+                <p class="mb-4 text-gray-300">La seguridad de tus datos personales es importante para nosotros. Implementamos medidas técnicas y organizativas apropiadas para proteger tus datos personales contra el acceso, la divulgación, la alteración o la destrucción no autorizados.</p>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">9. Enlaces a sitios de terceros</h2>
+                <p class="mb-4 text-gray-300">Nuestro sitio web puede contener enlaces a otros sitios web que no son operados por nosotros. Si haces clic en un enlace de terceros, serás dirigido al sitio de ese tercero. Te recomendamos encarecidamente que revises la Política de privacidad de cada sitio que visites.</p>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">10. Cambios en esta política</h2>
+                <p class="mb-4 text-gray-300">Podemos actualizar nuestra Política de Privacidad de vez en cuando. Te notificaremos cualquier cambio publicando la nueva Política de Privacidad en esta página.</p>
+                
+                <h2 class="text-primary-400 mt-8 mb-4">11. Contacto</h2>
+                <p class="mb-4 text-gray-300">Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos:</p>
+                <ul class="mb-6 pl-6 text-gray-300">
+                    <li class="mb-2 list-disc list-outside">Por correo electrónico: info@mentesana.com</li>
+                    <li class="mb-2 list-disc list-outside">Por teléfono: +34 910 123 456</li>
+                    <li class="mb-2 list-disc list-outside">Por correo postal: Calle Goya, 123, 28001 Madrid, España</li>
+                </ul>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <ButtonMain to="/" hasArrow={true}>
+                    Volver a la página principal
+                </ButtonMain>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout> 

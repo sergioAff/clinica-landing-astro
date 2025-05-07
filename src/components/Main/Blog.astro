@@ -12,12 +12,13 @@ import ButtonSub from "../ButtonSub.astro";
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
     <!-- Artículo 1 -->
-    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
+    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group flex flex-col h-full hover:transform hover:-translate-y-2 cursor-pointer">
       <div class="relative overflow-hidden">
         <img 
           src="/img/blog/article1.jpg" 
           alt="Manejo de la ansiedad" 
           class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
         <div class="absolute bottom-0 left-0 p-4">
@@ -25,7 +26,7 @@ import ButtonSub from "../ButtonSub.astro";
         </div>
       </div>
       
-      <div class="p-6">
+      <div class="p-6 flex-grow">
         <div class="flex items-center text-gray-400 text-sm mb-2">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,23 +47,25 @@ import ButtonSub from "../ButtonSub.astro";
             src="/img/team/psychologist1.jpg" 
             alt="Dra. María Rodríguez" 
             class="w-8 h-8 rounded-full object-cover mr-3"
+            loading="lazy"
           />
           <span class="text-sm text-gray-300">Dra. María Rodríguez</span>
         </div>
       </div>
       
-      <div class="px-6 pb-6">
+      <div class="px-6 pb-6 mt-auto">
         <ButtonSub to="/blog/ansiedad-tecnicas">Leer más</ButtonSub>
       </div>
     </article>
     
     <!-- Artículo 2 -->
-    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
+    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group flex flex-col h-full hover:transform hover:-translate-y-2 cursor-pointer">
       <div class="relative overflow-hidden">
         <img 
           src="/img/blog/article2.jpg" 
           alt="Desarrollo infantil" 
           class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
         <div class="absolute bottom-0 left-0 p-4">
@@ -70,7 +73,7 @@ import ButtonSub from "../ButtonSub.astro";
         </div>
       </div>
       
-      <div class="p-6">
+      <div class="p-6 flex-grow">
         <div class="flex items-center text-gray-400 text-sm mb-2">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,23 +94,25 @@ import ButtonSub from "../ButtonSub.astro";
             src="/img/team/psychologist2.jpg" 
             alt="Dr. Carlos Mendoza" 
             class="w-8 h-8 rounded-full object-cover mr-3"
+            loading="lazy"
           />
           <span class="text-sm text-gray-300">Dr. Carlos Mendoza</span>
         </div>
       </div>
       
-      <div class="px-6 pb-6">
+      <div class="px-6 pb-6 mt-auto">
         <ButtonSub to="#">Leer más</ButtonSub>
       </div>
     </article>
     
     <!-- Artículo 3 -->
-    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
+    <article class="bg-gray-800/30 rounded-xl overflow-hidden shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group flex flex-col h-full hover:transform hover:-translate-y-2 cursor-pointer">
       <div class="relative overflow-hidden">
         <img 
           src="/img/blog/article3.jpg" 
           alt="Comunicación en pareja" 
           class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
         <div class="absolute bottom-0 left-0 p-4">
@@ -115,7 +120,7 @@ import ButtonSub from "../ButtonSub.astro";
         </div>
       </div>
       
-      <div class="p-6">
+      <div class="p-6 flex-grow">
         <div class="flex items-center text-gray-400 text-sm mb-2">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -133,15 +138,16 @@ import ButtonSub from "../ButtonSub.astro";
         
         <div class="flex items-center">
           <img 
-            src="/img/team/psychologist3.jpg" 
+            src="/img/team/psychologist1.jpg" 
             alt="Dra. Laura Sánchez" 
             class="w-8 h-8 rounded-full object-cover mr-3"
+            loading="lazy"
           />
           <span class="text-sm text-gray-300">Dra. Laura Sánchez</span>
         </div>
       </div>
       
-      <div class="px-6 pb-6">
+      <div class="px-6 pb-6 mt-auto">
         <ButtonSub to="#">Leer más</ButtonSub>
       </div>
     </article>

@@ -35,6 +35,18 @@ input[type="reset"] {
   cursor: pointer !important;
 }
 
+/* Asegurar que todos los elementos de botón tienen cursor-pointer */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+.btn,
+.button,
+[class*="btn-"],
+[class*="button-"] {
+  cursor: pointer !important;
+}
+
 input[type="text"], 
 input[type="password"],
 input[type="email"],
