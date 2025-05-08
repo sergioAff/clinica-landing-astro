@@ -1,0 +1,11 @@
+/* EQUIPO */
+Desarrollador: Sergio Fernández
+Contacto: sergioadrianfernandez02@gmail.com
+Twitter: @tuusuariotwitter
+Ubicación: España
+
+/* SITIO */
+Última actualización: 2023/11/30
+Estándares: HTML5, CSS3, JavaScript
+Componentes: Astro, Tailwind CSS, React
+Software: Visual Studio Code, Git 

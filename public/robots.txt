@@ -1,16 +1,14 @@
-# robots.txt para MenteSana.com
-
-# Permitir a todos los robots de los motores de búsqueda acceder a todo el sitio
+# MenteSana - Robots.txt
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://tudominio.vercel.app/sitemap.xml
 
 # Permitir a Google Imágenes indexar todas las imágenes
 User-agent: Googlebot-Image
 Allow: /img/
 Allow: /public/img/
-
-# Ubicación del Sitemap
-Sitemap: https://mentesana.com/sitemap.xml
 
 # Páginas y recursos a excluir de la indexación
 Disallow: /admin/

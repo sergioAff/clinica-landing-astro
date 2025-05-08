@@ -11,40 +11,40 @@
 
   <!-- Página Principal -->
   <url>
-    <loc>https://mentesana.com/</loc>
-    <lastmod>2024-05-04T08:00:00+00:00</lastmod>
+    <loc>https://tudominio.vercel.app/</loc>
+    <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/" />
   </url>
 
   <!-- Solicitar Cita -->
   <url>
-    <loc>https://mentesana.com/cita</loc>
-    <lastmod>2024-05-04T08:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://tudominio.vercel.app/cita</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/cita" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/cita" />
   </url>
 
   <!-- Sobre Nosotros -->
   <url>
-    <loc>https://mentesana.com/nosotros</loc>
+    <loc>https://tudominio.vercel.app/nosotros</loc>
     <lastmod>2024-04-15T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/nosotros" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/nosotros" />
   </url>
 
   <!-- Servicios -->
   <url>
-    <loc>https://mentesana.com/servicios</loc>
+    <loc>https://tudominio.vercel.app/servicios</loc>
     <lastmod>2024-04-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/servicios" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/servicios" />
     <image:image>
-      <image:loc>https://mentesana.com/img/services/terapia-individual.jpg</image:loc>
+      <image:loc>https://tudominio.vercel.app/img/services/terapia-individual.jpg</image:loc>
       <image:title>Terapia Individual en MenteSana</image:title>
       <image:caption>Sesiones de terapia individual personalizadas</image:caption>
     </image:image>
@@ -52,84 +52,84 @@
 
   <!-- Servicio: Terapia Individual -->
   <url>
-    <loc>https://mentesana.com/servicios/terapia-individual</loc>
+    <loc>https://tudominio.vercel.app/servicios/terapia-individual</loc>
     <lastmod>2024-04-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/servicios/terapia-individual" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/servicios/terapia-individual" />
   </url>
 
   <!-- Servicio: Terapia de Pareja -->
   <url>
-    <loc>https://mentesana.com/servicios/terapia-pareja</loc>
+    <loc>https://tudominio.vercel.app/servicios/terapia-pareja</loc>
     <lastmod>2024-04-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/servicios/terapia-pareja" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/servicios/terapia-pareja" />
   </url>
 
   <!-- Servicio: Terapia Infantil -->
   <url>
-    <loc>https://mentesana.com/servicios/terapia-infantil</loc>
+    <loc>https://tudominio.vercel.app/servicios/terapia-infantil</loc>
     <lastmod>2024-04-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/servicios/terapia-infantil" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/servicios/terapia-infantil" />
   </url>
 
   <!-- Servicio: Evaluación Psicológica -->
   <url>
-    <loc>https://mentesana.com/servicios/evaluacion-psicologica</loc>
+    <loc>https://tudominio.vercel.app/servicios/evaluacion-psicologica</loc>
     <lastmod>2024-04-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/servicios/evaluacion-psicologica" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/servicios/evaluacion-psicologica" />
   </url>
 
   <!-- Servicio: Mindfulness y Meditación -->
   <url>
-    <loc>https://mentesana.com/servicios/mindfulness-meditacion</loc>
+    <loc>https://tudominio.vercel.app/servicios/mindfulness-meditacion</loc>
     <lastmod>2024-04-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/servicios/mindfulness-meditacion" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/servicios/mindfulness-meditacion" />
   </url>
 
   <!-- Equipo -->
   <url>
-    <loc>https://mentesana.com/equipo</loc>
+    <loc>https://tudominio.vercel.app/equipo</loc>
     <lastmod>2024-04-25T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/equipo" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/equipo" />
   </url>
 
   <!-- Recursos -->
   <url>
-    <loc>https://mentesana.com/recursos</loc>
+    <loc>https://tudominio.vercel.app/recursos</loc>
     <lastmod>2024-05-04T08:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/recursos" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/recursos" />
   </url>
 
   <!-- Recursos descargables individuales - para indexarlos pero no incluidos en navegación -->
   <url>
-    <loc>https://mentesana.com/resources/guia-manejo-ansiedad.pdf</loc>
+    <loc>https://tudominio.vercel.app/resources/guia-manejo-ansiedad.pdf</loc>
     <lastmod>2024-05-01T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://mentesana.com/resources/ejercicios-respiracion.pdf</loc>
+    <loc>https://tudominio.vercel.app/resources/ejercicios-respiracion.pdf</loc>
     <lastmod>2024-05-01T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://mentesana.com/resources/autoregistro-pensamientos.pdf</loc>
+    <loc>https://tudominio.vercel.app/resources/autoregistro-pensamientos.pdf</loc>
     <lastmod>2024-05-01T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
@@ -137,93 +137,93 @@
 
   <!-- Blog -->
   <url>
-    <loc>https://mentesana.com/blog</loc>
-    <lastmod>2024-05-03T08:00:00+00:00</lastmod>
+    <loc>https://tudominio.vercel.app/blog</loc>
+    <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/blog" />
   </url>
 
   <!-- Artículos del Blog -->
   <url>
-    <loc>https://mentesana.com/blog/tecnicas-mindfulness-diarias</loc>
+    <loc>https://tudominio.vercel.app/blog/tecnicas-mindfulness-diarias</loc>
     <lastmod>2024-04-30T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/blog/tecnicas-mindfulness-diarias" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/blog/tecnicas-mindfulness-diarias" />
     <image:image>
-      <image:loc>https://mentesana.com/img/blog/mindfulness.jpg</image:loc>
+      <image:loc>https://tudominio.vercel.app/img/blog/mindfulness.jpg</image:loc>
       <image:title>Técnicas de Mindfulness para la vida diaria</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://mentesana.com/blog/manejo-ansiedad</loc>
+    <loc>https://tudominio.vercel.app/blog/manejo-ansiedad</loc>
     <lastmod>2024-04-15T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/blog/manejo-ansiedad" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/blog/manejo-ansiedad" />
   </url>
 
   <url>
-    <loc>https://mentesana.com/blog/depresion-sintomas-tratamiento</loc>
+    <loc>https://tudominio.vercel.app/blog/depresion-sintomas-tratamiento</loc>
     <lastmod>2024-03-20T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/blog/depresion-sintomas-tratamiento" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/blog/depresion-sintomas-tratamiento" />
   </url>
 
   <url>
-    <loc>https://mentesana.com/blog/beneficios-terapia-online</loc>
+    <loc>https://tudominio.vercel.app/blog/beneficios-terapia-online</loc>
     <lastmod>2024-05-02T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/blog/beneficios-terapia-online" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/blog/beneficios-terapia-online" />
   </url>
 
   <!-- FAQ -->
   <url>
-    <loc>https://mentesana.com/faq</loc>
+    <loc>https://tudominio.vercel.app/faq</loc>
     <lastmod>2024-04-10T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/faq" />
   </url>
 
   <!-- Contacto -->
   <url>
-    <loc>https://mentesana.com/contacto</loc>
+    <loc>https://tudominio.vercel.app/contacto</loc>
     <lastmod>2024-04-05T08:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/contacto" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/contacto" />
   </url>
 
   <!-- Política de Privacidad -->
   <url>
-    <loc>https://mentesana.com/politica-privacidad</loc>
-    <lastmod>2024-03-01T08:00:00+00:00</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/politica-privacidad" />
+    <loc>https://tudominio.vercel.app/politica-privacidad</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/politica-privacidad" />
   </url>
 
   <!-- Términos y Condiciones -->
   <url>
-    <loc>https://mentesana.com/terminos</loc>
+    <loc>https://tudominio.vercel.app/terminos</loc>
     <lastmod>2024-03-01T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/terminos" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/terminos" />
   </url>
 
   <!-- Política de Cookies -->
   <url>
-    <loc>https://mentesana.com/cookies</loc>
+    <loc>https://tudominio.vercel.app/cookies</loc>
     <lastmod>2024-03-01T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://mentesana.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://tudominio.vercel.app/cookies" />
   </url>
 
 </urlset> 

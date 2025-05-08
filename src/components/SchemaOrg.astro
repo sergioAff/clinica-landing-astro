@@ -1,104 +1,135 @@
 ---
-interface Props {
-  name?: string;
-  description?: string;
-  siteUrl?: string;
-  imageUrl?: string;
-  logoUrl?: string;
-  address?: {
+// Esquema para datos estructurados de Schema.org
+export interface Props {
+  name: string;
+  description: string;
+  address: {
     street: string;
     city: string;
     postalCode: string;
-    region?: string;
     country: string;
+    region: string;
   };
+  telephone: string;
+  email: string;
+  openingHours: string[];
+  services: {
+    name: string;
+    description: string;
+  }[];
+  specialists: {
+    name: string;
+    jobTitle: string;
+    description: string;
+    image?: string;
+  }[];
+  hasMap?: string;
+  priceRange?: string;
+  logo?: string;
   geo?: {
     latitude: number;
     longitude: number;
   };
-  telephone?: string;
-  email?: string;
-  openingHours?: string[];
-  priceRange?: string;
-  foundingDate?: string;
-  services?: {
-    name: string;
-    description: string;
-    url?: string;
-  }[];
-  specialists?: {
-    name: string;
-    jobTitle: string;
-    image?: string;
-    description?: string;
-    url?: string;
+  socialProfiles?: {
+    platform: string;
+    url: string;
   }[];
 }
 
 const {
-  name = "MenteSana - Psicólogos especializados",
-  description = "Centro de psicología profesional especializado en ansiedad, depresión, trauma y terapia de pareja con enfoque centrado en la persona",
-  siteUrl = Astro.url.origin,
-  imageUrl = `${Astro.url.origin}/img/social-image.jpg`,
-  logoUrl = `${Astro.url.origin}/img/logo.svg`,
-  address = {
-    street: "Calle Principal, 123",
-    city: "Madrid",
-    postalCode: "28001",
-    country: "ES"
-  },
-  geo = {
-    latitude: 40.416775,
-    longitude: -3.703790
-  },
-  telephone = "+34 123 456 789",
-  email = "info@mentesana.com",
-  openingHours = ["Mo-Fr 09:00-20:00", "Sa 10:00-14:00"],
+  name,
+  description,
+  address,
+  telephone,
+  email,
+  openingHours,
+  services,
+  specialists,
+  hasMap = "https://maps.google.com",
   priceRange = "€€",
-  foundingDate = "2018",
-  services = [
-    {
-      name: "Terapia Individual",
-      description: "Sesiones personalizadas para tratar problemas específicos como ansiedad, depresión y estrés."
-    },
-    {
-      name: "Terapia de Pareja",
-      description: "Mejora de la comunicación y resolución de conflictos en la relación de pareja."
-    },
-    {
-      name: "Psicología Infantil",
-      description: "Apoyo especializado para niños y adolescentes con desafíos emocionales."
-    }
-  ],
-  specialists = [
-    {
-      name: "Dra. Ana Martínez",
-      jobTitle: "Psicóloga Clínica",
-      image: `${Astro.url.origin}/img/team/ana.jpg`,
-      description: "Especialista en terapia cognitivo-conductual con más de 10 años de experiencia"
-    }
+  logo = "/img/logo.svg",
+  geo = { latitude: 40.416775, longitude: -3.703790 },
+  socialProfiles = [
+    { platform: "Facebook", url: "https://facebook.com/mentesana" },
+    { platform: "Twitter", url: "https://twitter.com/mentesana" },
+    { platform: "Instagram", url: "https://instagram.com/mentesana" }
   ]
 } = Astro.props;
 
-// Datos JSON-LD para MedicalClinic (centro de psicología)
-const medicalClinicSchema = {
+// Generar los datos estructurados para la clínica
+const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "MedicalClinic",
-  "@id": siteUrl,
+  "@type": "MedicalBusiness",
+  "@id": Astro.url.origin,
   "name": name,
-  "url": siteUrl,
+  "url": Astro.url.origin,
   "logo": {
     "@type": "ImageObject",
-    "url": logoUrl,
+    "url": new URL(logo, Astro.url.origin).href,
     "width": "180",
     "height": "60"
   },
-  "image": imageUrl,
+  "image": new URL("/img/social-image.jpg", Astro.url.origin).href,
+  "description": description,
   "telephone": telephone,
   "email": email,
   "priceRange": priceRange,
-  "foundingDate": foundingDate,
-  "description": description,
+  "paymentAccepted": ["Tarjeta de crédito", "Efectivo", "Transferencia bancaria"],
+  "currenciesAccepted": "EUR",
+  "openingHoursSpecification": openingHours.map(hours => {
+    const [days, time] = hours.split(" ");
+    const daysOfWeek = days.split("-").map(day => {
+      const dayMap = {
+        "Mo": "Monday",
+        "Tu": "Tuesday",
+        "We": "Wednesday",
+        "Th": "Thursday",
+        "Fr": "Friday",
+        "Sa": "Saturday",
+        "Su": "Sunday"
+      };
+      return dayMap[day as keyof typeof dayMap];
+    });
+    
+    const [opens, closes] = time.split("-");
+    
+    return {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": daysOfWeek,
+      "opens": opens,
+      "closes": closes
+    };
+  }),
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": address.street,
+    "addressLocality": address.city,
+    "postalCode": address.postalCode,
+    "addressRegion": address.region,
+    "addressCountry": address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": geo.latitude,
+    "longitude": geo.longitude
+  },
+  "hasMap": hasMap,
+  "sameAs": socialProfiles.map(profile => profile.url),
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": address.city
+    }
+  ],
+  "department": services.map((service, index) => ({
+    "@type": "MedicalClinic",
+    "@id": `${Astro.url.origin}#department${index + 1}`,
+    "name": `${name} - ${service.name}`,
+    "description": service.description,
+    "parentOrganization": {
+      "@id": Astro.url.origin
+    }
+  })),
   "medicalSpecialty": [
     "Psicología",
     "Psicoterapia",
@@ -108,63 +139,38 @@ const medicalClinicSchema = {
     "@type": "MedicalTherapy",
     "name": service.name,
     "description": service.description,
-    "url": service.url || null
-  })).filter(item => item.url !== null),
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": address.street,
-    "addressLocality": address.city,
-    "postalCode": address.postalCode,
-    "addressRegion": address.region || null,
-    "addressCountry": address.country
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": geo.latitude,
-    "longitude": geo.longitude
-  },
-  "openingHoursSpecification": openingHours.map(hours => {
-    const [days, times] = hours.split(' ');
-    const [open, close] = times.split('-');
-    
-    return {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": days.split('-').map(day => {
-        const daysMap = {
-          "Mo": "Monday",
-          "Tu": "Tuesday",
-          "We": "Wednesday",
-          "Th": "Thursday",
-          "Fr": "Friday",
-          "Sa": "Saturday",
-          "Su": "Sunday"
-        };
-        return daysMap[day as keyof typeof daysMap] || day;
-      }),
-      "opens": open,
-      "closes": close
-    };
-  })
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${Astro.url.origin}/cita?servicio=${encodeURIComponent(service.name)}`,
+        "inLanguage": "es",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/IOSPlatform",
+          "http://schema.org/AndroidPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": `Reserva para ${service.name}`
+      }
+    }
+  })),
+  "employee": specialists.map((specialist, index) => ({
+    "@type": "Person",
+    "@id": `${Astro.url.origin}#employee${index + 1}`,
+    "name": specialist.name,
+    "jobTitle": specialist.jobTitle,
+    "description": specialist.description,
+    "image": specialist.image ? new URL(specialist.image, Astro.url.origin).href : null,
+    "worksFor": {
+      "@id": Astro.url.origin
+    }
+  }))
 };
 
-// Datos JSON-LD para los especialistas (psicólogos)
-const specialistsSchema = specialists.map(specialist => ({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${siteUrl}/equipo/${specialist.name.toLowerCase().replace(/\s+/g, '-')}`,
-  "name": specialist.name,
-  "jobTitle": specialist.jobTitle,
-  "description": specialist.description || null,
-  "image": specialist.image || null,
-  "url": specialist.url || `${siteUrl}/equipo/${specialist.name.toLowerCase().replace(/\s+/g, '-')}`,
-  "worksFor": {
-    "@type": "MedicalClinic",
-    "@id": siteUrl,
-    "name": name
-  }
-})).filter(item => item.description !== null && item.image !== null);
-
-// Datos JSON-LD para preguntas frecuentes
+// FAQ Schema (para la página de inicio)
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -187,19 +193,81 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "¿Están cubiertos los servicios por mi seguro médico?",
+      "name": "¿Cómo puedo saber si necesito terapia psicológica?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Trabajamos con varias compañías de seguros médicos. Por favor, consúltanos sobre tu compañía específica para verificar la cobertura."
+        "text": "Si experimentas malestar emocional persistente, cambios significativos en tu estado de ánimo, dificultades en tus relaciones personales o problemas para afrontar situaciones cotidianas, podría ser beneficioso consultar con un profesional. Ofrecemos una primera sesión de evaluación para ayudarte a determinar si la terapia es adecuada para ti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Trabajáis con seguros médicos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, colaboramos con las principales compañías aseguradoras. Puedes consultar si tu seguro está entre nuestros colaboradores contactando con nosotros."
       }
     }
   ]
 };
+
+// Web Page Schema
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": Astro.url.href,
+  "url": Astro.url.href,
+  "name": name,
+  "description": description,
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": Astro.url.origin,
+    "name": name,
+    "url": Astro.url.origin,
+    "inLanguage": "es"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Salud Mental y Terapia Psicológica"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Personas que buscan ayuda psicológica"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": Astro.url.origin,
+    "name": name,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL(logo, Astro.url.origin).href
+    }
+  },
+  "inLanguage": "es",
+  "mainEntity": {
+    "@type": "MedicalBusiness",
+    "@id": Astro.url.origin
+  }
+};
+
+// Local Business Review Aggregate
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "AggregateRating",
+  "itemReviewed": {
+    "@type": "MedicalBusiness",
+    "@id": Astro.url.origin,
+    "name": name
+  },
+  "ratingValue": "4.9",
+  "bestRating": "5",
+  "worstRating": "1",
+  "ratingCount": "87",
+  "reviewCount": "42"
+};
+
+// Combinar todos los esquemas
+const combinedSchema = [organizationSchema, faqSchema, webPageSchema, reviewSchema];
 ---
 
-<!-- Integración con schema.org para SEO -->
-<script type="application/ld+json" set:html={JSON.stringify(medicalClinicSchema)}></script>
-{specialists.length > 0 && specialistsSchema.map(spec => (
-  <script type="application/ld+json" set:html={JSON.stringify(spec)}></script>
-))}
-<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script> 
+<!-- Esquemas de datos estructurados -->
+<script type="application/ld+json" set:html={JSON.stringify(combinedSchema)}></script> 
