@@ -12,7 +12,7 @@ import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     <!-- Guía PDF -->
-    <a href="/resources/guia-manejo-ansiedad.pdf" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar guía para manejar la ansiedad en PDF">
+    <a href="https://www.unicef.org/elsalvador/media/5026/file/Gu%C3%ADa%20para%20manejar%20la%20ansiedad.pdff" target="_blank" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar guía para manejar la ansiedad en PDF">
       <div class="flex flex-col items-center text-center space-y-4 h-full">
         <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
           <FileText class="w-7 h-7 text-white" />
@@ -21,13 +21,13 @@ import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
         <p class="text-sm text-gray-400 flex-grow">Aprende técnicas efectivas para gestionar la ansiedad en tu día a día.</p>
         <div class="flex items-center justify-center text-blue-400 font-semibold mt-auto pt-2 group-hover:text-blue-300 transition-colors">
           <Download class="w-4 h-4 mr-1 group-hover:animate-bounce" />
-          <span>Descargar PDF</span>
+          <span class="download-link">Descargar PDF</span>
         </div>
       </div>
     </a>
 
     <!-- Audios -->
-    <a href="/resources/meditacion-guiada.mp3" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar meditación guiada en MP3">
+    <a href="https://cultivarlamente.com/meditaciones-guiadas/" target="_blank" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar meditación guiada en MP3">
       <div class="flex flex-col items-center text-center space-y-4 h-full">
         <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
           <Headphones class="w-7 h-7 text-white" />
@@ -36,13 +36,13 @@ import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
         <p class="text-sm text-gray-400 flex-grow">Audio de 15 minutos para practicar mindfulness y reducir el estrés.</p>
         <div class="flex items-center justify-center text-blue-400 font-semibold mt-auto pt-2 group-hover:text-blue-300 transition-colors">
           <Download class="w-4 h-4 mr-1 group-hover:animate-bounce" />
-          <span>Descargar MP3</span>
+          <span class="download-link">Descargar MP3</span>
         </div>
       </div>
     </a>
 
     <!-- Ejercicios -->
-    <a href="/resources/ejercicios-respiracion.pdf" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar ejercicios de respiración en PDF">
+    <a href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/sites/default/files/sincfiles/wsas-media-pdf_publicacion/2020/anexo_12_ejercicios_respiracion.pdf" target="_blank" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar ejercicios de respiración en PDF">
       <div class="flex flex-col items-center text-center space-y-4 h-full">
         <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
           <BookOpen class="w-7 h-7 text-white" />
@@ -51,13 +51,13 @@ import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
         <p class="text-sm text-gray-400 flex-grow">Técnicas de respiración para calmar la mente y controlar la ansiedad.</p>
         <div class="flex items-center justify-center text-blue-400 font-semibold mt-auto pt-2 group-hover:text-blue-300 transition-colors">
           <Download class="w-4 h-4 mr-1 group-hover:animate-bounce" />
-          <span>Descargar PDF</span>
+          <span class="download-link">Descargar PDF</span>
         </div>
       </div>
     </a>
 
     <!-- Autoregistro -->
-    <a href="/resources/autoregistro-pensamientos.pdf" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar autoregistro de pensamientos en PDF">
+    <a href="https://www.uam.es/uam/media/doc/1606857426285/autorregistro-emociones-pensamientos.pdf" target="_blank" class="group bg-gray-800/30 hover:bg-gray-800/50 rounded-xl p-6 shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/10 hover:transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 flex flex-col h-full cursor-pointer" download aria-label="Descargar autoregistro de pensamientos en PDF">
       <div class="flex flex-col items-center text-center space-y-4 h-full">
         <div class="bg-gradient-to-br from-blue-500 to-cyan-400 w-14 h-14 rounded-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
           <FileText class="w-7 h-7 text-white" />
@@ -66,7 +66,7 @@ import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
         <p class="text-sm text-gray-400 flex-grow">Plantilla para identificar y modificar pensamientos negativos.</p>
         <div class="flex items-center justify-center text-blue-400 font-semibold mt-auto pt-2 group-hover:text-blue-300 transition-colors">
           <Download class="w-4 h-4 mr-1 group-hover:animate-bounce" />
-          <span>Descargar PDF</span>
+          <span class="download-link">Descargar PDF</span>
         </div>
       </div>
     </a>
@@ -78,4 +78,33 @@ import { Download, FileText, Headphones, BookOpen } from 'lucide-astro';
       Si necesitas ayuda especializada, te recomendamos <a href="#appointment" class="text-blue-400 hover:text-blue-300 underline cursor-pointer transition-colors">solicitar una cita</a>.
     </p>
   </div>
-</section> 
+</section>
+
+<style>
+  .download-link {
+    position: relative;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .download-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #38bdf8 0%, #6366f1 100%);
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .group:hover .download-link,
+  .group:focus .download-link {
+    color: #38bdf8; /* blue-400 */
+    transform: scale(1.07);
+  }
+  .group:hover .download-link::after,
+  .group:focus .download-link::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+</style> 
