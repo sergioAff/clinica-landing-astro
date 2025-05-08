@@ -15,7 +15,7 @@ import ButtonMain from "../ButtonMain.astro";
       <div>
         <h3 class="text-2xl font-semibold text-gray-100 mb-6">Solicita tu cita ahora</h3>
         
-        <form id="appointment-form" class="space-y-6" aria-labelledby="form-heading" novalidate>
+        <form id="appointment-form" class="space-y-6" aria-labelledby="form-heading" action="https://formspree.io/f/mnndvrpe" method="POST" novalidate>
           <p id="form-heading" class="sr-only">Formulario de solicitud de cita</p>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -94,6 +94,7 @@ import ButtonMain from "../ButtonMain.astro";
               class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
             >
               <option value="" disabled selected>Selecciona un servicio</option>
+              <option value="general">Consulta general</option>
               <option value="individual">Terapia individual</option>
               <option value="couple">Terapia de pareja</option>
               <option value="child">Terapia infantil</option>
@@ -339,21 +340,19 @@ import ButtonMain from "../ButtonMain.astro";
         
         try {
           const formData = new FormData(form);
-          const data = Object.fromEntries(formData.entries());
           
-          // Simulación de envío (esto se reemplazaría por una llamada real a la API)
-          await new Promise(resolve => setTimeout(resolve, 1500));
+          // Enviar los datos a Formspree
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
           
-          // Aquí iría la llamada a la API real:
-          // const response = await fetch('/api/submit-appointment', {
-          //   method: 'POST',
-          //   headers: { 'Content-Type': 'application/json' },
-          //   body: JSON.stringify(data)
-          // });
+          if (!response.ok) throw new Error('Error al enviar el formulario');
           
-          // if (!response.ok) throw new Error('Error al enviar el formulario');
-          
-          // Simulación de respuesta exitosa
+          // Respuesta exitosa
           feedback.classList.remove('bg-blue-500/20', 'text-blue-400', 'bg-red-500/20', 'text-red-400');
           feedback.classList.add('bg-green-500/20', 'text-green-400');
           feedback.textContent = '¡Solicitud enviada correctamente! Nos pondremos en contacto contigo en las próximas 24 horas.';
@@ -364,7 +363,7 @@ import ButtonMain from "../ButtonMain.astro";
           // Restaurar botón después de 3 segundos
           setTimeout(() => {
             submitButton.disabled = false;
-            submitButton.innerHTML = 'Solicitar cita gratuita';
+            submitButton.innerHTML = 'Solicitar cita';
           }, 3000);
           
           // Guardar en localStorage que el usuario ha enviado el formulario
@@ -389,7 +388,7 @@ import ButtonMain from "../ButtonMain.astro";
           
           // Restaurar botón
           submitButton.disabled = false;
-          submitButton.innerHTML = 'Solicitar cita gratuita';
+          submitButton.innerHTML = 'Solicitar cita';
           
           console.error('Error al enviar el formulario:', error);
         }

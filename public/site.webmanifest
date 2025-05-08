@@ -1,54 +1,46 @@
 {
-  "name": "MenteSana - Centro de Psicología Especializada",
+  "name": "MenteSana - Centro de Psicología",
   "short_name": "MenteSana",
-  "description": "Somos un equipo de psicólogos especializados comprometidos con tu salud mental. Ofrecemos terapias personalizadas en un entorno seguro y confidencial.",
+  "description": "Centro de psicología profesional especializado en el tratamiento de problemas emocionales y trastornos psicológicos utilizando terapias basadas en la evidencia científica.",
   "icons": [
     {
-      "src": "/img/favicon.svg",
+      "src": "/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/img/favicon.svg",
+      "src": "/favicon/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#1e293b",
+  "background_color": "#0f172a",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "lang": "es-ES",
+  "lang": "es",
   "dir": "ltr",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "categories": ["health", "medical", "psychology", "healthcare"],
   "shortcuts": [
     {
       "name": "Solicitar cita",
-      "url": "/contacto",
-      "description": "Solicita una cita con nuestros psicólogos",
-      "icons": [
-        {
-          "src": "/img/favicon.svg",
-          "sizes": "96x96",
-          "type": "image/svg+xml"
-        }
-      ]
+      "short_name": "Cita",
+      "description": "Solicita una consulta con nuestros profesionales",
+      "url": "/#appointment",
+      "icons": [{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Nuestros servicios",
-      "url": "/servicios",
-      "description": "Conoce nuestros servicios de terapia",
-      "icons": [
-        {
-          "src": "/img/favicon.svg",
-          "sizes": "96x96",
-          "type": "image/svg+xml"
-        }
-      ]
+      "name": "Contacto",
+      "short_name": "Contacto",
+      "description": "Contacta con nosotros",
+      "url": "/#contact",
+      "icons": [{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192" }]
     }
-  ]
+  ],
+  "prefer_related_applications": false,
+  "related_applications": []
 } 
