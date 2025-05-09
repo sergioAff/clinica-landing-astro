@@ -241,7 +241,7 @@ const categories = [...new Set(articles.map(article => article.category))];
             </div>
             
             <div class="px-6 pb-6">
-              <ButtonSub to={article.slug}>Leer más</ButtonSub>
+              <ButtonSub to={article.slug + "/"}>Leer más</ButtonSub>
             </div>
           </article>
         ))}
@@ -254,7 +254,7 @@ const categories = [...new Set(articles.map(article => article.category))];
             {Array.from({ length: totalPages }).map((_, index) => (
               <li>
                 <a 
-                  href={`/blog${index === 0 ? "" : "/page/" + (index + 1)}`}
+                  href={`/blog${index === 0 ? "/" : "/page/" + (index + 1) + "/"}`}
                   class={`flex items-center justify-center w-10 h-10 rounded-full ${
                     index + 1 === currentPage
                       ? "bg-primary-500 text-white"
