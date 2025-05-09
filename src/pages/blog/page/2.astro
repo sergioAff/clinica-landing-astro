@@ -2,93 +2,20 @@
 import Layout from '../../../layouts/Layout.astro';
 import Container from '../../../components/Container.astro';
 import ButtonSub from '../../../components/ButtonSub.astro';
+import Header from '../../../components/Header/Header.astro';
+import Footer from '../../../components/Footer/Footer.astro';
+import LazyImage from '../../../components/LazyImage.astro';
+import { ArrowLeft, ArrowRight } from 'lucide-astro';
 
 // Metadatos para SEO
 const title = "Blog de Salud Mental | Página 2 | MenteSana";
 const description = "Continúa explorando nuestros artículos sobre psicología, salud mental y bienestar emocional. Información basada en evidencia científica.";
 const keywords = "blog psicología, artículos salud mental, recursos bienestar emocional, consejos psicológicos, ansiedad, depresión, mindfulness, autoayuda";
 const image = "/img/blog/blog-header.jpg";
+const currentPage = 2;
 
 // Esto sería reemplazado por datos reales de un CMS o base de datos
 const articles = [
-  {
-    id: 1,
-    title: '5 técnicas efectivas para manejar la ansiedad en situaciones cotidianas',
-    excerpt: 'Descubre estrategias prácticas y basadas en evidencia para gestionar los síntomas de ansiedad y recuperar el control en tu día a día.',
-    category: 'Ansiedad',
-    categoryColor: 'bg-blue-500',
-    image: '/img/blog/article1.jpg',
-    date: '15 Mayo, 2023',
-    readTime: '5 min lectura',
-    author: 'Dra. María Rodríguez',
-    authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/ansiedad-tecnicas'
-  },
-  {
-    id: 2,
-    title: 'Etapas del desarrollo emocional en niños: guía para padres',
-    excerpt: 'Comprende las diferentes fases del desarrollo emocional infantil y aprende cómo acompañar a tu hijo en cada etapa para promover su bienestar.',
-    category: 'Infancia',
-    categoryColor: 'bg-green-500',
-    image: '/img/blog/article2.jpg',
-    date: '2 Junio, 2023',
-    readTime: '7 min lectura',
-    author: 'Dr. Carlos Mendoza',
-    authorImage: '/img/team/psychologist2.jpg',
-    slug: '/blog/desarrollo-emocional-infantil'
-  },
-  {
-    id: 3,
-    title: 'Comunicación efectiva en pareja: claves para evitar conflictos',
-    excerpt: 'Aprende a mejorar la comunicación con tu pareja mediante técnicas que fomentan la empatía, la escucha activa y la resolución constructiva de conflictos.',
-    category: 'Relaciones',
-    categoryColor: 'bg-red-500',
-    image: '/img/blog/article3.jpg',
-    date: '20 Mayo, 2023',
-    readTime: '6 min lectura',
-    author: 'Dra. Laura Sánchez',
-    authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/comunicacion-efectiva-pareja'
-  },
-  {
-    id: 4,
-    title: 'La importancia del autocuidado en tiempos de estrés',
-    excerpt: 'Descubre por qué el autocuidado es fundamental para mantener tu salud mental, especialmente en momentos de alta presión y estrés.',
-    category: 'Bienestar',
-    categoryColor: 'bg-purple-500',
-    image: '/img/blog/article1.jpg',
-    date: '10 Junio, 2023',
-    readTime: '4 min lectura',
-    author: 'Dr. Javier Martínez',
-    authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/autocuidado-tiempos-estres'
-  },
-  {
-    id: 5,
-    title: 'Cómo superar una ruptura: guía psicológica para el duelo emocional',
-    excerpt: 'Estrategias efectivas para procesar el dolor emocional tras una ruptura y reconstruir tu vida con fortaleza y nuevas perspectivas.',
-    category: 'Duelo',
-    categoryColor: 'bg-indigo-500',
-    image: '/img/blog/article2.jpg',
-    date: '5 Junio, 2023',
-    readTime: '8 min lectura',
-    author: 'Dra. Ana García',
-    authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/superar-ruptura-duelo-emocional'
-  },
-  {
-    id: 6,
-    title: 'Mindfulness para principiantes: guía práctica para empezar',
-    excerpt: 'Una introducción sencilla a la práctica del mindfulness, con ejercicios prácticos que puedes incorporar a tu rutina diaria para reducir el estrés.',
-    category: 'Mindfulness',
-    categoryColor: 'bg-teal-500',
-    image: '/img/blog/article3.jpg',
-    date: '1 Junio, 2023',
-    readTime: '5 min lectura',
-    author: 'Dr. Roberto Sánchez',
-    authorImage: '/img/team/psychologist2.jpg',
-    slug: '/blog/mindfulness-principiantes'
-  },
   {
     id: 7,
     title: 'Trastornos del sueño: causas, síntomas y tratamientos',
@@ -100,7 +27,8 @@ const articles = [
     readTime: '7 min lectura',
     author: 'Dra. Elena Torres',
     authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/trastornos-sueno-tratamientos'
+    slug: '/blog/trastornos-sueno-tratamientos',
+    dateISO: '2023-05-28'
   },
   {
     id: 8,
@@ -113,7 +41,8 @@ const articles = [
     readTime: '6 min lectura',
     author: 'Dr. Miguel López',
     authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/sindrome-impostor'
+    slug: '/blog/sindrome-impostor',
+    dateISO: '2023-05-25'
   },
   {
     id: 9,
@@ -126,7 +55,8 @@ const articles = [
     readTime: '5 min lectura',
     author: 'Dra. Claudia Ramírez',
     authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/gestion-emociones-trabajo'
+    slug: '/blog/gestion-emociones-trabajo',
+    dateISO: '2023-05-22'
   },
   {
     id: 10,
@@ -139,7 +69,8 @@ const articles = [
     readTime: '7 min lectura',
     author: 'Dr. Pablo Torres',
     authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/estres-cronico-cuerpo-mente'
+    slug: '/blog/estres-cronico-cuerpo-mente',
+    dateISO: '2023-05-18'
   },
   {
     id: 11,
@@ -152,131 +83,23 @@ const articles = [
     readTime: '6 min lectura',
     author: 'Dra. Daniela Medina',
     authorImage: '/img/team/psychologist2.jpg',
-    slug: '/blog/depresion-funcional'
+    slug: '/blog/depresion-funcional',
+    dateISO: '2023-05-15'
   }
 ];
 
-// Paginación simple
+// Configuración de paginación
 const articlesPerPage = 6;
-const totalPages = Math.ceil(articles.length / articlesPerPage);
-const currentPage = 2;
-const paginatedArticles = articles.slice(
-  (currentPage - 1) * articlesPerPage,
-  currentPage * articlesPerPage
-);
+const totalArticles = 11; // Total de artículos en el blog
+const totalPages = Math.ceil(totalArticles / articlesPerPage);
 
-// Categorías para Schema.org
+// Categorías para filtrado
 const categories = [...new Set(articles.map(article => article.category))];
----
 
-<Layout 
-  title={title}
-  description={description}
-  keywords={keywords}
-  image={image}
-  canonicalURL={Astro.url.href}
->
-  <main id="main-content">
-    <section class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 mt-20">
-      <div class="text-center mb-12">
-        <p class="text-primary-400 font-semibold tracking-widest text-sm mb-2 uppercase">Nuestro Blog</p>
-        <h1 class="text-4xl sm:text-5xl font-bold text-gray-100 mb-4">Artículos sobre salud mental</h1>
-        <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">Recursos, consejos y novedades sobre psicología y bienestar emocional. Conocimiento basado en evidencia para tu crecimiento personal.</p>
-      </div>
-      
-      <!-- Filtros -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12" aria-label="Filtros de categorías">
-        <button class="bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium cursor-pointer">Todos</button>
-        {categories.map(category => (
-          <button class="bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer">{category}</button>
-        ))}
-      </div>
-      
-      <!-- Artículos -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {paginatedArticles.map(article => (
-          <article class="bg-dark-300/30 rounded-xl overflow-hidden shadow-lg border border-dark-200/30 hover:border-primary-500/30 transition-all duration-300 group" data-scroll-animation="fade-up">
-            <div class="relative overflow-hidden">
-              <img 
-                src={article.image} 
-                alt={article.title} 
-                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                width="600"
-                height="400"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
-              <div class="absolute bottom-0 left-0 p-4">
-                <span class={`${article.categoryColor} text-white text-xs font-semibold px-3 py-1 rounded-full`}>{article.category}</span>
-              </div>
-            </div>
-            
-            <div class="p-6">
-              <div class="flex items-center text-gray-400 text-sm mb-2">
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <time datetime={new Date(article.date).toISOString().split('T')[0]}>{article.date}</time>
-                </span>
-                <span class="mx-2">·</span>
-                <span>{article.readTime}</span>
-              </div>
-              
-              <h3 class="text-xl font-semibold text-gray-100 mb-3 group-hover:text-primary-400 transition-colors">{article.title}</h3>
-              
-              <p class="text-gray-400 mb-4">{article.excerpt}</p>
-              
-              <div class="flex items-center">
-                <img 
-                  src={article.authorImage} 
-                  alt={article.author} 
-                  class="w-8 h-8 rounded-full object-cover mr-3"
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                />
-                <span class="text-sm text-gray-300">{article.author}</span>
-              </div>
-            </div>
-            
-            <div class="px-6 pb-6">
-              <ButtonSub to={article.slug}>Leer más</ButtonSub>
-            </div>
-          </article>
-        ))}
-      </div>
-      
-      <!-- Paginación -->
-      <div class="mt-10 flex justify-center">
-        <nav aria-label="Paginación">
-          <ul class="flex gap-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <li>
-                <a 
-                  href={`/blog${index === 0 ? "" : "/page/" + (index + 1)}`}
-                  class={`flex items-center justify-center w-10 h-10 rounded-full ${
-                    index + 1 === currentPage
-                      ? "bg-primary-500 text-white"
-                      : "bg-dark-300/50 text-gray-300 hover:bg-primary-500/20"
-                  }`}
-                  aria-current={index + 1 === currentPage ? "page" : undefined}
-                >
-                  {index + 1}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </section>
-  </main>
-</Layout>
-
-<!-- Schema.org markup para el Blog -->
-<script type="application/ld+json" set:html={JSON.stringify({
+// Schema.org data
+const schemaData = {
   "@context": "https://schema.org",
-  "@type": "Blog",
+  "@type": "CollectionPage",
   "headline": "Blog de Salud Mental de MenteSana - Página 2",
   "description": description,
   "url": Astro.url.href,
@@ -289,65 +112,351 @@ const categories = [...new Set(articles.map(article => article.category))];
       "url": new URL("/img/logo.svg", Astro.site || Astro.url.href).toString()
     }
   },
-  "blogPost": paginatedArticles.map(article => ({
-    "@type": "BlogPosting",
-    "headline": article.title,
-    "description": article.excerpt,
-    "image": new URL(article.image, Astro.site || Astro.url.href).toString(),
-    "datePublished": new Date(article.date).toISOString(),
-    "author": {
-      "@type": "Person",
-      "name": article.author
-    },
-    "url": new URL(article.slug, Astro.site || Astro.url.href).toString(),
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": new URL(article.slug, Astro.site || Astro.url.href).toString()
-    }
-  }))
-})}>
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": articles.map((article, index) => ({
+      "@type": "ListItem",
+      "position": index + 1 + (currentPage - 1) * articlesPerPage,
+      "url": new URL(article.slug, Astro.site || Astro.url.href).toString(),
+      "item": {
+        "@type": "BlogPosting",
+        "headline": article.title,
+        "description": article.excerpt,
+        "image": new URL(article.image, Astro.site || Astro.url.href).toString(),
+        "datePublished": article.dateISO || new Date(article.date).toISOString(),
+        "author": {
+          "@type": "Person",
+          "name": article.author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "MenteSana - Centro de Psicología",
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL("/img/logo.svg", Astro.site || Astro.url.href).toString()
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": new URL(article.slug, Astro.site || Astro.url.href).toString()
+        }
+      }
+    }))
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": new URL("/", Astro.site || Astro.url.origin).toString()
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": new URL("/blog", Astro.site || Astro.url.origin).toString()
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": `Página ${currentPage}`,
+        "item": Astro.url.href
+      }
+    ]
+  }
+};
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={keywords}
+  image={image}
+  canonicalURL={Astro.url.href}
+>
+  <Header />
+  <main id="main-content">
+    <Container>
+      <section class="py-12 sm:py-16 mt-20">
+        <div class="text-center mb-12">
+          <p class="text-primary-400 font-semibold tracking-widest text-sm mb-2 uppercase">Nuestro Blog</p>
+          <h1 class="text-4xl sm:text-5xl font-bold text-gray-100 mb-4">Artículos sobre salud mental</h1>
+          <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">Recursos, consejos y novedades sobre psicología y bienestar emocional. Conocimiento basado en evidencia para tu crecimiento personal.</p>
+        </div>
+        
+        <!-- Filtros de categorías accesibles -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="Filtrar artículos por categoría">
+          <button class="category-filter bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" role="tab" data-category="all" data-href="/blog">Todos</button>
+          {categories.map(category => (
+            <button class="category-filter bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" role="tab" data-category={category.toLowerCase()} data-href={`/blog/categoria/${category.toLowerCase().replace(/\s+/g, '-')}`}>{category}</button>
+          ))}
+        </div>
+        
+        <!-- Grid de artículos mejorado -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="articles-container">
+          {articles.map(article => (
+            <article class="bg-dark-300/30 rounded-xl overflow-hidden shadow-lg border border-dark-200/30 hover:border-primary-500/30 transition-all duration-300 group h-full flex flex-col article-card" data-category={article.category.toLowerCase()}>
+              <a href={article.slug} class="relative overflow-hidden block">
+                <div class="relative aspect-video">
+                  <LazyImage 
+                    src={article.image} 
+                    alt={`Imagen ilustrativa del artículo: ${article.title}`} 
+                    class="w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    width={600}
+                    height={400}
+                    loading="lazy"
+                    fetchpriority="low"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+                  <div class="absolute bottom-0 left-0 p-4">
+                    <span class={`${article.categoryColor} text-white text-xs font-semibold px-3 py-1 rounded-full`}>{article.category}</span>
+                  </div>
+                </div>
+              </a>
+              
+              <div class="p-6 flex-grow">
+                <div class="flex items-center text-gray-400 text-sm mb-2">
+                  <time datetime={article.dateISO || new Date(article.date).toISOString().split('T')[0]} class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 inline" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {article.date}
+                  </time>
+                  <span class="mx-2" aria-hidden="true">·</span>
+                  <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 inline" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {article.readTime}
+                  </span>
+                </div>
+                
+                <h2 class="text-xl font-semibold text-gray-100 mb-3 group-hover:text-primary-400 transition-colors">
+                  <a href={article.slug} class="hover:text-primary-400 transition-colors">
+                    {article.title}
+                  </a>
+                </h2>
+                
+                <p class="text-gray-400 mb-4">{article.excerpt}</p>
+                
+                <div class="flex items-center">
+                  <LazyImage 
+                    src={article.authorImage} 
+                    alt={article.author} 
+                    class="w-8 h-8 rounded-full object-cover mr-3"
+                    width={40}
+                    height={40}
+                  />
+                  <span class="text-sm text-gray-300">{article.author}</span>
+                </div>
+              </div>
+              
+              <div class="px-6 pb-6 mt-auto">
+                <ButtonSub to={article.slug} hasIcon={true} iconName="ArrowRight">
+                  Leer más
+                </ButtonSub>
+              </div>
+            </article>
+          ))}
+        </div>
+        
+        <!-- Breadcrumbs for better SEO and Navigation -->
+        <nav aria-label="Breadcrumbs" class="mt-6 mb-8 text-sm text-gray-400">
+          <ol class="flex flex-wrap items-center gap-2">
+            <li>
+              <a href="/" class="hover:text-primary-400 transition-colors">Inicio</a>
+            </li>
+            <li aria-hidden="true" class="select-none">/</li>
+            <li>
+              <a href="/blog" class="hover:text-primary-400 transition-colors">Blog</a>
+            </li>
+            <li aria-hidden="true" class="select-none">/</li>
+            <li>
+              <span class="text-gray-300" aria-current="page">Página {currentPage}</span>
+            </li>
+          </ol>
+        </nav>
+        
+        <!-- Paginación mejorada con navegación accesible -->
+        <nav aria-label="Paginación de artículos" class="mt-14 flex justify-center">
+          <ul class="flex items-center gap-2">
+            {currentPage > 1 && (
+              <li>
+                <a 
+                  href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`}
+                  class="flex items-center justify-center w-10 h-10 rounded-full bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  aria-label="Ir a página anterior"
+                >
+                  <ArrowLeft class="w-5 h-5" />
+                </a>
+              </li>
+            )}
+            
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <li>
+                <a 
+                  href={index === 0 ? "/blog" : `/blog/page/${index + 1}`}
+                  class={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
+                    index + 1 === currentPage
+                      ? "bg-primary-500 text-white"
+                      : "bg-dark-300/50 text-gray-300 hover:bg-primary-500/20"
+                  } focus:outline-none focus:ring-2 focus:ring-primary-500`}
+                  aria-current={index + 1 === currentPage ? "page" : undefined}
+                  aria-label={`Ir a página ${index + 1}`}
+                >
+                  {index + 1}
+                </a>
+              </li>
+            ))}
+            
+            {currentPage < totalPages && (
+              <li>
+                <a 
+                  href={`/blog/page/${currentPage + 1}`}
+                  class="flex items-center justify-center w-10 h-10 rounded-full bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  aria-label="Ir a página siguiente"
+                >
+                  <ArrowRight class="w-5 h-5" />
+                </a>
+              </li>
+            )}
+          </ul>
+        </nav>
+      </section>
+    </Container>
+  </main>
+  <Footer />
+</Layout>
+
+<!-- Schema.org markup for SEO -->
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)}>
 </script>
 
 <style>
-  [data-scroll-animation] {
-    opacity: 0;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  
-  [data-scroll-animation].animated {
-    opacity: 1;
-  }
-  
-  [data-scroll-animation="fade-up"].animated {
-    transform: translateY(0);
-  }
-  
-  [data-scroll-animation="fade-up"] {
-    transform: translateY(30px);
+  /* Estilos optimizados para mejor rendimiento */
+  @media (prefers-reduced-motion: reduce) {
+    [data-category] img {
+      transition: none;
+    }
   }
 </style>
 
 <script>
+  // Script optimizado para mejores métricas de rendimiento
   document.addEventListener('DOMContentLoaded', () => {
-    // Configurar animaciones al scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const animationType = entry.target.getAttribute('data-scroll-animation');
-          if (animationType) {
-            entry.target.classList.add(animationType, 'animated');
+    // Implementar lazy loading para imágenes con IntersectionObserver
+    const imgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            const src = img.getAttribute('data-src');
+            if (src) {
+              img.setAttribute('src', src);
+              img.removeAttribute('data-src');
+            }
+            imgObserver.unobserve(img);
           }
-          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '100px' }
+    );
+
+    // Observar todas las imágenes con data-src
+    document.querySelectorAll('img[data-src]').forEach((img) => {
+      imgObserver.observe(img);
+    });
+
+    // Mejorar la accesibilidad permitiendo navegación por teclado en elementos interactivos
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"], [role="tab"]');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('keydown', function(this: Element, e: Event) {
+        const keyEvent = e as KeyboardEvent;
+        if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+          e.preventDefault();
+          (this as HTMLElement).click();
         }
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
     });
     
-    // Observe all elements with data-scroll-animation
-    document.querySelectorAll('[data-scroll-animation]').forEach(element => {
-      observer.observe(element);
+    // Filtrado de categorías
+    const filterButtons = document.querySelectorAll('.category-filter');
+    const articleCards = document.querySelectorAll('.article-card');
+    
+    // Función para filtrar artículos por categoría
+    function filterArticles(category: string) {
+      // Actualizar estado de botones
+      filterButtons.forEach(button => {
+        const btn = button as HTMLElement;
+        if (btn.dataset.category === category) {
+          btn.classList.remove('bg-dark-300/50', 'text-gray-300');
+          btn.classList.add('bg-primary-500', 'text-white');
+        } else {
+          btn.classList.remove('bg-primary-500', 'text-white');
+          btn.classList.add('bg-dark-300/50', 'text-gray-300');
+        }
+      });
+      
+      // Mostrar u ocultar artículos
+      articleCards.forEach(article => {
+        const articleEl = article as HTMLElement;
+        if (category === 'all' || articleEl.dataset.category === category) {
+          articleEl.style.display = '';
+        } else {
+          articleEl.style.display = 'none';
+        }
+      });
+
+      // Guardar la preferencia en sessionStorage
+      sessionStorage.setItem('blogCategory', category);
+    }
+    
+    // Asignar eventos a los botones
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const btn = button as HTMLElement;
+        const category = btn.dataset.category;
+        if (category) {
+          // Si hay doble clic o presionando tecla Shift, ir a la página de categoría
+          if (btn.dataset.href && (btn.dataset.dblclick === 'true' || window.event && (window.event as MouseEvent).shiftKey)) {
+            window.location.href = btn.dataset.href;
+            return;
+          }
+          
+          // De lo contrario, filtrar en la página actual
+          filterArticles(category);
+          
+          // Configurar para detectar doble clic
+          btn.dataset.dblclick = 'true';
+          setTimeout(() => {
+            btn.dataset.dblclick = 'false';
+          }, 300);
+        }
+      });
+      
+      // Añadir evento de clic derecho para mostrar menú contextual
+      button.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const btn = button as HTMLElement;
+        if (btn.dataset.href) {
+          window.location.href = btn.dataset.href;
+        }
+      });
     });
+    
+    // Verificar si hay una categoría guardada en sessionStorage
+    const savedCategory = sessionStorage.getItem('blogCategory');
+    if (savedCategory) {
+      filterArticles(savedCategory);
+    }
+
+    // Comprobar si hay un parámetro de categoría en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('categoria');
+    if (categoryParam) {
+      filterArticles(categoryParam.toLowerCase());
+    }
   });
 </script> 

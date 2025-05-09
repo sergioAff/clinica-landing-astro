@@ -6,7 +6,6 @@ import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tu-dominio.com', // Actualiza con tu dominio real
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -62,6 +61,4 @@ export default defineConfig({
     contentIntellisense: true,
     responsiveImages: true,
   },
-  trailingSlash: 'never',
-  output: 'static',
 });

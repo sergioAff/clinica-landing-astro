@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
 import ButtonSub from '../components/ButtonSub.astro';
+import Header from '../components/Header/Header.astro';
+import Footer from '../components/Footer/Footer.astro';
 
 // Metadatos para SEO
 const title = "Blog de Salud Mental | Artículos y Recursos | MenteSana";
@@ -176,6 +178,7 @@ const categories = [...new Set(articles.map(article => article.category))];
   image={image}
   canonicalURL={Astro.url.href}
 >
+  <Header />
   <main id="main-content">
     <section class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 mt-20">
       <div class="text-center mb-12">
@@ -186,16 +189,16 @@ const categories = [...new Set(articles.map(article => article.category))];
       
       <!-- Filtros -->
       <div class="flex flex-wrap justify-center gap-3 mb-12" aria-label="Filtros de categorías">
-        <button class="bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium cursor-pointer">Todos</button>
+        <button class="category-filter bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium cursor-pointer" data-category="all" data-href="/blog">Todos</button>
         {categories.map(category => (
-          <button class="bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer">{category}</button>
+          <button class="category-filter bg-dark-300/50 text-gray-300 hover:bg-primary-500/20 px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer" data-category={category.toLowerCase()} data-href={`/blog/categoria/${category.toLowerCase().replace(/\s+/g, '-')}`}>{category}</button>
         ))}
       </div>
       
       <!-- Artículos -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="articles-container">
         {paginatedArticles.map(article => (
-          <article class="bg-dark-300/30 rounded-xl overflow-hidden shadow-lg border border-dark-200/30 hover:border-primary-500/30 transition-all duration-300 group" data-scroll-animation="fade-up">
+          <article class="bg-dark-300/30 rounded-xl overflow-hidden shadow-lg border border-dark-200/30 hover:border-primary-500/30 transition-all duration-300 group article-card" data-scroll-animation="fade-up" data-category={article.category.toLowerCase()}>
             <div class="relative overflow-hidden">
               <img 
                 src={article.image} 
@@ -271,6 +274,7 @@ const categories = [...new Set(articles.map(article => article.category))];
       </div>
     </section>
   </main>
+  <Footer />
 </Layout>
 
 <!-- Schema.org markup para el Blog -->
@@ -349,5 +353,87 @@ const categories = [...new Set(articles.map(article => article.category))];
     document.querySelectorAll('[data-scroll-animation]').forEach(element => {
       observer.observe(element);
     });
+
+    // Filtrado de categorías
+    const filterButtons = document.querySelectorAll('.category-filter');
+    const articleCards = document.querySelectorAll('.article-card');
+    
+    // Función para filtrar artículos por categoría
+    function filterArticles(category: string) {
+      // Actualizar estado de botones
+      filterButtons.forEach(button => {
+        const btn = button as HTMLElement;
+        if (btn.dataset.category === category) {
+          btn.classList.remove('bg-dark-300/50', 'text-gray-300');
+          btn.classList.add('bg-primary-500', 'text-white');
+        } else {
+          btn.classList.remove('bg-primary-500', 'text-white');
+          btn.classList.add('bg-dark-300/50', 'text-gray-300');
+        }
+      });
+      
+      // Mostrar u ocultar artículos
+      articleCards.forEach(article => {
+        const articleEl = article as HTMLElement;
+        if (category === 'all' || articleEl.dataset.category === category) {
+          articleEl.style.display = '';
+          // Reinicializar animación si está oculto
+          if (articleEl.style.opacity === '0') {
+            observer.observe(articleEl);
+          }
+        } else {
+          articleEl.style.display = 'none';
+        }
+      });
+
+      // Guardar la preferencia en sessionStorage
+      sessionStorage.setItem('blogCategory', category);
+    }
+    
+    // Asignar eventos a los botones
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const btn = button as HTMLElement;
+        const category = btn.dataset.category;
+        if (category) {
+          // Si hay doble clic o presionando tecla Shift, ir a la página de categoría
+          if (btn.dataset.href && (btn.dataset.dblclick === 'true' || window.event && (window.event as MouseEvent).shiftKey)) {
+            window.location.href = btn.dataset.href;
+            return;
+          }
+          
+          // De lo contrario, filtrar en la página actual
+          filterArticles(category);
+          
+          // Configurar para detectar doble clic
+          btn.dataset.dblclick = 'true';
+          setTimeout(() => {
+            btn.dataset.dblclick = 'false';
+          }, 300);
+        }
+      });
+      
+      // Añadir evento de clic derecho para mostrar menú contextual
+      button.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const btn = button as HTMLElement;
+        if (btn.dataset.href) {
+          window.location.href = btn.dataset.href;
+        }
+      });
+    });
+    
+    // Verificar si hay una categoría guardada en sessionStorage
+    const savedCategory = sessionStorage.getItem('blogCategory');
+    if (savedCategory) {
+      filterArticles(savedCategory);
+    }
+
+    // Comprobar si hay un parámetro de categoría en la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('categoria');
+    if (categoryParam) {
+      filterArticles(categoryParam.toLowerCase());
+    }
   });
 </script> 

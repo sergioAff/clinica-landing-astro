@@ -34,6 +34,8 @@ export interface Props {
     platform: string;
     url: string;
   }[];
+  type: 'Organization' | 'WebSite' | 'WebPage' | 'BlogPosting' | 'CollectionPage' | 'Person' | 'MedicalClinic' | 'Article' | 'BreadcrumbList' | 'ItemList';
+  data: Record<string, any>;
 }
 
 const {
@@ -53,8 +55,55 @@ const {
     { platform: "Facebook", url: "https://facebook.com/mentesana" },
     { platform: "Twitter", url: "https://twitter.com/mentesana" },
     { platform: "Instagram", url: "https://instagram.com/mentesana" }
-  ]
+  ],
+  type,
+  data
 } = Astro.props;
+
+// Ensure URLs are absolute
+const ensureAbsoluteUrl = (url: string) => {
+  if (url.startsWith('http')) return url;
+  return new URL(url, Astro.site || Astro.url.origin).toString();
+};
+
+// Process schema data to ensure URLs are absolute
+const processSchemaData = (schemaData: any): any => {
+  if (!schemaData) return schemaData;
+  
+  if (typeof schemaData === 'object' && schemaData !== null) {
+    if (Array.isArray(schemaData)) {
+      return schemaData.map(item => processSchemaData(item));
+    }
+    
+    const processed: Record<string, any> = {};
+    
+    for (const [key, value] of Object.entries(schemaData)) {
+      if (typeof value === 'string' && (key === 'url' || key === 'image' || key === 'logo' || key === 'item')) {
+        processed[key] = ensureAbsoluteUrl(value);
+      } else if (key === 'image' && typeof value === 'object' && value !== null && 'url' in value && typeof value.url === 'string') {
+        processed[key] = {
+          ...value,
+          url: ensureAbsoluteUrl(value.url)
+        };
+      } else if (typeof value === 'object') {
+        processed[key] = processSchemaData(value);
+      } else {
+        processed[key] = value;
+      }
+    }
+    
+    return processed;
+  }
+  
+  return schemaData;
+};
+
+// Process the schema data
+const processedData = processSchemaData({
+  '@context': 'https://schema.org',
+  '@type': type,
+  ...data
+});
 
 // Generar los datos estructurados para la clínica
 const organizationSchema = {
@@ -270,4 +319,4 @@ const combinedSchema = [organizationSchema, faqSchema, webPageSchema, reviewSche
 ---
 
 <!-- Esquemas de datos estructurados -->
-<script type="application/ld+json" set:html={JSON.stringify(combinedSchema)}></script> 
+<script type="application/ld+json" set:html={JSON.stringify(processedData)}></script> 

@@ -61,6 +61,9 @@ const Tag = isLink ? 'a' : 'button';
 // Si es un botón, agregar atributos específicos
 const buttonAttrs = !isLink ? { type } : { href: to };
 
+// Para debugging
+console.log(`ButtonSub: to=${to}, isLink=${isLink}, Tag=${Tag}`);
+
 // Importar el icono dinámicamente si se proporciona un nombre
 let DynamicIcon;
 if (hasIcon && iconName) {

@@ -1,6 +1,8 @@
 ---
 import Layout from './Layout.astro';
 import ButtonSub from '../components/ButtonSub.astro';
+import Header from '../components/Header/Header.astro';
+import Footer from '../components/Footer/Footer.astro';
 
 interface Props {
   title: string;
@@ -52,6 +54,7 @@ const canonicalURL = Astro.url.href;
   modifiedTime={isoModifiedDate}
   keywords={tags.join(", ") + ", psicología, salud mental, bienestar emocional"}
 >
+  <Header />
   <main id="main-content">
     <section class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 mt-20">
       <!-- Encabezado del artículo -->
@@ -247,6 +250,7 @@ const canonicalURL = Astro.url.href;
       </div>
     </section>
   </main>
+  <Footer />
 </Layout>
 
 <!-- Schema.org markup para artículos -->
