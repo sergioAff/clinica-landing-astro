@@ -1,0 +1,8 @@
+{
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/blog/?", "dest": "/blog.html" },
+    { "src": "/blog/page/\\d+/?", "dest": "/blog/page/[...page].html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+} 
