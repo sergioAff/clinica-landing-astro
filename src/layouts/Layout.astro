@@ -46,7 +46,6 @@ import '@fontsource/montserrat/800.css';
 import '../styles/global.css';
 import '../styles/reset-cursor.css';
 import ScrollObserver from '../components/ScrollObserver.astro';
-import ChatBot from '../components/react/ChatBot';
 
 // Obtener la URL completa para imágenes
 const fullImageUrl = new URL(image, Astro.site || canonicalURL).toString();
@@ -349,7 +348,6 @@ const isHomePage = currentPage === "/";
 		
 		<slot />
 		<ScrollObserver />
-		<ChatBot client:load />
 		
 		<!-- Añadir un componente de "Volver arriba" que aparece al desplazarse -->
 		<button id="back-to-top" aria-label="Volver arriba" class="fixed bottom-6 right-6 z-50 bg-primary-500 hover:bg-primary-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 pointer-events-none focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-gray-900">

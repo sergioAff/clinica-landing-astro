@@ -135,15 +135,53 @@ import ButtonMain from '../components/ButtonMain.astro';
               </label>
             </div>
             
-            <div class="pt-2">
-              <ButtonMain to="#" type="submit" id="submitButton" class="w-full justify-center">
+            <div class="mt-2 mb-3">
+              <p class="text-sm text-gray-400">Elige cómo prefieres solicitar tu cita:</p>
+              <ul class="text-xs text-gray-500 mt-1 space-y-1">
+                <li class="flex items-center">
+                  <span class="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                  <span><strong>Email:</strong> Te responderemos en 24-48 horas laborables.</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                  <span><strong>WhatsApp:</strong> Respuesta más rápida durante horario de atención.</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Submit button for email -->
+              <button 
+                type="submit" 
+                id="submitButton" 
+                class="w-full flex justify-center items-center px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-gray-900"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                 </svg>
-                Solicitar cita
-              </ButtonMain>
+                Solicitar por email
+              </button>
+              
+              <!-- WhatsApp button -->
+              <button 
+                type="button" 
+                id="whatsappButton" 
+                class="w-full flex justify-center items-center px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:ring-offset-2 focus:ring-offset-gray-900"
+                aria-label="Solicitar cita por WhatsApp"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Solicitar por WhatsApp
+              </button>
             </div>
           </form>
+          
+          <!-- Mensaje de error de validación (inicialmente oculto) -->
+          <div id="validationError" class="hidden mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+            Por favor, completa correctamente todos los campos requeridos.
+          </div>
         </div>
         
         <!-- Información adicional -->
@@ -229,6 +267,8 @@ import ButtonMain from '../components/ButtonMain.astro';
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('appointmentForm') as HTMLFormElement;
     const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+    const whatsappButton = document.getElementById('whatsappButton') as HTMLButtonElement;
+    const validationError = document.getElementById('validationError') as HTMLDivElement;
     
     // Configurar animaciones al scroll
     const observer = new IntersectionObserver((entries) => {
@@ -251,9 +291,109 @@ import ButtonMain from '../components/ButtonMain.astro';
       observer.observe(element);
     });
     
+    // Función para formatear fecha
+    const formatDate = (dateString: string): string => {
+      const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      return new Date(dateString).toLocaleDateString('es-ES', options);
+    };
+    
+    // Traducir preferencia de horario
+    const translateTimePreference = (value: string): string => {
+      const translations: Record<string, string> = {
+        'morning': 'Mañana (9:00 - 12:00)',
+        'noon': 'Mediodía (12:00 - 15:00)',
+        'afternoon': 'Tarde (15:00 - 18:00)',
+        'evening': 'Tarde-noche (18:00 - 20:00)'
+      };
+      return translations[value] || value;
+    };
+    
+    // Traducir tipo de servicio
+    const translateService = (value: string): string => {
+      const translations: Record<string, string> = {
+        'terapia-individual': 'Terapia individual',
+        'terapia-pareja': 'Terapia de pareja',
+        'terapia-familiar': 'Terapia familiar',
+        'terapia-infantil': 'Terapia infantil',
+        'terapia-adolescentes': 'Terapia para adolescentes',
+        'mindfulness': 'Mindfulness',
+        'evaluacion-psicologica': 'Evaluación psicológica',
+        'coaching': 'Coaching'
+      };
+      return translations[value] || value;
+    };
+    
+    // Función para validar el formulario y mostrar errores
+    const validateForm = () => {
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        validationError.classList.remove('hidden');
+        // Ocultar el mensaje de error después de 5 segundos
+        setTimeout(() => {
+          validationError.classList.add('hidden');
+        }, 5000);
+        return false;
+      }
+      validationError.classList.add('hidden');
+      return true;
+    };
+    
+    // Manejar click en botón de WhatsApp
+    if (whatsappButton && form) {
+      whatsappButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Validar el formulario antes de continuar
+        if (!validateForm()) {
+          return;
+        }
+        
+        // Recopilar datos del formulario
+        const formData = new FormData(form);
+        const firstName = formData.get('firstName') as string;
+        const lastName = formData.get('lastName') as string;
+        const phone = formData.get('phone') as string;
+        const email = formData.get('email') as string;
+        const serviceTypeValue = formData.get('serviceType') as string;
+        const serviceType = translateService(serviceTypeValue);
+        const preferredDateValue = formData.get('preferredDate') as string;
+        const preferredDate = formatDate(preferredDateValue);
+        const preferredTimeValue = formData.get('preferredTime') as string;
+        const preferredTime = translateTimePreference(preferredTimeValue);
+        const message = formData.get('message') as string;
+        
+        // Crear mensaje para WhatsApp
+        let whatsappMessage = `Hola, soy ${firstName} ${lastName}. Me gustaría solicitar una cita.%0A%0A`;
+        whatsappMessage += `*Datos de contacto:*%0A`;
+        whatsappMessage += `- Nombre: ${firstName} ${lastName}%0A`;
+        whatsappMessage += `- Teléfono: ${phone}%0A`;
+        whatsappMessage += `- Email: ${email}%0A%0A`;
+        whatsappMessage += `*Datos de la cita:*%0A`;
+        whatsappMessage += `- Servicio: ${serviceType}%0A`;
+        whatsappMessage += `- Fecha preferida: ${preferredDate}%0A`;
+        whatsappMessage += `- Horario preferido: ${preferredTime}%0A`;
+        
+        if (message && message.trim() !== '') {
+          whatsappMessage += `%0A*Mensaje adicional:*%0A${message}`;
+        }
+        
+        // Número de WhatsApp de la clínica
+        const whatsappNumber = '+598 98018044'; 
+        
+        // Abrir WhatsApp con el mensaje predefinido
+        const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`;
+        window.open(whatsappUrl, '_blank');
+      });
+    }
+    
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        // Validar formulario
+        if (!validateForm()) {
+          return;
+        }
         
         // Simular envío (aquí iría el código para enviar el formulario)
         let originalContent = '';
@@ -263,6 +403,7 @@ import ButtonMain from '../components/ButtonMain.astro';
             originalContent = submitButton.innerHTML;
             submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Procesando...';
             submitButton.disabled = true;
+            whatsappButton.disabled = true;
             
             // Simular tiempo de procesamiento
             await new Promise(resolve => setTimeout(resolve, 1500));
@@ -284,11 +425,13 @@ import ButtonMain from '../components/ButtonMain.astro';
           }
         } catch (error) {
           console.error('Error al enviar el formulario:', error);
-          alert('Ha ocurrido un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.');
+          validationError.textContent = 'Ha ocurrido un error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.';
+          validationError.classList.remove('hidden');
           
           if (submitButton) {
             submitButton.innerHTML = originalContent;
             submitButton.disabled = false;
+            whatsappButton.disabled = false;
           }
         }
       });
