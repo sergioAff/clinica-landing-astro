@@ -46,6 +46,7 @@ import '@fontsource/montserrat/800.css';
 import '../styles/global.css';
 import '../styles/reset-cursor.css';
 import ScrollObserver from '../components/ScrollObserver.astro';
+import { Analytics } from '@vercel/analytics/react';
 
 // Obtener la URL completa para imágenes
 const fullImageUrl = new URL(image, Astro.site || canonicalURL).toString();
@@ -342,6 +343,7 @@ const isHomePage = currentPage === "/";
 		<meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate" />
 	</head>
 	<body class="antialiased min-h-screen flex flex-col bg-gray-900">
+		<Analytics client:only="react" />
 		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-primary-500 focus:text-white focus:top-2 focus:left-2 focus:rounded">
 			Saltar al contenido principal
 		</a>
