@@ -15,6 +15,13 @@ interface Props {
   targetBlank?: boolean;
   onClick?: string;
   class?: string;
+  ariaLabel?: string;
+  ariaDescribedby?: string;
+  ariaControls?: string;
+  ariaExpanded?: boolean;
+  ariaHaspopup?: boolean;
+  ariaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false';
+  role?: 'button' | 'link' | 'menuitem' | 'tab' | 'menuitemcheckbox' | 'switch' | null;
 }
 
 const {
@@ -30,6 +37,13 @@ const {
   targetBlank = false,
   onClick,
   class: className = '',
+  ariaLabel,
+  ariaDescribedby,
+  ariaControls,
+  ariaExpanded,
+  ariaHaspopup,
+  ariaCurrent,
+  role,
 } = Astro.props;
 
 // Determinar clases según el tamaño
@@ -46,6 +60,14 @@ const attrs = {
   ...(targetBlank && { target: '_blank', rel: 'noopener noreferrer' }),
   ...(onClick && { onclick: onClick }),
   ...(disabled && { disabled: true, 'aria-disabled': true }),
+  ...(ariaLabel && { 'aria-label': ariaLabel }),
+  ...(ariaDescribedby && { 'aria-describedby': ariaDescribedby }),
+  ...(ariaControls && { 'aria-controls': ariaControls }),
+  ...(ariaExpanded !== undefined && { 'aria-expanded': ariaExpanded }),
+  ...(ariaHaspopup !== undefined && { 'aria-haspopup': ariaHaspopup }),
+  ...(ariaCurrent && { 'aria-current': ariaCurrent }),
+  ...(role && { role }),
+  tabindex: disabled ? -1 : 0,
   class: `relative inline-flex items-center justify-center font-medium rounded-full 
     ${sizeClasses[size]} transition-all duration-300 ease-out
     bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400
@@ -53,7 +75,7 @@ const attrs = {
     transform hover:-translate-y-0.5 active:translate-y-0
     focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 
     dark:focus:ring-offset-gray-900 ${disabled ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}
-    group overflow-hidden ${className}`.replace(/\s+/g, ' ').trim()
+    group overflow-hidden focus-visible:ring-offset-4 focus-visible:ring-2 ${className}`.replace(/\s+/g, ' ').trim()
 };
 
 // Determinar si es un enlace o un botón
@@ -62,6 +84,11 @@ const Tag = isLink ? 'a' : 'button';
 
 // Si es un botón, agregar atributos específicos
 const buttonAttrs = !isLink ? { type } : { href: to };
+
+// Asignar el rol correcto para mejor accesibilidad
+if (!attrs.role) {
+  attrs.role = isLink ? 'link' : 'button';
+}
 
 // Importar el icono dinámicamente si se proporciona un nombre
 let DynamicIcon;
@@ -73,18 +100,22 @@ if (hasIcon && iconName) {
     console.warn(`Icon "${iconName}" not found. Please check the icon name.`);
   }
 }
+
+// Mejorar accesibilidad cuando hay elementos visuales adicionales
+const hasVisualElements = hasArrow || hasIcon;
+const shouldEnhanceLabel = hasVisualElements && !ariaLabel;
 ---
 
 <Tag {...attrs} {...buttonAttrs}>
   <!-- Fondo animado para hover -->
-  <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+  <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></span>
   
   <!-- Efecto de brillo en hover -->
-  <span class="absolute inset-0 w-0 h-full bg-white opacity-10 group-hover:animate-shine"></span>
+  <span class="absolute inset-0 w-0 h-full bg-white opacity-10 group-hover:animate-shine" aria-hidden="true"></span>
   
   <!-- Icono a la izquierda si se solicita -->
   {hasIcon && iconPosition === 'left' && DynamicIcon && (
-    <DynamicIcon class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+    <DynamicIcon class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
   )}
   
   <!-- Contenido del botón -->
@@ -94,12 +125,21 @@ if (hasIcon && iconName) {
   
   <!-- Flecha a la derecha si se solicita -->
   {hasArrow && (
-    <ArrowRight class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+    <ArrowRight class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
   )}
   
   <!-- Icono a la derecha si se solicita -->
   {hasIcon && iconPosition === 'right' && DynamicIcon && (
-    <DynamicIcon class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+    <DynamicIcon class="w-4 h-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+  )}
+
+  <!-- Texto para lectores de pantalla si hay elementos visuales pero no un aria-label explícito -->
+  {shouldEnhanceLabel && (
+    <span class="sr-only">
+      <slot />
+      {hasArrow && " (con flecha)"}
+      {hasIcon && ` (con icono ${iconName})`}
+    </span>
   )}
 </Tag>
 
@@ -119,5 +159,26 @@ if (hasIcon && iconName) {
   
   :global(.group-hover\:animate-shine) {
     animation: shine 1.5s ease-in-out infinite;
+  }
+
+  /* Mejor soporte para high contrast mode */
+  @media (forced-colors: active) {
+    a, button {
+      border: 1px solid transparent;
+    }
+    a:focus, button:focus {
+      border-color: Highlight;
+      outline: 2px solid Highlight;
+    }
+  }
+
+  /* Eliminación de transiciones para preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.group-hover\:animate-shine) {
+      animation: none;
+    }
+    a, button {
+      transition-duration: 0.001ms !important;
+    }
   }
 </style>

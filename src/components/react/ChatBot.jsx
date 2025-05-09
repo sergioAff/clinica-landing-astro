@@ -7,7 +7,7 @@ const faqs = [
   {
     id: 'consulta',
     keywords: ['cita', 'consulta', 'reservar', 'agendar', 'pedir', 'solicitar'],
-    answer: 'Puedes solicitar una cita usando nuestro formulario de contacto o llamando al +34 123 456 789. También puedes hacerlo directamente en la sección "Solicitar cita" de nuestra web.',
+    answer: 'Puedes solicitar una cita usando nuestro formulario de contacto o llamando al +598 98018044. También puedes hacerlo directamente en la sección "Solicitar cita" de nuestra web.',
   },
   {
     id: 'precio',

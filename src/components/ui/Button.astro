@@ -10,6 +10,13 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   icon?: boolean;
+  ariaLabel?: string;
+  ariaDescribedby?: string;
+  ariaControls?: string;
+  ariaExpanded?: boolean;
+  ariaHaspopup?: boolean;
+  ariaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false';
+  role?: 'button' | 'link' | 'menuitem' | 'tab' | 'menuitemcheckbox' | 'switch' | null;
 }
 
 const {
@@ -23,6 +30,13 @@ const {
   type = 'button',
   disabled = false,
   icon = false,
+  ariaLabel,
+  ariaDescribedby,
+  ariaControls,
+  ariaExpanded,
+  ariaHaspopup,
+  ariaCurrent,
+  role,
   ...rest
 } = Astro.props;
 
@@ -47,6 +61,9 @@ const iconClass = icon ? 'inline-flex items-center justify-center gap-2' : '';
 // Deshabilitar
 const disabledClass = disabled ? 'opacity-50 cursor-not-allowed' : '';
 
+// Focus styles for accessibility
+const focusClass = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-primary-400';
+
 // Clases combinadas
 const classes = [
   'font-medium rounded-full transition-all duration-300 cursor-pointer',
@@ -54,11 +71,18 @@ const classes = [
   variantClasses[variant],
   iconClass,
   disabledClass,
+  focusClass,
   className
 ].join(' ');
 
 // Determinar si es enlace o botón
 const isLink = typeof href !== 'undefined';
+
+// Ensure tabIndex is correctly set for keyboard navigation
+const tabIndex = disabled ? -1 : 0;
+
+// Prepare the relation attributes for target="_blank"
+const safeRel = target === '_blank' ? 'noopener noreferrer' : rel;
 ---
 
 {
@@ -68,7 +92,15 @@ const isLink = typeof href !== 'undefined';
       class={classes}
       id={id}
       target={target}
-      rel={target === '_blank' ? 'noopener noreferrer' : rel}
+      rel={safeRel}
+      tabindex={tabIndex}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedby}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
+      aria-haspopup={ariaHaspopup}
+      aria-current={ariaCurrent}
+      role={role || "button"}
       {...rest}
     >
       <slot />
@@ -79,9 +111,35 @@ const isLink = typeof href !== 'undefined';
       class={classes}
       id={id}
       disabled={disabled}
+      tabindex={tabIndex}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedby}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
+      aria-haspopup={ariaHaspopup}
+      aria-current={ariaCurrent}
+      role={role}
       {...rest}
     >
       <slot />
     </button>
   )
 } 
+
+<style>
+  /* Enhance focus styles for keyboard navigation */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+  
+  /* Support for Windows high contrast mode */
+  @media (forced-colors: active) {
+    a, button {
+      border: 1px solid transparent;
+    }
+    a:focus, button:focus {
+      border-color: Highlight;
+    }
+  }
+</style> 
