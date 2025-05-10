@@ -1,8 +1,11 @@
 {
+  "trailingSlash": false,
   "routes": [
     { "handle": "filesystem" },
     { "src": "/blog/?", "dest": "/blog.html" },
     { "src": "/blog/page/\\d+/?", "dest": "/blog/page/[...page].html" },
+    { "src": "/blog/categoria/[^/]+/?", "dest": "/blog/categoria/[categoria].html" },
+    { "src": "/blog/([^/]+)/?", "dest": "/blog/$1.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 } 
