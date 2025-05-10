@@ -27,7 +27,7 @@ const articles = [
     readTime: '5 min lectura',
     author: 'Dra. María Rodríguez',
     authorImage: '/img/team/psychologist1.jpg',
-    slug: '/blog/tecnicas-manejo-ansiedad'
+    slug: '/blog/ansiedad-tecnicas'
   },
   {
     id: 2,
@@ -174,8 +174,8 @@ const paginatedArticles = articles.slice(
 const categories = [...new Set(articles.map(article => article.category))];
 
 // URLs para siguiente y anterior página
-const nextPageUrl = currentPage < totalPages ? `/blog/page/${currentPage + 1}/` : null;
-const prevPageUrl = currentPage > 1 ? (currentPage === 2 ? '/blog/' : `/blog/page/${currentPage - 1}/`) : null;
+const nextPageUrl = currentPage < totalPages ? `/blog/page/${currentPage + 1}` : null;
+const prevPageUrl = currentPage > 1 ? (currentPage === 2 ? '/blog' : `/blog/page/${currentPage - 1}`) : null;
 ---
 
 <Layout 
@@ -293,7 +293,7 @@ const prevPageUrl = currentPage > 1 ? (currentPage === 2 ? '/blog/' : `/blog/pag
                 </div>
                 
                 <div class="px-6 pb-6">
-                  <ButtonSub to={article.slug + "/"}>Leer más</ButtonSub>
+                  <ButtonSub to={article.slug}>Leer más</ButtonSub>
                 </div>
               </article>
             ))}
@@ -338,7 +338,7 @@ const prevPageUrl = currentPage > 1 ? (currentPage === 2 ? '/blog/' : `/blog/pag
               {Array.from({ length: totalPages }).map((_, index) => (
                 <li>
                   <a 
-                    href={`/blog${index === 0 ? "/" : "/page/" + (index + 1) + "/"}`}
+                    href={`/blog${index === 0 ? "" : "/page/" + (index + 1)}`}
                     class={`flex items-center justify-center w-10 h-10 rounded-full ${
                       index + 1 === currentPage
                         ? "bg-primary-500 text-white"
