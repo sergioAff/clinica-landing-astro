@@ -48,9 +48,9 @@ const {
   services,
   specialists,
   hasMap = "https://maps.google.com",
-  priceRange = "€€",
+  priceRange = "$-$$",
   logo = "/img/logo.svg",
-  geo = { latitude: 40.416775, longitude: -3.703790 },
+  geo = { latitude: -34.905, longitude: -56.165 },
   socialProfiles = [
     { platform: "Facebook", url: "https://facebook.com/mentesana" },
     { platform: "Twitter", url: "https://twitter.com/mentesana" },
@@ -124,7 +124,7 @@ const organizationSchema = {
   "email": email,
   "priceRange": priceRange,
   "paymentAccepted": ["Tarjeta de crédito", "Efectivo", "Transferencia bancaria"],
-  "currenciesAccepted": "EUR",
+  "currenciesAccepted": "UYU, USD",
   "openingHoursSpecification": openingHours.map(hours => {
     const [days, time] = hours.split(" ");
     const daysOfWeek = days.split("-").map(day => {

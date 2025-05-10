@@ -12,13 +12,13 @@ export const SITE_IMAGE = "/img/social-image.svg";
 
 // Datos de contacto
 export const CONTACT_DATA = {
-  phone: "+34600000000", // Cambiar por número real
-  email: "contacto@mentesana.com", // Cambiar por email real
+  phone: "+598 98018044",
+  email: "contacto@mentesana.com",
   address: {
-    street: "Calle Principal, 123",
-    city: "Madrid",
-    postalCode: "28001",
-    country: "ES"
+    street: "Av. Rivera 1234",
+    city: "Montevideo",
+    postalCode: "11300",
+    country: "UY"
   },
   social: {
     facebook: "https://facebook.com/mentesana",
@@ -26,8 +26,8 @@ export const CONTACT_DATA = {
     instagram: "https://instagram.com/mentesana"
   },
   geo: {
-    latitude: 40.416775,
-    longitude: -3.703790
+    latitude: -34.905,
+    longitude: -56.165
   },
   hours: {
     weekdays: "09:00-20:00",
@@ -44,9 +44,10 @@ export const getPsychologyServiceSchema = () => {
     "name": `${SITE_NAME} - Servicio de Psicología Profesional`,
     "description": SITE_DESCRIPTION,
     "image": `${SITE_URL}${SITE_IMAGE}`,
-    "priceRange": "$$",
+    "priceRange": "$-$$",
     "telephone": CONTACT_DATA.phone,
     "email": CONTACT_DATA.email,
+    "currenciesAccepted": "UYU, USD",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": CONTACT_DATA.address.street,
@@ -96,7 +97,7 @@ export const getPsychologicalTreatmentSchema = () => {
       "Fobias",
       "Trauma"
     ],
-    "recognizingAuthority": "Colegio Oficial de Psicólogos",
+    "recognizingAuthority": "Coordinadora de Psicólogos del Uruguay",
     "relevantSpecialty": {
       "@type": "MedicalSpecialty",
       "name": "Psicología Clínica"
@@ -163,6 +164,14 @@ export const getFAQSchema = () => {
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Sí, ofrecemos una primera sesión de evaluación gratuita de 20-30 minutos para conocer tu caso y explicarte cómo podemos ayudarte. Esta sesión puede ser presencial u online."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuestan las sesiones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El costo de las sesiones oscila entre 1000 y 2500 pesos uruguayos por sesión, dependiendo del tipo de terapia y la duración. También ofrecemos opciones de paquetes de sesiones con tarifas más económicas. Para mayor detalle, contáctanos directamente."
         }
       }
     ]
