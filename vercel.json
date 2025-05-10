@@ -1,11 +1,13 @@
 {
-  "trailingSlash": false,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/blog/?", "dest": "/blog.html" },
-    { "src": "/blog/page/\\d+/?", "dest": "/blog/page/[...page].html" },
-    { "src": "/blog/categoria/[^/]+/?", "dest": "/blog/categoria/[categoria].html" },
-    { "src": "/blog/([^/]+)/?", "dest": "/blog/$1.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "redirects": [
+    { "source": "/blog/ansiedad-tecnicas", "destination": "/blog/ansiedad-tecnicas.html", "permanent": true },
+    { "source": "/blog/desarrollo-emocional-infantil", "destination": "/blog/desarrollo-emocional-infantil.html", "permanent": true },
+    { "source": "/blog/comunicacion-efectiva-pareja", "destination": "/blog/comunicacion-efectiva-pareja.html", "permanent": true },
+    { "source": "/blog/autocuidado-tiempos-estres", "destination": "/blog/autocuidado-tiempos-estres.html", "permanent": true },
+    { "source": "/blog/mindfulness-principiantes", "destination": "/blog/mindfulness-principiantes.html", "permanent": true },
+    { "source": "/blog/sindrome-impostor", "destination": "/blog/sindrome-impostor.html", "permanent": true },
+    { "source": "/blog", "destination": "/blog.html", "permanent": true },
+    { "source": "/blog/page/:path*", "destination": "/blog/page/:path*.html", "permanent": true },
+    { "source": "/blog/categoria/:path*", "destination": "/blog/categoria/:path*.html", "permanent": true }
   ]
 } 
