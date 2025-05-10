@@ -11,8 +11,8 @@ const faqs = [
   },
   {
     id: 'precio',
-    keywords: ['precio', 'costo', 'tarifa', 'vale', 'valor', 'cuanto', 'cuánto', 'euros', '€'],
-    answer: 'Nuestras tarifas son: Primera sesión: 80€. Sesiones regulares: 70€. Terapia de pareja: 90€. Terapia infantil: 75€. Aceptamos diferentes formas de pago y trabajamos con algunas aseguradoras.',
+    keywords: ['precio', 'costo', 'tarifa', 'vale', 'valor', 'cuanto', 'cuánto', 'pesos', '$'],
+    answer: 'Nuestras tarifas oscilan entre 1000 y 2500 pesos uruguayos por sesión, dependiendo del tipo de terapia y duración. Aceptamos diferentes formas de pago y trabajamos con algunas aseguradoras.',
   },
   {
     id: 'duracion',
@@ -31,24 +31,24 @@ const faqs = [
   },
   {
     id: 'seguro',
-    keywords: ['seguro', 'seguros', 'aseguradora', 'aseguradoras', 'mutua', 'médico', 'cobertura'],
-    answer: 'Trabajamos con las principales aseguradoras médicas. Puedes consultarnos si tu seguro está entre nuestros colaboradores contactando con nosotros.',
+    keywords: ['seguro', 'seguros', 'aseguradora', 'aseguradoras', 'mutual', 'médico', 'cobertura'],
+    answer: 'Trabajamos con las principales aseguradoras médicas en Uruguay. Puedes consultarnos si tu seguro está entre nuestros colaboradores contactando con nosotros.',
   },
   {
     id: 'ubicacion',
     keywords: ['ubicación', 'ubicacion', 'dirección', 'direccion', 'donde', 'dónde', 'lugar', 'consulta', 'clínica'],
-    answer: 'Estamos ubicados en Calle Principal, 123, Madrid. Cerca de la estación de metro "Plaza de España" y con fácil acceso en transporte público.',
+    answer: 'Estamos ubicados en Av. Rivera 1234, Montevideo. Es una zona céntrica con fácil acceso en transporte público y buena disponibilidad de estacionamiento en los alrededores.',
   },
   {
     id: 'horario',
     keywords: ['horario', 'horarios', 'atención', 'atencion', 'abierto', 'abren', 'cierran'],
-    answer: 'Nuestro horario de atención es de lunes a viernes de 9:00 a 20:00h. También ofrecemos algunas sesiones en horario de mañana los sábados.',
+    answer: 'Nuestro horario de atención es de lunes a viernes de 9:00 a 20:00h. También ofrecemos algunas sesiones los sábados por la mañana de 9:00 a 14:00h.',
   },
 ];
 
 // Mensaje inicial y de despedida
 const initialMessage = {
-  text: 'Hola, soy el asistente virtual de MenteSana. ¿En qué puedo ayudarte?',
+  text: 'Hola, soy el asistente virtual de MenteSana. ¿En qué puedo ayudarte? Puedes consultarme sobre precios, horarios o cómo agendar una cita.',
   sender: 'bot',
 };
 
